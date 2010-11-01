@@ -5,16 +5,18 @@ import android.database.sqlite.SQLiteDatabase;
 
 public class DataHelper {
 
-	public static final String DATABASE_NAME = "botaoteca.db";
 	public static final String TABLE_NAME = "sounds";
 	public static final int DATABASE_VERSION = 1;
 	public static final String CREATE_SQL;
 	public static final String DROP_SQL;
-
+	static final String DATABASE_NAME = "botaoteca.db";
+	static final String DATABASE_TEST_NAME = "botaoteca-test.db";
+	
 	static final String LOG_TAG = "DataBase";
 
 	private Context context;
 	private SQLiteDatabase db;
+	private static boolean testing;
 
 	static {
 
@@ -31,11 +33,26 @@ public class DataHelper {
 	}
 
 	public DataHelper(Context context) {
+
 		this.context = context;
 		OpenHelper openHelper = new OpenHelper(this.context);
 		this.db = openHelper.getWritableDatabase();
 	}
 
-	
+	static String getDatabaseName() {
+		if (testing) {
+			return DATABASE_TEST_NAME;
+		} else {
+			return DATABASE_NAME;
+		}
+	}
+
+	static boolean isTesting() {
+		return testing;
+	}
+
+	static void setTesting(boolean testing) {
+		DataHelper.testing = testing;
+	}
 
 }

@@ -12,13 +12,19 @@ public class OpenHelperTest extends AndroidTestCase {
 
 	private Context context;
 	private OpenHelper helper;
-
+	
 	@Override
 	protected void setUp() throws Exception {
 		context = getContext();
+		DataHelper.setTesting(true);
 		helper = new OpenHelper(context);
 	}
-
+	
+	@Override
+	protected void tearDown() throws Exception {
+		DataHelper.setTesting(false);
+	}
+	
 	public void testOnCreate() {
 		
 		List<String> list = new ArrayList<String>();

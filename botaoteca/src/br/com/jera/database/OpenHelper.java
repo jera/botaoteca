@@ -8,7 +8,7 @@ import android.util.Log;
 class OpenHelper extends SQLiteOpenHelper {
 
 	public OpenHelper(Context context) {
-		super(context, DataHelper.DATABASE_NAME, null, DataHelper.DATABASE_VERSION);
+		super(context, DataHelper.getDatabaseName(), null, DataHelper.DATABASE_VERSION);
 	}
 
 	@Override
