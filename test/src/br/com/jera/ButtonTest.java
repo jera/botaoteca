@@ -1,4 +1,4 @@
-package br.com.jera.test;
+package br.com.jera;
 
 import android.test.ActivityInstrumentationTestCase2;
 import br.com.jera.Principal;
