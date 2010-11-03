@@ -1,4 +1,4 @@
-package br.com.jera;
+package br.com.jera.botaoteca;
 
 public enum ButtonColor {
 	

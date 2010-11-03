@@ -8,5 +8,5 @@
     <uses-library android:name="android.test.runner" />
     </application>
 
-    <instrumentation android:targetPackage="br.com.jera" android:name="android.test.InstrumentationTestRunner" />
+    <instrumentation android:targetPackage="br.com.jera.botaoteca" android:name="android.test.InstrumentationTestRunner" />
 </manifest> 

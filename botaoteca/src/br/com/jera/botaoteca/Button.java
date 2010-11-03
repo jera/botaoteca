@@ -1,42 +1,26 @@
-package br.com.jera;
+package br.com.jera.botaoteca;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 
 import android.content.Context;
-import android.media.MediaPlayer;
-import android.os.Environment;
 import android.view.View;
+import br.com.jera.botaoteca.sound.Sound;
 
 public class Button extends android.widget.Button {
 
-	private static MediaPlayer PLAYER = new MediaPlayer();
-
-	public static final String PATH = Environment.getExternalStorageDirectory() + File.separator + "sounds";
-
-	private String fileName;
 	private String name;
 	private ButtonColor color;
+	private Sound sound;
 
-	public Button(String fileName,ButtonColor color, Context context) {
+	public Button(ButtonColor color, Context context, Sound sound) {
 		super(context);
-		
-		this.fileName = fileName;
+
 		this.color = color;
+		this.sound = sound;
 		this.setOnClickListener(new Action());
 	}
 
-	private void play() throws IllegalArgumentException, IllegalStateException, IOException {
-		
-		PLAYER.reset();
-		File file = new File(PATH + File.separator + fileName);
-		FileInputStream fis = new FileInputStream(file);
-		PLAYER.setDataSource(fis.getFD());
-		PLAYER.prepare();
-		PLAYER.start();
-	}
-	
+
 	public String getName() {
 		return name;
 	}
@@ -52,13 +36,13 @@ public class Button extends android.widget.Button {
 	public void setColor(ButtonColor color) {
 		this.color = color;
 	}
-	
+
 	private class Action implements OnClickListener {
-		
+
 		@Override
 		public void onClick(View v) {
 			try {
-				Button.this.play();
+				Button.this.sound.play();
 			} catch (IllegalArgumentException e) {
 				e.printStackTrace();
 			} catch (IllegalStateException e) {

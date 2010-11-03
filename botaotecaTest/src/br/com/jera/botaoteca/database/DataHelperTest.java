@@ -1,6 +1,7 @@
-package br.com.jera.database;
+package br.com.jera.botaoteca.database;
 
 import android.test.AndroidTestCase;
+import br.com.jera.botaoteca.database.DataHelper;
 
 public class DataHelperTest extends AndroidTestCase {
 

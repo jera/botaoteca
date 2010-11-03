@@ -1,7 +1,10 @@
-package br.com.jera.database;
+package br.com.jera.botaoteca.database;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import br.com.jera.botaoteca.database.DataHelper;
+import br.com.jera.botaoteca.database.OpenHelper;
 
 import android.content.Context;
 import android.database.Cursor;

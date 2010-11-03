@@ -5,7 +5,7 @@
  * should not be modified by hand.
  */
 
-package br.com.jera;
+package br.com.jera.botaoteca;
 
 public final class R {
     public static final class attr {
