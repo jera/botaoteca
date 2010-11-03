@@ -17,7 +17,7 @@ public class Principal extends Activity {
 		
 		setContentView(R.layout.main);
 		LinearLayout l = (LinearLayout)findViewById(R.id.area);
-		
+		 
 		//adiciona os sons distribuidos juntamente com a aplicação
 		Button b1 = new Button(ButtonColor.BLUE, getApplicationContext(), new EmbeddedSound("serracomedor.mp3"));
 		b1.setText("serracomedor.mp3");
