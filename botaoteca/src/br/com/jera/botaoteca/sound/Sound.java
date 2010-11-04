@@ -14,8 +14,10 @@ public abstract class Sound {
 	
 	protected FileInputStream inputStream;
 	protected Context context;
+	private String fileName;
 	
 	public Sound(String fileName, Context context) {
+		this.fileName = fileName;
 		this.context = context;
 		try {
 			loadFile(fileName);
@@ -33,5 +35,11 @@ public abstract class Sound {
 		PLAYER.prepare();
 		PLAYER.start();
 	}
+
+	public String getFileName() {
+		return fileName;
+	}
+	
+	
 	
 }

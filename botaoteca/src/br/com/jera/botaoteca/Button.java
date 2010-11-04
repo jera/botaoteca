@@ -42,11 +42,7 @@ public class Button extends android.widget.Button {
 	}
 
 	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
+		return sound.getFileName();
 	}
 
 	public ButtonColor getColor() {

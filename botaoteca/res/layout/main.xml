@@ -5,11 +5,15 @@
     android:layout_height="fill_parent"
     android:background="@drawable/bg"
     >
+	<ScrollView android:id="@+id/scrollArea"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent">
 	<TableLayout 
 	android:id="@+id/area"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     >
     </TableLayout>
+	</ScrollView>
 	
 </LinearLayout>

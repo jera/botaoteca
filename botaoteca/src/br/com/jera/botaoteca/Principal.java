@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 import android.app.Activity;
 import android.content.Context;
@@ -35,7 +36,7 @@ public class Principal extends Activity {
 		File files[] = home.listFiles();
 
 		for (File f : files) {
-			Button b2 = new Button(ButtonColor.ORANGE, context,
+			Button b2 = new Button(ButtonColor.YELLOW, context,
 					new DownloadedSound(f.getName()));
 			buttons.add(b2);
 		}
