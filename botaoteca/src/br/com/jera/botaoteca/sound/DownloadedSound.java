@@ -11,7 +11,7 @@ public class DownloadedSound extends Sound{
 	public static final String PATH = Environment.getExternalStorageDirectory()+ File.separator + "sounds";
 	
 	public DownloadedSound(String fileName) {
-		super(fileName);
+		super(fileName, null);
 	}
 	
 	@Override

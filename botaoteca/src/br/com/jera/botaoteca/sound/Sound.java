@@ -3,6 +3,7 @@ package br.com.jera.botaoteca.sound;
 import java.io.FileInputStream;
 import java.io.IOException;
 
+import android.content.Context;
 import android.media.MediaPlayer;
 import android.util.Log;
 
@@ -12,8 +13,10 @@ public abstract class Sound {
 	private static MediaPlayer PLAYER = new MediaPlayer();
 	
 	protected FileInputStream inputStream;
+	protected Context context;
 	
-	public Sound(String fileName) {
+	public Sound(String fileName, Context context) {
+		this.context = context;
 		try {
 			loadFile(fileName);
 		} catch (Exception e) {
