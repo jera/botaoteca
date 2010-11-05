@@ -42,7 +42,7 @@ public class Button extends android.widget.Button {
 	}
 
 	public String getName() {
-		return sound.getFileName();
+		return name;
 	}
 
 	public ButtonColor getColor() {
@@ -68,6 +68,10 @@ public class Button extends android.widget.Button {
 			}
 		}
 		
+	}
+
+	public void setName(String name) {
+	    this.name = name;
 	}
 
 }

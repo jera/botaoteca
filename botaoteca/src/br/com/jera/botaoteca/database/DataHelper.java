@@ -1,7 +1,14 @@
 package br.com.jera.botaoteca.database;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import br.com.jera.botaoteca.Button;
+import br.com.jera.botaoteca.ButtonColor;
+import br.com.jera.botaoteca.sound.EmbeddedSound;
 
 public class DataHelper {
 
@@ -25,13 +32,37 @@ public class DataHelper {
 		sql.append(" (");
 		sql.append("fileName TEXT PRIMARY KEY, ");
 		sql.append("name TEXT, ");
+		sql.append("type INTEGER, ");
 		sql.append("color TEXT");
 		sql.append(")");
 
 		CREATE_SQL = String.format(sql.toString(), TABLE_NAME);
 		DROP_SQL = String.format("DROP TABLE IF EXISTS %s", TABLE_NAME);
 	}
+	
+	public List<Button> listAllSounds(){
+	    Cursor cursor = db.rawQuery("SELECT fileName, name, color, type FROM "+TABLE_NAME,null);
+	    List<Button> buttons = new ArrayList<Button>();
+	    if (cursor.moveToFirst()) {
+		do {
+		    int type = cursor.getInt(3);
+		    
+		    String fileName = cursor.getString(0);
+		    String name = cursor.getString(1);
+		    String color = cursor.getString(2);
+		    
+		    if(type == 1){
+			Button button = new Button(ButtonColor.valueOf(color), context,new EmbeddedSound(fileName, context));
+			button.setName(name);
+			buttons.add(button);
+		    }
+		} while (cursor.moveToNext());
 
+	}
+	    return buttons;
+	}
+	
+	
 	public DataHelper(Context context) {
 
 		this.context = context;
