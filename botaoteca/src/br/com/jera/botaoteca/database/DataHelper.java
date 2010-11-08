@@ -40,6 +40,13 @@ public class DataHelper {
 	CREATE_SQL = String.format(sql.toString(), TABLE_NAME);
 	DROP_SQL = String.format("DROP TABLE IF EXISTS %s", TABLE_NAME);
     }
+    
+    public DataHelper(Context context) {
+
+	this.context = context;
+	OpenHelper openHelper = new OpenHelper(this.context);
+	this.db = openHelper.getWritableDatabase();
+    }
 
     public List<Button> createButtonsFromDatabase() {
 	Cursor cursor = db.rawQuery("SELECT fileName, name, color, type FROM "
@@ -68,13 +75,6 @@ public class DataHelper {
 
 	}
 	return buttons;
-    }
-
-    public DataHelper(Context context) {
-
-	this.context = context;
-	OpenHelper openHelper = new OpenHelper(this.context);
-	this.db = openHelper.getWritableDatabase();
     }
 
     static String getDatabaseName() {
