@@ -18,7 +18,7 @@ public class Principal extends Activity {
 	DataHelper dataHelper = new DataHelper(getApplicationContext());
 	setContentView(R.layout.main);
 	
-	List<Button> buttons = dataHelper.listAllSounds();
+	List<Button> buttons = dataHelper.createButtonsFromDatabase();
 	TableLayout l = (TableLayout) findViewById(R.id.area);
 	
 	List<TableRow> rows = UIFactory.createRows(this, buttons);

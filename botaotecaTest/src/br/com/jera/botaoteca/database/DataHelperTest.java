@@ -1,13 +1,17 @@
 package br.com.jera.botaoteca.database;
 
+import java.util.List;
+
 import android.test.AndroidTestCase;
-import br.com.jera.botaoteca.database.DataHelper;
+import br.com.jera.botaoteca.Button;
 
 public class DataHelperTest extends AndroidTestCase {
 
+	DataHelper dataHelper;
 	@Override
 	protected void setUp() throws Exception {
 		DataHelper.setTesting(true);
+		dataHelper = new DataHelper(getContext());
 	}
 
 	@Override
@@ -23,6 +27,11 @@ public class DataHelperTest extends AndroidTestCase {
 	public void testTestingDatabaseName() {
 		DataHelper.setTesting(true);
 		assertEquals("Should be equal to botaoteca-test.db ",DataHelper.DATABASE_TEST_NAME, DataHelper.getDatabaseName());
+	}
+	
+	public void testCreateButtonsFromDatabase(){
+		List<Button> buttons = dataHelper.createButtonsFromDatabase();
+		assertEquals("should create 6 buttons",6 , buttons.size());
 	}
 
 }

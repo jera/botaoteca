@@ -5,7 +5,6 @@ import java.io.IOException;
 
 import android.content.Context;
 import android.media.MediaPlayer;
-import android.util.Log;
 
 
 public abstract class Sound {
@@ -16,18 +15,13 @@ public abstract class Sound {
 	protected Context context;
 	private String fileName;
 	
-	public Sound(String fileName, Context context) {
+    public Sound(String fileName, Context context) throws IOException  {
 		this.fileName = fileName;
 		this.context = context;
-		try {
-			loadFile(fileName);
-		} catch (Exception e) {
-			Log.wtf("File", "Impossible to load File "+fileName);
-			e.printStackTrace();
-		}
+		loadFile(fileName);
 	}
 	
-	protected abstract void loadFile(String fileName) throws Exception;
+	protected abstract void loadFile(String fileName) throws IOException;
 	
 	public void play() throws IllegalArgumentException, IllegalStateException, IOException {
 		PLAYER.reset();
