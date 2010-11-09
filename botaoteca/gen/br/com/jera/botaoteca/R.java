@@ -11,24 +11,25 @@ public final class R {
     public static final class attr {
     }
     public static final class drawable {
-        public static final int bar_normal_buscar=0x7f020000;
-        public static final int bar_normal_favoritos=0x7f020001;
-        public static final int bar_normal_todos=0x7f020002;
-        public static final int bar_pressed_buscar=0x7f020003;
-        public static final int bar_pressed_favoritos=0x7f020004;
-        public static final int bar_pressed_todos=0x7f020005;
-        public static final int bg=0x7f020006;
-        public static final int btn_normal_blue=0x7f020007;
-        public static final int btn_normal_green=0x7f020008;
-        public static final int btn_normal_orange=0x7f020009;
-        public static final int btn_normal_red=0x7f02000a;
-        public static final int btn_normal_yellow=0x7f02000b;
-        public static final int btn_pressed_blue=0x7f02000c;
-        public static final int btn_pressed_green=0x7f02000d;
-        public static final int btn_pressed_orange=0x7f02000e;
-        public static final int btn_pressed_red=0x7f02000f;
-        public static final int btn_pressed_yellow=0x7f020010;
-        public static final int icon=0x7f020011;
+        public static final int banner=0x7f020000;
+        public static final int bar_normal_buscar=0x7f020001;
+        public static final int bar_normal_favoritos=0x7f020002;
+        public static final int bar_normal_todos=0x7f020003;
+        public static final int bar_pressed_buscar=0x7f020004;
+        public static final int bar_pressed_favoritos=0x7f020005;
+        public static final int bar_pressed_todos=0x7f020006;
+        public static final int bg=0x7f020007;
+        public static final int btn_normal_blue=0x7f020008;
+        public static final int btn_normal_green=0x7f020009;
+        public static final int btn_normal_orange=0x7f02000a;
+        public static final int btn_normal_red=0x7f02000b;
+        public static final int btn_normal_yellow=0x7f02000c;
+        public static final int btn_pressed_blue=0x7f02000d;
+        public static final int btn_pressed_green=0x7f02000e;
+        public static final int btn_pressed_orange=0x7f02000f;
+        public static final int btn_pressed_red=0x7f020010;
+        public static final int btn_pressed_yellow=0x7f020011;
+        public static final int icon=0x7f020012;
     }
     public static final class id {
         public static final int area=0x7f050001;

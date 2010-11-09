@@ -16,6 +16,7 @@ public class Principal extends Activity {
     public void onCreate(Bundle savedInstanceState) {
 
 	super.onCreate(savedInstanceState);
+	
 	DataHelper dataHelper = new DataHelper(getApplicationContext());
 	setContentView(R.layout.main);
 	
