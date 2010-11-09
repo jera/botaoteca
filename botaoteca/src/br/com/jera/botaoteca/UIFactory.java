@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
+import android.graphics.Typeface;
 import android.view.Gravity;
 import android.widget.LinearLayout;
 import android.widget.TableRow;
@@ -46,11 +47,11 @@ public class UIFactory {
 		layout.setLayoutParams(buttonAreaLayoutParams);
 		layout.setHorizontalGravity(Gravity.CENTER_HORIZONTAL);
 		layout.setOrientation(LinearLayout.VERTICAL);
-		layout.setPadding(2, 2, 2, 2);
 		
 		TextView text = new TextView(activity);
 		text.setText(button.getName());
-		
+		text.setTextSize(12);
+		text.setTypeface(Typeface.DEFAULT_BOLD);
 		layout.addView(button,buttonAreaLayoutParams);
 		layout.addView(text,buttonAreaLayoutParams);
 		
