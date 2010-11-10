@@ -30,6 +30,12 @@ public final class R {
         public static final int btn_pressed_red=0x7f020010;
         public static final int btn_pressed_yellow=0x7f020011;
         public static final int icon=0x7f020012;
+        public static final int popup_normal_favorito=0x7f020013;
+        public static final int popup_normal_remover=0x7f020014;
+        public static final int popup_normal_widget=0x7f020015;
+        public static final int popup_pressed_favorito=0x7f020016;
+        public static final int popup_pressed_remover=0x7f020017;
+        public static final int popup_pressed_widget=0x7f020018;
     }
     public static final class id {
         public static final int area=0x7f050001;
@@ -43,6 +49,7 @@ public final class R {
         public static final int btn_favoritos=0x7f030001;
         public static final int btn_todos=0x7f030002;
         public static final int main=0x7f030003;
+        public static final int quick_menu=0x7f030004;
     }
     public static final class string {
         public static final int app_name=0x7f040001;
