@@ -16,6 +16,7 @@ class OpenHelper extends SQLiteOpenHelper {
 		Log.i(DataHelper.LOG_TAG, "Creating database");
 		db.execSQL(DataHelper.CREATE_SQL);
 		db.setVersion(DataHelper.DATABASE_VERSION);
+		populateDatabase(db);
 	}
 
 	@Override
@@ -29,5 +30,17 @@ class OpenHelper extends SQLiteOpenHelper {
 		db.setVersion(newVersion);
 
 	}
+	
+	  private void populateDatabase(SQLiteDatabase db) {
+		db.beginTransaction();
+		db.execSQL("INSERT INTO sounds VALUES('serracomedor.mp3','Serra Comedor',1,'BLUE')");
+		db.execSQL("INSERT INTO sounds VALUES('atoron.mp3','Adoro Perigo',1,'ORANGE')");
+		db.execSQL("INSERT INTO sounds VALUES('dilma.mp3','Oi dilma',1,'GREEN')");
+		db.execSQL("INSERT INTO sounds VALUES('hmboiola.mp3','Humm Boiola',1,'YELLOW')");
+		db.execSQL("INSERT INTO sounds VALUES('hojenao.mp3','Cleber Machado',1,'ORANGE')");
+		db.execSQL("INSERT INTO sounds VALUES('ladygaga.mp3','Ta ouvindo?',1,'BLUE')");
+		db.setTransactionSuccessful();
+		db.endTransaction();
+	    }
 
 }

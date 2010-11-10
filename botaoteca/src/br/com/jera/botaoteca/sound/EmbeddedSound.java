@@ -3,21 +3,28 @@ package br.com.jera.botaoteca.sound;
 import java.io.IOException;
 
 import android.content.Context;
+import android.content.res.AssetFileDescriptor;
 import android.content.res.AssetManager;
 
-
 public class EmbeddedSound extends Sound {
+
+    private static AssetManager manager;
+
+    public EmbeddedSound(String fileName, Context context) throws IOException {
+	super(fileName, context);
+    }
+
+    @Override
+    public void play() throws IllegalArgumentException, IllegalStateException,IOException {
+	manager = context.getAssets();
+	AssetFileDescriptor descriptor = manager.openFd(fileName);
 	
-	private static AssetManager manager;
+	long start = descriptor.getStartOffset();
+	long end = descriptor.getLength();
 	
-	public EmbeddedSound(String fileName, Context context) throws IOException {
-		super(fileName, context);
-	}
-	
-	@Override
-	protected void loadFile(String fileName) throws IOException{
-		manager = context.getAssets();
-		this.inputStream = manager.openFd(fileName).createInputStream();
-	}
-	
+	PLAYER.reset();
+	PLAYER.setDataSource(descriptor.getFileDescriptor(), start,end);
+	PLAYER.prepare();
+	PLAYER.start();
+    }
 }

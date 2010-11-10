@@ -6,17 +6,26 @@ import java.io.IOException;
 
 import android.os.Environment;
 
-public class DownloadedSound extends Sound{
+public class DownloadedSound extends Sound {
+
+    public static final String PATH = Environment.getExternalStorageDirectory()
+	    + File.separator + "sounds";
+
+    public DownloadedSound(String fileName) throws IOException {
+	super(fileName, null);
+    }
+
+
+    @Override
+    public void play() throws IllegalArgumentException, IllegalStateException, IOException {
 	
-	public static final String PATH = Environment.getExternalStorageDirectory()+ File.separator + "sounds";
+	File file = new File(PATH + File.separator + fileName);
+	FileInputStream inputStream = new FileInputStream(file);
 	
-	public DownloadedSound(String fileName) throws IOException {
-		super(fileName, null);
-	}
-	
-	@Override
-	protected void loadFile(String fileName) throws IOException {
-		File file = new File(PATH + File.separator + fileName);
-		this.inputStream = new FileInputStream(file);
-	}
+	PLAYER.reset();
+	PLAYER.setDataSource(inputStream.getFD());
+	PLAYER.prepare();
+	PLAYER.start();
+
+    }
 }
