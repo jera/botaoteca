@@ -16,41 +16,41 @@ import android.widget.TextView;
 
 public class UIFactory {
 
-    private static TableRow.LayoutParams rowLayoutParams = new TableRow.LayoutParams( TableRow.LayoutParams.WRAP_CONTENT,
+    private static TableRow.LayoutParams rowLayoutParams = new TableRow.LayoutParams(
+	    TableRow.LayoutParams.WRAP_CONTENT,
 	    TableRow.LayoutParams.WRAP_CONTENT);
     private static LinearLayout.LayoutParams buttonAreaLayoutParams = new LinearLayout.LayoutParams(
 	    LinearLayout.LayoutParams.WRAP_CONTENT,
 	    LinearLayout.LayoutParams.WRAP_CONTENT);
-    
+
     private static Dialog popup;
 
-    public static List<TableRow> createRows(Activity activity,
-	    List<Button> buttons) {
+    public static List<TableRow> createRows(Activity activity, List<Button> buttons) {
+
 	List<TableRow> rows = new ArrayList<TableRow>(buttons.size());
 	TableRow row = new TableRow(activity);
 	row.setLayoutParams(rowLayoutParams);
 
 	for (int i = 0; i < buttons.size(); i++) {
 
+	    // add the long click handler
+	    buttons.get(i).setOnLongClickListener(OnLongClickHandler.getHandler(activity));
 	    if ((i + 1) % 3 == 0) {
-		row.addView(createButtonArea(activity, buttons.get(i)),
-			rowLayoutParams);
+		row.addView(createButtonArea(activity, buttons.get(i)),rowLayoutParams);
 		rows.add(row);
 		row = new TableRow(activity);
 	    } else {
-		row.addView(createButtonArea(activity, buttons.get(i)),
-			rowLayoutParams);
+		row.addView(createButtonArea(activity, buttons.get(i)),rowLayoutParams);
 	    }
 
 	}
 	rows.add(row);
 
 	return rows;
-    } 
+    }
 
     private static LinearLayout createButtonArea(Activity activity,Button button) {
-    	
-	button.setOnLongClickListener(showPopup(activity));
+
 	Display display = activity.getWindowManager().getDefaultDisplay();
 	int width = display.getWidth();
 
@@ -69,22 +69,54 @@ public class UIFactory {
 
 	return layout;
     }
-    
-    private static OnLongClickListener showPopup(Activity activity){
-	
-	if(popup == null){
-	    popup = new Dialog(activity);
-	    popup.setContentView(R.layout.quick_menu);
-	}
-	
-    	return new OnLongClickListener() {
-	    
-	    @Override
-	    public boolean onLongClick(View v) {
-		popup.show();
-		return false;
+
+    private static class OnLongClickHandler implements OnLongClickListener {
+
+	private Activity activity;
+	private static OnLongClickHandler instance;
+
+	private OnLongClickHandler(Activity activity) {
+	    this.activity = activity;
+
+	    if (popup == null) {
+		popup = new Dialog(activity);
+		popup.setContentView(R.layout.quick_menu);
 	    }
+
+	}
+
+	public static OnLongClickListener getHandler(Activity activity) {
+	    if (instance == null) {
+		instance = new OnLongClickHandler(activity);
+	    }
+
+	    return instance;
+	}
+
+	private void createButtonArea(Button button) {
 	    
-	};
+	   Button newButton  = new Button(button.getColor(), popup.getContext(), button.getSound());
+	    
+	   LinearLayout layout = (LinearLayout) popup.findViewById(R.id.buttonArea);
+	   
+	   layout.removeAllViews();
+	   layout.setHorizontalGravity(Gravity.CENTER_HORIZONTAL);
+	   layout.setOrientation(LinearLayout.VERTICAL);
+
+	   TextView text = new TextView(activity);
+	   text.setText(button.getName());
+	   text.setTextSize(12);
+	   text.setTypeface(Typeface.DEFAULT_BOLD);
+	   layout.addView(newButton);
+	   layout.addView(text, buttonAreaLayoutParams);
+	    
+	}
+
+	@Override
+	public boolean onLongClick(View v) {
+	    createButtonArea((Button)v);
+	    popup.show();
+	    return false;
+	}
     }
 }

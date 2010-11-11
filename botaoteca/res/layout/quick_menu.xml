@@ -1,25 +1,39 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:orientation="vertical"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:padding="10dp"
 >
-    <Button
-    	android:layout_width="fill_parent"
-		android:layout_height="wrap_content"
-		android:background="@drawable/popup_normal_widget"
-		android:layout_marginBottom="5dp"
-    />
-    <Button
-		android:layout_width="fill_parent"
-		android:layout_height="wrap_content"
-		android:background="@drawable/popup_normal_favorito"
-		android:layout_marginBottom="5dp"
-	/>
-	 <Button
-		android:layout_width="fill_parent"
-		android:layout_height="wrap_content"
-		android:background="@drawable/popup_normal_remover"
-		android:layout_marginBottom="5dp"
-	/>
-</LinearLayout>
+	<LinearLayout android:layout_alignParentTop="true"
+		android:orientation="vertical"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content" 
+		>
+		
+		<LinearLayout
+			android:id="@+id/buttonArea"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content" 
+			android:layout_marginBottom="10dp"/>
+		
+	    <Button
+	    	android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:background="@drawable/popup_normal_widget"
+			android:layout_marginBottom="5dp"
+	    />
+	    <Button
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:background="@drawable/popup_normal_favorito"
+			android:layout_marginBottom="5dp"
+		/>
+		 <Button
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:background="@drawable/popup_normal_remover"
+			android:layout_marginBottom="5dp"
+		/>
+	</LinearLayout>
+</RelativeLayout>

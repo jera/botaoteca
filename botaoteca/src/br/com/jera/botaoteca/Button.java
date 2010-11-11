@@ -74,4 +74,9 @@ public class Button extends android.widget.Button {
 	    this.name = name;
 	}
 
+	public Sound getSound() {
+	    return sound;
+	}
+	
+
 }
