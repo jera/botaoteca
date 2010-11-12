@@ -20,7 +20,7 @@
 	android:layout_height="wrap_content">
 	
 	
-	<TableLayout
+	<TableLayout android:paddingBottom="50dp"
 	android:clipChildren="true"
 	android:id="@+id/area"
     android:layout_width="fill_parent"

@@ -59,6 +59,7 @@ public class UIFactory {
 	layout.setHorizontalGravity(Gravity.CENTER_HORIZONTAL);
 	layout.setOrientation(LinearLayout.VERTICAL);
 	layout.setMinimumWidth(width / 3);
+	layout.setPadding(2, 2, 2, 2);
 
 	TextView text = new TextView(activity);
 	text.setText(button.getName());
@@ -81,6 +82,7 @@ public class UIFactory {
 	    if (popup == null) {
 		popup = new Dialog(activity);
 		popup.setContentView(R.layout.quick_menu);
+		popup.setCanceledOnTouchOutside(true);
 	    }
 
 	}
