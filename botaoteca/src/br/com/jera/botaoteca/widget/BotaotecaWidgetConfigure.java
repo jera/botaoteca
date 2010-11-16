@@ -1,6 +1,5 @@
 package br.com.jera.botaoteca.widget;
 
-import android.app.Activity;
 import android.app.ListActivity;
 import android.appwidget.AppWidgetManager;
 import android.content.Context;
