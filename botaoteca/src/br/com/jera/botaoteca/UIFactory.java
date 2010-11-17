@@ -48,6 +48,8 @@ public class UIFactory {
 
 	return rows;
     }
+    
+    
 
     private static LinearLayout createButtonArea(Activity activity,Button button) {
 

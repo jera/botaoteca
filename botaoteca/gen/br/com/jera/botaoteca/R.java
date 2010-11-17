@@ -43,6 +43,7 @@ public final class R {
         public static final int buttonArea=0x7f060005;
         public static final int buttonFavorites=0x7f060003;
         public static final int buttonSearch=0x7f060002;
+        public static final int listArea=0x7f060006;
         public static final int scrollArea=0x7f060000;
     }
     public static final class layout {
@@ -52,6 +53,7 @@ public final class R {
         public static final int main=0x7f030003;
         public static final int quick_menu=0x7f030004;
         public static final int widget=0x7f030005;
+        public static final int widiget_dialog=0x7f030006;
     }
     public static final class string {
         public static final int app_name=0x7f050001;
