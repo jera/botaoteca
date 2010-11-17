@@ -52,12 +52,14 @@ public class BotaotecaWidgetConfigure extends Activity {
         if (widgetId == AppWidgetManager.INVALID_APPWIDGET_ID) {
             finish();
         }
+        
         List<Button> buttons = helper.createButtonsFromDatabase();
         LinearLayout layout = (LinearLayout) findViewById(R.id.listArea);
         
         for(Button button: buttons){
             layout.addView(UIFactory.createItem(this, button));
         }
+        
 
     }
 
