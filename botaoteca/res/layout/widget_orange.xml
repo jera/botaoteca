@@ -5,10 +5,13 @@
     android:orientation="vertical" >
     
     <Button
-    	android:layout_width="wrap_content"
-    	android:layout_height="wrap_content"
+    	style="@style/button"
     	android:background="@drawable/btn_orange"
     />
-
+	
+ 	<TextView
+		style="@style/title"
+		android:id="@+id/widget_title"
+	 />
 
 </LinearLayout>
