@@ -51,7 +51,7 @@ public class BotaotecaWidgetConfigure extends Activity {
 		    AppWidgetManager.INVALID_APPWIDGET_ID);
 	}
 	
-	// Seo intent não possui o id do widget termina a atividade.
+	// Se o intent não possui o id do widget termina a atividade.
         if (widgetId == AppWidgetManager.INVALID_APPWIDGET_ID) {
             finish();
         }
@@ -66,18 +66,4 @@ public class BotaotecaWidgetConfigure extends Activity {
 
     }
     
-    
-    private class OnClickHandler implements OnClickListener{
-	
-	@Override
-	public void onClick(View v) {
-	    
-	    Context context = BotaotecaWidgetConfigure.this;
-	    AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
-	    
-	    RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget);
-	    appWidgetManager.updateAppWidget(BotaotecaWidgetConfigure.this.widgetId, views);
-	    
-	}
-    }
 }
