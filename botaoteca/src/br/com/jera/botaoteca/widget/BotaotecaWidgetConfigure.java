@@ -2,16 +2,19 @@ package br.com.jera.botaoteca.widget;
 
 import java.util.List;
 
-import br.com.jera.botaoteca.Button;
-import br.com.jera.botaoteca.R;
-import br.com.jera.botaoteca.database.DataHelper;
 import android.app.Activity;
 import android.appwidget.AppWidgetManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.LinearLayout;
+import android.widget.RemoteViews;
+import br.com.jera.botaoteca.Button;
+import br.com.jera.botaoteca.R;
+import br.com.jera.botaoteca.database.DataHelper;
 
 public class BotaotecaWidgetConfigure extends Activity {
 
@@ -62,5 +65,19 @@ public class BotaotecaWidgetConfigure extends Activity {
         
 
     }
-
+    
+    
+    private class OnClickHandler implements OnClickListener{
+	
+	@Override
+	public void onClick(View v) {
+	    
+	    Context context = BotaotecaWidgetConfigure.this;
+	    AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
+	    
+	    RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget);
+	    appWidgetManager.updateAppWidget(BotaotecaWidgetConfigure.this.widgetId, views);
+	    
+	}
+    }
 }

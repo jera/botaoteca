@@ -26,7 +26,6 @@ public class UIFactory {
 	
 	paddding = dp(2,activity);
 	TextView textView = new TextView(activity);
-	textView.setPadding(paddding, paddding, paddding, paddding);
 	textView.setText(button.getName());
 	
 	button.setPadding(paddding, paddding, paddding, paddding);

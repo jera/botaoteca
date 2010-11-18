@@ -7,7 +7,7 @@
     <Button
     	android:layout_width="wrap_content"
     	android:layout_height="wrap_content"
-    	android:background="@layout/btn_yellow" 
+    	android:background="@layout/btn_yellow"
     />
 
 
