@@ -48,6 +48,32 @@ public class DataHelper {
 	this.db = openHelper.getWritableDatabase();
     }
 
+    public Button findButton(String fileName) {
+	Cursor cursor = db
+		.rawQuery("SELECT  name, color, type FROM " + TABLE_NAME
+			+ " WHERE fileName = ?", new String[] { fileName });
+
+	if (cursor.moveToFirst()) {
+	    int type = cursor.getInt(2);
+	    String name = cursor.getString(0);
+	    String color = cursor.getString(1);
+
+	    if (type == 1) {
+		Button button;
+		try {
+		    button = new Button(ButtonColor.valueOf(color), context,
+			    new EmbeddedSound(fileName, context));
+		  return button;
+		} catch (Exception e) {
+		    Log.e("FILE", "file " + fileName + " not found");
+		}
+	    }
+
+	}
+
+	return null;
+    }
+
     public List<Button> createButtonsFromDatabase() {
 	Cursor cursor = db.rawQuery("SELECT fileName, name, color, type FROM "
 		+ TABLE_NAME, null);
