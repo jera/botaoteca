@@ -71,6 +71,7 @@ public class UIFactory {
 	    AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(activity);
 
 	    RemoteViews views = new RemoteViews(activity.getPackageName(),getResourceId());
+	    views.setTextViewText(R.id.widget_title, button.getName());
 	    appWidgetManager.updateAppWidget(activity.widgetId, views);
 	    
 	    Intent resultValue = new Intent();
