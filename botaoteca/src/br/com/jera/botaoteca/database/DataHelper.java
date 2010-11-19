@@ -46,8 +46,13 @@ public class DataHelper {
 	this.context = context;
 	OpenHelper openHelper = new OpenHelper(this.context);
 	this.db = openHelper.getWritableDatabase();
+	
     }
 
+    public void close(){
+	this.db.close();
+    }
+    
     public Button findButton(String fileName) {
 	Cursor cursor = db
 		.rawQuery("SELECT  name, color, type FROM " + TABLE_NAME
@@ -63,6 +68,7 @@ public class DataHelper {
 		try {
 		    button = new Button(ButtonColor.valueOf(color), context,
 			    new EmbeddedSound(fileName, context));
+		    cursor.close();
 		  return button;
 		} catch (Exception e) {
 		    Log.e("FILE", "file " + fileName + " not found");
@@ -70,7 +76,7 @@ public class DataHelper {
 	    }
 
 	}
-
+	 cursor.close();
 	return null;
     }
 
@@ -100,6 +106,7 @@ public class DataHelper {
 	    } while (cursor.moveToNext());
 
 	}
+	cursor.close();
 	return buttons;
     }
 

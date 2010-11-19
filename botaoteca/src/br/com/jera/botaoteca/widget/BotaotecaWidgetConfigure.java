@@ -87,16 +87,15 @@ public class BotaotecaWidgetConfigure extends Activity{
 	    views.setTextViewText(R.id.widget_title, button.getName());
 	    
 	    Intent intent = new Intent(activity, BotaotecaWidgetProvider.class);
-	   
-	    intent.setAction(BotaotecaWidgetProvider.ACTION_WIDGET_RECEIVER);
 	    intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, activity.widgetId);
-	    PendingIntent actionPendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 0, intent, 0);
+	    intent.setAction(BotaotecaWidgetProvider.ACTION_WIDGET_RECEIVER);
+	   
+	    PendingIntent actionPendingIntent = PendingIntent.getBroadcast(activity, activity.widgetId, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 	    views.setOnClickPendingIntent(R.id.widget_button, actionPendingIntent);
 	   
 	    appWidgetManager.updateAppWidget(activity.widgetId, views);
 	    activity.savePreference(WIDGET_FILE_NAME,button.getSound().getFileName());
 	    
-	   
 	    activity.setResult(Activity.RESULT_OK, intent);
 	    activity.finish();
 

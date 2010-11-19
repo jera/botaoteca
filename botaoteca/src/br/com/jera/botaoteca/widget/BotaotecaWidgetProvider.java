@@ -44,9 +44,10 @@ public class BotaotecaWidgetProvider extends AppWidgetProvider {
     public void onReceive(Context context, Intent intent) {
 	if (intent.getAction().equals(ACTION_WIDGET_RECEIVER)) {
 	    int appWidgetId =  intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,AppWidgetManager.INVALID_APPWIDGET_ID);
-	    Log.i("RECIEVER", "ID" +appWidgetId);
+	   
 	    SharedPreferences prefs = context.getSharedPreferences(BotaotecaWidgetConfigure.PREFS_NAME, 0);
 	    String fileName = prefs.getString(BotaotecaWidgetConfigure.WIDGET_FILE_NAME+appWidgetId, null);
+	    Log.i("RECIEVER", "ID" +appWidgetId+" FILE: "+fileName);
 	    DataHelper helper = new DataHelper(context);
 	    Button button = helper.findButton(fileName);
 	    try {
