@@ -60,7 +60,6 @@ public class DataHelper {
 
 	if (cursor.moveToFirst()) {
 	    int type = cursor.getInt(2);
-	    String name = cursor.getString(0);
 	    String color = cursor.getString(1);
 
 	    if (type == 1) {
@@ -122,7 +121,7 @@ public class DataHelper {
 	return testing;
     }
 
-    static void setTesting(boolean testing) {
+    public static void setTesting(boolean testing) {
 	DataHelper.testing = testing;
     }
 

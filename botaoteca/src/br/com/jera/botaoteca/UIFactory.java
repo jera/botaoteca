@@ -44,6 +44,7 @@ public class UIFactory {
 	    }
 
 	}
+	if(row.getChildCount() > 0 )
 	rows.add(row);
 
 	return rows;
