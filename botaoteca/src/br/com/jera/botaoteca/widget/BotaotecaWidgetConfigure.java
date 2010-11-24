@@ -3,6 +3,7 @@ package br.com.jera.botaoteca.widget;
 import java.util.List;
 
 import android.app.Activity;
+import android.app.ListActivity;
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.content.Context;
@@ -11,19 +12,20 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.LinearLayout;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.RemoteViews;
 import br.com.jera.botaoteca.Button;
 import br.com.jera.botaoteca.R;
 import br.com.jera.botaoteca.database.DataHelper;
 
-public class BotaotecaWidgetConfigure extends Activity{
+public class BotaotecaWidgetConfigure extends ListActivity{
 
     static final String TAG = "BotaotecaWidgetConfigure";
 
     public static final String PREFS_NAME = "br.com.jera.botaoteca.widget.BotaotecaWidgetProvider";
     public static final String WIDGET_FILE_NAME = "WIDGET_FILENAME_";
-
+    private List<Button> buttons;
     int widgetId = AppWidgetManager.INVALID_APPWIDGET_ID;
 
     public BotaotecaWidgetConfigure() {
@@ -31,11 +33,33 @@ public class BotaotecaWidgetConfigure extends Activity{
     }
     
     @Override
+    protected void onListItemClick(ListView l, View v, int position, long id) {
+        super.onListItemClick(l, v, position, id);
+        Button button = buttons.get(position);
+        AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(this);
+        RemoteViews views = new RemoteViews(this.getPackageName(),BotaotecaWidgetProvider.getResourceId(button.getColor()));
+        views.setTextViewText(R.id.widget_title, button.getName());
+	    
+        Intent intent = new Intent(this, BotaotecaWidgetProvider.class);
+        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, this.widgetId);
+        intent.setAction(BotaotecaWidgetProvider.ACTION_WIDGET_RECEIVER);
+        
+        PendingIntent actionPendingIntent = PendingIntent.getBroadcast(this, this.widgetId, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        views.setOnClickPendingIntent(R.id.widget_button, actionPendingIntent);
+	   
+        appWidgetManager.updateAppWidget(this.widgetId, views);
+        this.savePreference(WIDGET_FILE_NAME,button.getSound().getFileName());
+	    
+        this.setResult(Activity.RESULT_OK, intent);
+        this.finish();
+    }
+    
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
 	super.onCreate(savedInstanceState);
 	
-	setContentView(R.layout.widiget_dialog);
-	
+	setContentView(R.layout.widget_list_layout);
+	setTitle("Selecione um som");
 	DataHelper helper = new DataHelper(this);
 	
 	// encontra o id do widget no intent.
@@ -51,15 +75,12 @@ public class BotaotecaWidgetConfigure extends Activity{
             finish();
         }
         
-        List<Button> buttons = helper.createButtonsFromDatabase();
-        LinearLayout layout = (LinearLayout) findViewById(R.id.listArea);
+        buttons = helper.createButtonsFromDatabase();
+        ListAdapter adapter = new WidgetListAdapter(buttons, this);
+        getListView().setAdapter(adapter);
         
-        for(Button button: buttons){
-            layout.addView(UIFactory.createItem(this, button));
-        }
-        
-
     }
+    
     
     private void savePreference(String prefix, String value){
 	Context context = BotaotecaWidgetConfigure.this;
@@ -67,44 +88,5 @@ public class BotaotecaWidgetConfigure extends Activity{
         prefs.putString(prefix + widgetId, value);
         prefs.commit();
     }
-    
-    
-    public class OnClickHandler implements OnClickListener {
-
-	private BotaotecaWidgetConfigure activity;
-	Button button;
-	
-	public OnClickHandler( Button button) {
-	    this.activity = BotaotecaWidgetConfigure.this;
-	    this.button = button;
-	}
-
-	@Override
-	public void onClick(View v) {
-
-	    AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(activity);
-	    RemoteViews views = new RemoteViews(activity.getPackageName(),BotaotecaWidgetProvider.getResourceId(button.getColor()));
-	    views.setTextViewText(R.id.widget_title, button.getName());
-	    
-	    Intent intent = new Intent(activity, BotaotecaWidgetProvider.class);
-	    intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, activity.widgetId);
-	    intent.setAction(BotaotecaWidgetProvider.ACTION_WIDGET_RECEIVER);
-	   
-	    PendingIntent actionPendingIntent = PendingIntent.getBroadcast(activity, activity.widgetId, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-	    views.setOnClickPendingIntent(R.id.widget_button, actionPendingIntent);
-	   
-	    appWidgetManager.updateAppWidget(activity.widgetId, views);
-	    activity.savePreference(WIDGET_FILE_NAME,button.getSound().getFileName());
-	    
-	    activity.setResult(Activity.RESULT_OK, intent);
-	    activity.finish();
-
-	}
-	
-    }
-    
-    
-    
-    
     
 }

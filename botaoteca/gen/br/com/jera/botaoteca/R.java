@@ -50,25 +50,29 @@ public final class R {
         public static final int popup_pressed_widget=0x7f020020;
     }
     public static final class id {
-        public static final int area=0x7f080001;
-        public static final int buttonAll=0x7f080004;
-        public static final int buttonArea=0x7f080005;
-        public static final int buttonFavorites=0x7f080003;
-        public static final int buttonSearch=0x7f080002;
-        public static final int listArea=0x7f080008;
-        public static final int scrollArea=0x7f080000;
-        public static final int widget_button=0x7f080006;
-        public static final int widget_title=0x7f080007;
+        public static final int area=0x7f080004;
+        public static final int buttonAll=0x7f080007;
+        public static final int buttonArea=0x7f080008;
+        public static final int buttonFavorites=0x7f080006;
+        public static final int buttonSearch=0x7f080005;
+        public static final int listArea=0x7f080000;
+        public static final int listImage=0x7f080001;
+        public static final int listText=0x7f080002;
+        public static final int scrollArea=0x7f080003;
+        public static final int widget_button=0x7f080009;
+        public static final int widget_title=0x7f08000a;
     }
     public static final class layout {
-        public static final int main=0x7f030000;
-        public static final int quick_menu=0x7f030001;
-        public static final int widget_blue=0x7f030002;
-        public static final int widget_green=0x7f030003;
-        public static final int widget_orange=0x7f030004;
-        public static final int widget_red=0x7f030005;
-        public static final int widget_yellow=0x7f030006;
-        public static final int widiget_dialog=0x7f030007;
+        public static final int list_item=0x7f030000;
+        public static final int main=0x7f030001;
+        public static final int quick_menu=0x7f030002;
+        public static final int widget_blue=0x7f030003;
+        public static final int widget_green=0x7f030004;
+        public static final int widget_layout=0x7f030005;
+        public static final int widget_list_layout=0x7f030006;
+        public static final int widget_orange=0x7f030007;
+        public static final int widget_red=0x7f030008;
+        public static final int widget_yellow=0x7f030009;
     }
     public static final class string {
         public static final int app_name=0x7f060001;
