@@ -5,6 +5,7 @@ import java.util.List;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Display;
+import android.view.Menu;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TableRow.LayoutParams;
@@ -24,12 +25,12 @@ public class Principal extends Activity {
 	int width = display.getWidth();
 
 	// Buttons
-	android.widget.Button buttonSearch = (android.widget.Button) findViewById(R.id.buttonSearch);
+	/*android.widget.Button buttonSearch = (android.widget.Button) findViewById(R.id.buttonSearch);
 	android.widget.Button buttonFavorite = (android.widget.Button) findViewById(R.id.buttonFavorites);
 	android.widget.Button buttonAll = (android.widget.Button) findViewById(R.id.buttonAll);
 	buttonSearch.setWidth(width / 3);
 	buttonFavorite.setWidth(width / 3);
-	buttonAll.setWidth(width / 3);
+	buttonAll.setWidth(width / 3);*/
 
 	List<Button> buttons = dataHelper.createButtonsFromDatabase();
 	TableLayout l = (TableLayout) findViewById(R.id.area);
@@ -40,7 +41,13 @@ public class Principal extends Activity {
 		    LayoutParams.WRAP_CONTENT));
  
 	}
+	
 
+    }
+    
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        return super.onCreateOptionsMenu(menu);
     }
 
 }

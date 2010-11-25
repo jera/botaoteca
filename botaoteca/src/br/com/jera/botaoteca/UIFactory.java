@@ -34,7 +34,7 @@ public class UIFactory {
 	for (int i = 0; i < buttons.size(); i++) {
 
 	    // add the long click handler
-	    buttons.get(i).setOnLongClickListener(OnLongClickHandler.getHandler(activity));
+	   // buttons.get(i).setOnLongClickListener(OnLongClickHandler.getHandler(activity));
 	    if ((i + 1) % 3 == 0) {
 		row.addView(createButtonArea(activity, buttons.get(i)),rowLayoutParams);
 		rows.add(row);
