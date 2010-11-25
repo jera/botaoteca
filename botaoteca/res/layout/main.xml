@@ -31,7 +31,7 @@
     
 	</ScrollView>
 	
-	<LinearLayout
+	<!--<LinearLayout
 		android:layout_alignParentBottom="true"
 		android:layout_marginBottom="2dp"
 	    android:layout_width="fill_parent"
@@ -57,4 +57,4 @@
 	
 	</LinearLayout>
 	
-</RelativeLayout>
+--></RelativeLayout>
