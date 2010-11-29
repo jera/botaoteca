@@ -67,7 +67,9 @@ public class UIFactory {
 	TextView text = new TextView(activity);
 	text.setText(button.getName());
 	text.setTextSize(12);
+	text.setGravity(Gravity.CENTER_HORIZONTAL);
 	text.setTypeface(Typeface.DEFAULT_BOLD);
+	text.setWidth(width / 3);
 	layout.addView(button, buttonAreaLayoutParams);
 	layout.addView(text, buttonAreaLayoutParams);
 
