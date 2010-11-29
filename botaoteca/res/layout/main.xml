@@ -20,7 +20,7 @@
 	android:layout_height="wrap_content">
 	
 	
-	<TableLayout android:paddingBottom="50dp"
+	<TableLayout
 	android:clipChildren="true"
 	android:id="@+id/area"
     android:layout_width="fill_parent"
@@ -57,4 +57,5 @@
 	
 	</LinearLayout>
 	
---></RelativeLayout>
+-->
+</RelativeLayout>
