@@ -10,11 +10,9 @@ import android.view.Display;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.ImageButton;
-import android.widget.TableLayout;
-import android.widget.TableRow;
-import android.widget.TableRow.LayoutParams;
+import android.widget.GridView;
 import br.com.jera.botaoteca.database.DataHelper;
+import br.com.jera.botaoteca.sound.Sound;
 
 public class Principal extends Activity {
 
@@ -39,21 +37,15 @@ public class Principal extends Activity {
 	 * buttonFavorite.setWidth(width / 3); buttonAll.setWidth(width / 3);
 	 */
 
-	List<Button> buttons = dataHelper.createButtonsFromDatabase();
-	TableLayout tableLayout = (TableLayout) findViewById(R.id.area);
+	List<Button> sounds = dataHelper.createButtonsFromDatabase();
+	GridView gridView = (GridView) findViewById(R.id.gridview);
+	gridView.setAdapter(new BotaotecaListAdapter(sounds,this));
 
-	List<TableRow> rows = UIFactory.createRows(this, buttons);
-	for (TableRow row : rows) {
-	    tableLayout.addView(row, new LayoutParams(LayoutParams.FILL_PARENT,
-		    LayoutParams.WRAP_CONTENT));
-
-	}
-
-	ImageButton logo = new ImageButton(this);
+/*	ImageButton logo = new ImageButton(this);
 	logo.setBackgroundDrawable(getResources().getDrawable(
 		R.drawable.btn_jera));
 	logo.setOnClickListener(openLink());
-	tableLayout.addView(logo);
+	tableLayout.addView(logo);*/
 
     }
 

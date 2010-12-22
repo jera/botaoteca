@@ -1,5 +1,7 @@
 package br.com.jera.botaoteca;
 
+import android.graphics.drawable.Drawable;
+
 public enum ButtonColor {
 	
 	GREEN ("Green", R.drawable.btn_normal_green, R.drawable.btn_pressed_green),
@@ -17,7 +19,7 @@ public enum ButtonColor {
 		this.normal = normal;
 		this.pressed = pressed;
 	}
-
+	
 	public String getName() {
 		return name;
 	}
