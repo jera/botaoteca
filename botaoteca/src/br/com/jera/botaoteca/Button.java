@@ -36,6 +36,7 @@ public class Button extends android.widget.Button {
 		StateListDrawable drawable = new StateListDrawable();
 		drawable.addState( PRESSED_ENABLED_STATE_SET , resources.getDrawable(color.getPressed()));
 		drawable.addState( EMPTY_STATE_SET , resources.getDrawable(color.getNormal()));
+		drawable.addState( SELECTED_WINDOW_FOCUSED_STATE_SET , resources.getDrawable(color.getNormal()));
 		this.setBackgroundDrawable(drawable);
 		
 		setLayoutParams(params);
