@@ -16,7 +16,7 @@ public class Principal extends Activity {
 	DataHelper dataHelper = new DataHelper(getApplicationContext());
 	setContentView(R.layout.main);
 
-	List<Button> sounds = dataHelper.createButtonsFromDatabase();
+	List<Botao> sounds = dataHelper.createButtonsFromDatabase();
 	GridView gridView = (GridView) findViewById(R.id.gridview);
 	gridView.setAdapter(new BotaotecaListAdapter(sounds,this));
     }

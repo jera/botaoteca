@@ -11,15 +11,15 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import br.com.jera.botaoteca.Button;
+import br.com.jera.botaoteca.Botao;
 import br.com.jera.botaoteca.R;
 
 public class WidgetListAdapter extends BaseAdapter {
 
-    private List<Button> buttons;
+    private List<Botao> buttons;
     private Context context;
 
-    public WidgetListAdapter(List<Button> buttons, Context context) {
+    public WidgetListAdapter(List<Botao> buttons, Context context) {
 	this.buttons = buttons;
 	this.context = context;
     }
@@ -42,7 +42,7 @@ public class WidgetListAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 	Resources resource = context.getResources();
-	Button button = buttons.get(position);
+	Botao button = buttons.get(position);
 	LinearLayout itemLayout = (LinearLayout) LayoutInflater.from(context).inflate(R.layout.list_item, parent, false);
 	ImageView imageView = (ImageView) itemLayout.findViewById(R.id.listImage);
 	imageView.setBackgroundDrawable(resource.getDrawable(button.getColor().getNormal()));

@@ -14,7 +14,7 @@ import android.view.View;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RemoteViews;
-import br.com.jera.botaoteca.Button;
+import br.com.jera.botaoteca.Botao;
 import br.com.jera.botaoteca.R;
 import br.com.jera.botaoteca.database.DataHelper;
 
@@ -24,7 +24,7 @@ public class BotaotecaWidgetConfigure extends ListActivity{
 
     public static final String PREFS_NAME = "br.com.jera.botaoteca.widget.BotaotecaWidgetProvider";
     public static final String WIDGET_FILE_NAME = "WIDGET_FILENAME_";
-    private List<Button> buttons;
+    private List<Botao> buttons;
     int widgetId = AppWidgetManager.INVALID_APPWIDGET_ID;
 
     public BotaotecaWidgetConfigure() {
@@ -34,7 +34,7 @@ public class BotaotecaWidgetConfigure extends ListActivity{
     @Override
     protected void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
-        Button button = buttons.get(position);
+        Botao button = buttons.get(position);
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(this);
         RemoteViews views = new RemoteViews(this.getPackageName(),BotaotecaWidgetProvider.getResourceId(button.getColor()));
         views.setTextViewText(R.id.widget_title, button.getName());

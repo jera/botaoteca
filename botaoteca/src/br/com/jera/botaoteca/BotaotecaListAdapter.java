@@ -16,11 +16,11 @@ import android.widget.TextView;
 
 public class BotaotecaListAdapter extends BaseAdapter {
 
-    private List<Button> buttons;
+    private List<Botao> buttons;
     private Context context;
     private Map<Integer, OnClickListener> listenters = new HashMap<Integer, View.OnClickListener>();
 
-    public BotaotecaListAdapter(List<Button> buttons, Context context) {
+    public BotaotecaListAdapter(List<Botao> buttons, Context context) {
 	this.buttons = buttons;
 	this.context = context;
     }
@@ -62,7 +62,7 @@ public class BotaotecaListAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 	LinearLayout itemLayout;
-	final Button button = buttons.get(position);
+	final Botao button = buttons.get(position);
 	if (convertView == null) {
 	    itemLayout = (LinearLayout) LayoutInflater.from(context).inflate(
 		    R.layout.gridview_item, parent, false);
