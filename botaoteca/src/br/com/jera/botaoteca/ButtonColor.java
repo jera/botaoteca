@@ -1,6 +1,5 @@
 package br.com.jera.botaoteca;
 
-import android.graphics.drawable.Drawable;
 
 public enum ButtonColor {
 	
