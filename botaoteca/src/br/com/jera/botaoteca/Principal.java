@@ -4,6 +4,7 @@ import java.util.List;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.media.AudioManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.Display;
@@ -47,6 +48,7 @@ public class Principal extends Activity {
 	logo.setOnClickListener(openLink());
 	tableLayout.addView(logo);*/
 
+	this.setVolumeControlStream(AudioManager.STREAM_MUSIC);
     }
 
     private OnClickListener openLink() {
