@@ -75,7 +75,7 @@ public class BotaotecaWidgetConfigure extends ListActivity{
         }
         
         buttons = helper.createButtonsFromDatabase();
-        ListAdapter adapter = new WidgetListAdapter(buttons, this);
+        ListAdapter adapter = new WidgetListAdapter(this, buttons);
         getListView().setAdapter(adapter);
         
     }

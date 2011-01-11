@@ -18,7 +18,7 @@ public class Principal extends Activity {
 
 	List<Botao> sounds = dataHelper.createButtonsFromDatabase();
 	GridView gridView = (GridView) findViewById(R.id.gridview);
-	gridView.setAdapter(new BotaotecaListAdapter(sounds,this));
+	gridView.setAdapter(new BotaotecaListAdapter(this, sounds));
     }
 
 }

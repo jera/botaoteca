@@ -32,4 +32,8 @@ public class Botao {
 	public Sound getSound() {
 	    return sound;
 	}
+	
+	public String toString() {
+	    return name;
+	}
 }
