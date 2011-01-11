@@ -23,8 +23,10 @@ public class BotaotecaWidgetConfigure extends ListActivity{
     static final String TAG = "BotaotecaWidgetConfigure";
 
     public static final String PREFS_NAME = "br.com.jera.botaoteca.widget.BotaotecaWidgetProvider";
+    public static final String WIDGET_NAME = "WIDGET_NAME_";
     public static final String WIDGET_FILE_NAME = "WIDGET_FILENAME_";
     private List<Botao> buttons;
+    public static final String WIDGET_COLOR = "WIDGET_COLOR_";
     int widgetId = AppWidgetManager.INVALID_APPWIDGET_ID;
 
     public BotaotecaWidgetConfigure() {
@@ -47,11 +49,13 @@ public class BotaotecaWidgetConfigure extends ListActivity{
         views.setOnClickPendingIntent(R.id.widget_button, actionPendingIntent);
 	   
         appWidgetManager.updateAppWidget(this.widgetId, views);
+        this.savePreference(WIDGET_NAME,button.getName());
         this.savePreference(WIDGET_FILE_NAME,button.getSound().getFileName());
-	    
+        this.savePreference(WIDGET_COLOR,button.getColor().toString());
         this.setResult(Activity.RESULT_OK, intent);
         this.finish();
     }
+    
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {

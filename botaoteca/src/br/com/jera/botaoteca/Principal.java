@@ -6,6 +6,8 @@ import android.app.Activity;
 import android.media.AudioManager;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.GridView;
 import br.com.jera.botaoteca.database.DataHelper;
 
@@ -23,13 +25,28 @@ public class Principal extends Activity {
 	gridView.setAdapter(new BotaotecaListAdapter(this, sounds));
 
 
+
 	this.setVolumeControlStream(AudioManager.STREAM_MUSIC);
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-	return super.onCreateOptionsMenu(menu);
+	MenuInflater inflater = getMenuInflater();
+	inflater.inflate(R.layout.menu, menu);
+	return true;
     }
+    
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+	 switch (item.getItemId()) {
+	    case R.id.quit:
+	        finish();
+	        return true;
+	    default:
+	        return super.onOptionsItemSelected(item);
+	    }
+    }
+    
 
 }
