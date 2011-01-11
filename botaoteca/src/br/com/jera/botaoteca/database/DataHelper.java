@@ -46,13 +46,13 @@ public class DataHelper {
 	this.context = context;
 	OpenHelper openHelper = new OpenHelper(this.context);
 	this.db = openHelper.getWritableDatabase();
-	
+
     }
 
-    public void close(){
+    public void close() {
 	this.db.close();
     }
-    
+
     public Botao findButton(String fileName) {
 	Cursor cursor = db
 		.rawQuery("SELECT  name, color, type FROM " + TABLE_NAME
@@ -68,14 +68,14 @@ public class DataHelper {
 		    button = new Botao(ButtonColor.valueOf(color), context,
 			    new EmbeddedSound(fileName, context));
 		    cursor.close();
-		  return button;
+		    return button;
 		} catch (Exception e) {
 		    Log.e("FILE", "file " + fileName + " not found");
 		}
 	    }
 
 	}
-	 cursor.close();
+	cursor.close();
 	return null;
     }
 
@@ -94,8 +94,8 @@ public class DataHelper {
 		if (type == 1) {
 		    Botao button;
 		    try {
-			button = new Botao(ButtonColor.valueOf(color),
-				context, new EmbeddedSound(fileName, context));
+			button = new Botao(ButtonColor.valueOf(color), context,
+				new EmbeddedSound(fileName, context));
 			button.setName(name);
 			buttons.add(button);
 		    } catch (Exception e) {
@@ -107,6 +107,38 @@ public class DataHelper {
 	}
 	cursor.close();
 	return buttons;
+    }
+
+    public List<Botao> filterButtons(String search) {
+	List<Botao> buttons = new ArrayList<Botao>();
+	Cursor cursor = db.rawQuery("SELECT fileName, name, color, type FROM "
+		+ TABLE_NAME + " WHERE name like '%"+search+"%'", null);
+	
+	if (cursor.moveToFirst()) {
+	    do {
+		int type = cursor.getInt(3);
+
+		String fileName = cursor.getString(0);
+		String name = cursor.getString(1);
+		String color = cursor.getString(2);
+
+		if (type == 1) {
+		    Botao button;
+		    try {
+			button = new Botao(ButtonColor.valueOf(color), context,
+				new EmbeddedSound(fileName, context));
+			button.setName(name);
+			buttons.add(button);
+		    } catch (Exception e) {
+			Log.e("FILE", "file " + fileName + " not found");
+		    }
+		}
+	    } while (cursor.moveToNext());
+
+	}
+	cursor.close();
+	return buttons;
+	
     }
 
     static String getDatabaseName() {
