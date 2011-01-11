@@ -14,13 +14,13 @@
     </LinearLayout>
   	
 	<GridView 
-		android:padding="5dp"
+		android:padding="4dp"
 	    android:id="@+id/gridview"
 	    android:layout_width="fill_parent" 
 	    android:layout_height="fill_parent"
 	    android:numColumns="3"
 	    android:horizontalSpacing="0dp"
-	    android:verticalSpacing="25dp"
+	    android:verticalSpacing="20dp"
 	    android:gravity="center"
 	/>	
 	<!--<LinearLayout
