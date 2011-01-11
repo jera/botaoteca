@@ -3,7 +3,9 @@ package br.com.jera.botaoteca;
 import java.util.List;
 
 import android.app.Activity;
+import android.media.AudioManager;
 import android.os.Bundle;
+import android.view.Menu;
 import android.widget.GridView;
 import br.com.jera.botaoteca.database.DataHelper;
 
@@ -19,6 +21,15 @@ public class Principal extends Activity {
 	List<Botao> sounds = dataHelper.createButtonsFromDatabase();
 	GridView gridView = (GridView) findViewById(R.id.gridview);
 	gridView.setAdapter(new BotaotecaListAdapter(this, sounds));
+
+
+	this.setVolumeControlStream(AudioManager.STREAM_MUSIC);
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+	return super.onCreateOptionsMenu(menu);
     }
 
 }
