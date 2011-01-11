@@ -1,6 +1,5 @@
 package br.com.jera.botaoteca;
 
-
 public enum ButtonColor {
 	
 	GREEN ("Green", R.drawable.btn_normal_green, R.drawable.btn_pressed_green),
