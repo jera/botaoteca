@@ -41,7 +41,7 @@ public class BotaotecaListAdapter extends ArrayAdapter<Botao> {
 	LinearLayout itemLayout = (LinearLayout) super.getView(position, convertView, parent);
 	
 	final Botao button = getItem(position);
-
+	
 	Button nButton = (Button) itemLayout.findViewById(R.id.gridview_button);
 	nButton.setTag(button);
 	nButton.setOnClickListener(onClickListener);

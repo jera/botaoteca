@@ -109,7 +109,6 @@ public class DataHelper {
 	}
 	cursor.close();
 	
-	Collections.sort(buttons);
 	return buttons;
     }
 

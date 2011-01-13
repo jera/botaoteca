@@ -53,9 +53,8 @@ public final class R {
         public static final int popup_pressed_widget=0x7f020023;
     }
     public static final class id {
-        public static final int buttonAll=0x7f080007;
+        public static final int all=0x7f080007;
         public static final int buttonArea=0x7f080009;
-        public static final int buttonSearch=0x7f080006;
         public static final int gridview=0x7f080005;
         public static final int gridview_button=0x7f080000;
         public static final int gridview_title=0x7f080001;
@@ -63,6 +62,7 @@ public final class R {
         public static final int listImage=0x7f080003;
         public static final int listText=0x7f080004;
         public static final int quit=0x7f080008;
+        public static final int search=0x7f080006;
         public static final int widget_button=0x7f08000a;
         public static final int widget_title=0x7f08000b;
     }
