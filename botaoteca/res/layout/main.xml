@@ -9,45 +9,46 @@
   	<LinearLayout
   	android:layout_width="fill_parent"
 	android:layout_height="wrap_content"
-	android:background="@drawable/banner"
-	>
-    </LinearLayout>
+	android:background="@drawable/banner" />
+  	
   	
 	<GridView 
 		android:padding="4dp"
 	    android:id="@+id/gridview"
 	    android:layout_width="fill_parent" 
-	    android:layout_height="fill_parent"
+	    android:layout_height="354dp"
 	    android:numColumns="3"
 	    android:horizontalSpacing="0dp"
 	    android:verticalSpacing="20dp"
 	    android:gravity="center"
-	/>	
-	<!--<LinearLayout
+	    
+	/>
+	
+	<RelativeLayout
+	
 		android:layout_alignParentBottom="true"
 		android:layout_marginBottom="2dp"
 	    android:layout_width="fill_parent"
 	    android:layout_height="wrap_content">
 	
-	  <Button android:id="@+id/buttonSearch"
-		android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:background="@drawable/btn_buscar"
-	  />
-	  <Button android:id="@+id/buttonFavorites"
-	  	android:layout_marginLeft="2dp"
-	  	android:layout_marginRight="2dp"
-		android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:background="@drawable/btn_favoritos"
-	  />
-	  <Button android:id="@+id/buttonAll"
-		android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:background="@drawable/btn_todos"
-	  />
+		<LinearLayout
+			android:layout_centerInParent="true"
+			android:layout_width="wrap_content"
+	    	android:layout_height="wrap_content">
+			  <Button android:id="@+id/buttonSearch"
+				android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:background="@drawable/btn_buscar"
+			  />
+		
+			  <Button android:id="@+id/buttonAll"
+				android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:background="@drawable/btn_todos"
+			  />
+	  </LinearLayout>
 	
-	</LinearLayout>
+	</RelativeLayout>
 	
--->
+
 </LinearLayout>
