@@ -3,37 +3,42 @@ package br.com.jera.botaoteca;
 import android.content.Context;
 import br.com.jera.botaoteca.sound.Sound;
 
-public class Botao {
-	private String name;
-	private ButtonColor color;
-	private Sound sound;
-	
-	public Botao(ButtonColor color, Context context, Sound sound) {
-		this.color = color;
-		this.sound = sound;
-	}
-	
-	public String getName() {
-		return name;
-	}
+public class Botao implements Comparable<Botao> {
+    private String name;
+    private ButtonColor color;
+    private Sound sound;
 
-	public ButtonColor getColor() {
-		return color;
-	}
+    public Botao(ButtonColor color, Context context, Sound sound) {
+	this.color = color;
+	this.sound = sound;
+    }
 
-	public void setColor(ButtonColor color) {
-		this.color = color;
-	}
+    public String getName() {
+	return name;
+    }
 
-	public void setName(String name) {
-	    this.name = name;
-	}
+    public ButtonColor getColor() {
+	return color;
+    }
 
-	public Sound getSound() {
-	    return sound;
-	}
-	
-	public String toString() {
-	    return name;
-	}
+    public void setColor(ButtonColor color) {
+	this.color = color;
+    }
+
+    public void setName(String name) {
+	this.name = name;
+    }
+
+    public Sound getSound() {
+	return sound;
+    }
+
+    public String toString() {
+	return name;
+    }
+
+    @Override
+    public int compareTo(Botao another) {
+	return name.toUpperCase().compareTo(another.getName().toUpperCase());
+    }
 }

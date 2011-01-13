@@ -1,8 +1,11 @@
 package br.com.jera.botaoteca;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
+import android.app.SearchManager;
+import android.content.Intent;
 import android.media.AudioManager;
 import android.os.Bundle;
 import android.view.Menu;
@@ -13,22 +16,51 @@ import br.com.jera.botaoteca.database.DataHelper;
 
 public class Principal extends Activity {
 
+    private DataHelper dataHelper;
+    private List<Botao> botoes;
+    private GridView gridView;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
 	super.onCreate(savedInstanceState);
 
-	DataHelper dataHelper = new DataHelper(getApplicationContext());
 	setContentView(R.layout.main);
+	dataHelper = new DataHelper(getApplicationContext());
+	if (!handleIntent(getIntent())) {
 
-	List<Botao> sounds = dataHelper.createButtonsFromDatabase();
-	GridView gridView = (GridView) findViewById(R.id.gridview);
-	gridView.setAdapter(new BotaotecaListAdapter(this, sounds));
-
-
-
+	    botoes = dataHelper.createButtonsFromDatabase();
+	    gridView = (GridView) findViewById(R.id.gridview);
+	    gridView.setAdapter(new BotaotecaListAdapter(this, botoes));
+	}
 	this.setVolumeControlStream(AudioManager.STREAM_MUSIC);
     }
 
+    @Override
+    protected void onNewIntent(Intent intent) {
+	setIntent(intent);
+	handleIntent(intent);
+    }
+    
+
+    private boolean handleIntent(Intent intent) {
+	if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+	    dataHelper = new DataHelper(getApplicationContext());
+	    String query = intent.getStringExtra(SearchManager.QUERY);
+	    List<Botao> nBotoes = new ArrayList<Botao>();
+	    for (Botao botao : botoes) {
+		if(botao.getName().toUpperCase().contains(query.toUpperCase()) ) {
+		    nBotoes.add(botao);
+		}
+	    }
+	    
+	    gridView = (GridView) findViewById(R.id.gridview);
+	    gridView.setAdapter(new BotaotecaListAdapter(this, nBotoes));
+
+	    return true;
+	}
+
+	return false;
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -36,17 +68,16 @@ public class Principal extends Activity {
 	inflater.inflate(R.layout.menu, menu);
 	return true;
     }
-    
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-	 switch (item.getItemId()) {
-	    case R.id.quit:
-	        finish();
-	        return true;
-	    default:
-	        return super.onOptionsItemSelected(item);
-	    }
+	switch (item.getItemId()) {
+	case R.id.quit:
+	    finish();
+	    return true;
+	default:
+	    return super.onOptionsItemSelected(item);
+	}
     }
-    
 
 }

@@ -1,6 +1,8 @@
 package br.com.jera.botaoteca.database;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import android.content.Context;
@@ -32,7 +34,7 @@ public class DataHelper {
 	sql.append(DataHelper.TABLE_NAME);
 	sql.append(" (");
 	sql.append("fileName TEXT PRIMARY KEY, ");
-	sql.append("name TEXT, ");
+	sql.append("name TEXT COLLATE NOCASE, ");
 	sql.append("type INTEGER, ");
 	sql.append("color TEXT");
 	sql.append(")");
@@ -81,7 +83,7 @@ public class DataHelper {
 
     public List<Botao> createButtonsFromDatabase() {
 	Cursor cursor = db.rawQuery("SELECT fileName, name, color, type FROM "
-		+ TABLE_NAME, null);
+		+ TABLE_NAME+" ORDER BY name", null);
 	List<Botao> buttons = new ArrayList<Botao>();
 	if (cursor.moveToFirst()) {
 	    do {
@@ -106,6 +108,8 @@ public class DataHelper {
 
 	}
 	cursor.close();
+	
+	Collections.sort(buttons);
 	return buttons;
     }
 

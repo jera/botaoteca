@@ -87,6 +87,7 @@ public final class R {
         public static final int title=0x7f070001;
     }
     public static final class xml {
-        public static final int widget_info=0x7f040000;
+        public static final int searchable=0x7f040000;
+        public static final int widget_info=0x7f040001;
     }
 }
