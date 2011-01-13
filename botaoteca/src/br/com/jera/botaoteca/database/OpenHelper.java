@@ -34,9 +34,9 @@ class OpenHelper extends SQLiteOpenHelper {
 	
 	  private void populateDatabase(SQLiteDatabase db) {
 		db.beginTransaction();
-		db.execSQL("INSERT INTO sounds VALUES ('pedrochip.mp3',' Me da meu Chipe',1,'RED')");
+		db.execSQL("INSERT INTO sounds VALUES ('pedrochip.mp3',' Me dá meu Chipe',1,'RED')");
 		db.execSQL("INSERT INTO sounds VALUES ('vuvuzela.mp3','Vuvuzela',1,'YELLOW')");
-		db.execSQL("INSERT INTO sounds VALUES ('ladygaga.mp3','Ta ouvindo ?',1,'RED')");
+		db.execSQL("INSERT INTO sounds VALUES ('ladygaga.mp3','Tá ouvindo ?',1,'RED')");
 		db.execSQL("INSERT INTO sounds VALUES ('profissional.mp3','Profissional do Sequicu',1,'YELLOW')");
 		db.execSQL("INSERT INTO sounds VALUES ('dacarrinhonao.mp3','Da carrin não',1,'BLUE')");
 		db.execSQL("INSERT INTO sounds VALUES ('taffarel.mp3','Taffarel',1,'ORANGE')");
@@ -124,7 +124,6 @@ class OpenHelper extends SQLiteOpenHelper {
 		db.execSQL("INSERT INTO sounds VALUES ('companheiro.mp3','Paulinho Rola',1,'YELLOW')");
 		db.execSQL("INSERT INTO sounds VALUES ('picapau.mp3','Picapau',1,'RED')");
 		db.execSQL("INSERT INTO sounds VALUES ('ritmodefesta.mp3','Ritmo de Festa',1,'BLUE')");
-		db.execSQL("INSERT INTO sounds VALUES ('uala.mp3',' Uala',1,'YELLOW')");
 		db.execSQL("INSERT INTO sounds VALUES ('bicha.mp3','Laila Dominique',1,'RED')");
 		db.execSQL("INSERT INTO sounds VALUES ('grande.mp3','Mais Nois eh ruim',1,'YELLOW')");
 		db.execSQL("INSERT INTO sounds VALUES ('rica.mp3','Eu sou Rica',1,'YELLOW')");
@@ -141,7 +140,7 @@ class OpenHelper extends SQLiteOpenHelper {
 		db.execSQL("INSERT INTO sounds VALUES ('tutuquinho.mp3','Tutuquinho',1,'YELLOW')");
 		db.execSQL("INSERT INTO sounds VALUES ('rebolation.mp3',' Rebolation',1,'RED')");
 		db.execSQL("INSERT INTO sounds VALUES ('presente.mp3','Marcus Tramontin',1,'YELLOW')");
-		db.execSQL("INSERT INTO sounds VALUES ('romario.mp3','Romá¡rio',1,'YELLOW')");
+		db.execSQL("INSERT INTO sounds VALUES ('romario.mp3','Romário',1,'YELLOW')");
 		db.execSQL("INSERT INTO sounds VALUES ('arnaldo.mp3','A Regra é Clara',1,'YELLOW')");
 		db.execSQL("INSERT INTO sounds VALUES ('mussum.mp3','Suco de Cevads',1,'BLUE')");
 		db.execSQL("INSERT INTO sounds VALUES ('nojento.mp3','I Nojento',1,'ORANGE')");

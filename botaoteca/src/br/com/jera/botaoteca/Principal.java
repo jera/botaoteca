@@ -1,6 +1,8 @@
 package br.com.jera.botaoteca;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import android.app.Activity;
@@ -29,6 +31,7 @@ public class Principal extends Activity {
 	if (!handleIntent(getIntent())) {
 
 	    botoes = dataHelper.createButtonsFromDatabase();
+	    sort();
 	    gridView = (GridView) findViewById(R.id.gridview);
 	    gridView.setAdapter(new BotaotecaListAdapter(this, botoes));
 	}
@@ -42,7 +45,14 @@ public class Principal extends Activity {
 	handleIntent(intent);
     }
     
-
+    private void sort() {
+	Collections.sort(botoes, new Comparator<Botao>() {
+	    public int compare(Botao b1, Botao b2) {
+		return b1.getName().toUpperCase().compareTo(b2.getName().toUpperCase());
+	    }
+	});
+    }
+    
     private boolean handleIntent(Intent intent) {
 	if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
 	    dataHelper = new DataHelper(getApplicationContext());
@@ -85,6 +95,7 @@ public class Principal extends Activity {
 	
 	case R.id.all: {
 	    botoes = dataHelper.createButtonsFromDatabase();
+	    sort();
 	    gridView = (GridView) findViewById(R.id.gridview);
 	    gridView.setAdapter(new BotaotecaListAdapter(this, botoes));
 	    return true;
