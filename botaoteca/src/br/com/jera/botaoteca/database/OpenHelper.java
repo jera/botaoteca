@@ -91,7 +91,6 @@ class OpenHelper extends SQLiteOpenHelper {
 		db.execSQL("INSERT INTO sounds VALUES ('lula.mp3','Presidente Lula',1,'BLUE')");
 		db.execSQL("INSERT INTO sounds VALUES ('vempraca.mp3','Vem pra ca',1,'YELLOW')");
 		db.execSQL("INSERT INTO sounds VALUES ('nossa.mp3','Nooossaaa',1,'GREEN')");
-		db.execSQL("INSERT INTO sounds VALUES ('significa.mp3','Ronnie Von - Significa',1,'BLUE')");
 		db.execSQL("INSERT INTO sounds VALUES ('valenada.mp3','Voce não vale nada',1,'GREEN')");
 		db.execSQL("INSERT INTO sounds VALUES ('pantera.mp3','Tapa na Pantera',1,'RED')");
 		db.execSQL("INSERT INTO sounds VALUES ('danca.mp3','Danca Gatinho',1,'YELLOW')");
