@@ -60,7 +60,7 @@ class OpenHelper extends SQLiteOpenHelper {
 		db.execSQL("INSERT INTO sounds VALUES ('imburning.mp3','Bixa Muda',1,'YELLOW')");
 		db.execSQL("INSERT INTO sounds VALUES ('disco.mp3','Ja chegou o disco voador',1,'BLUE')");
 		db.execSQL("INSERT INTO sounds VALUES ('lidio.mp3','Lidio Fresco boiola',1,'YELLOW')");
-		db.execSQL("INSERT INTO sounds VALUES ('ponto.mp3','Banheira do Gugu',1,'ORANGE')");
+		db.execSQL("INSERT INTO sounds VALUES ('banheiragugu.mp3','Banheira do Gugu',1,'ORANGE')");
 		db.execSQL("INSERT INTO sounds VALUES ('dunga.mp3','Entrevista Dunga',1,'RED')");
 		db.execSQL("INSERT INTO sounds VALUES ('aiqloucura.mp3','Narcisa Tamborindeguy',1,'RED')");
 		db.execSQL("INSERT INTO sounds VALUES ('mamonas.mp3','Mamonas Assassinas',1,'BLUE')");
@@ -76,7 +76,6 @@ class OpenHelper extends SQLiteOpenHelper {
 		db.execSQL("INSERT INTO sounds VALUES ('zina.mp3','Topo porque não',1,'RED')");
 		db.execSQL("INSERT INTO sounds VALUES ('bruxao.mp3','Nois que voa bruxão',1,'RED')");
 		db.execSQL("INSERT INTO sounds VALUES ('aisim.mp3','Zagallo',1,'YELLOW')");
-		db.execSQL("INSERT INTO sounds VALUES ('petrefiolismo.mp3','Fisica do Petrefiolismo',1,'BLUE')");
 		db.execSQL("INSERT INTO sounds VALUES ('chinelo.mp3','Cade o chinelo',1,'ORANGE')");
 		db.execSQL("INSERT INTO sounds VALUES ('serracomedor.mp3','Serra Comedor',1,'RED')");
 		db.execSQL("INSERT INTO sounds VALUES ('tiririca.mp3','Vote em Tiririca',1,'ORANGE')");
@@ -118,7 +117,7 @@ class OpenHelper extends SQLiteOpenHelper {
 		db.execSQL("INSERT INTO sounds VALUES ('cacilds.mp3','Ih Cacilds',1,'RED')");
 		db.execSQL("INSERT INTO sounds VALUES ('frango.mp3','Que Frango',1,'RED')");
 		db.execSQL("INSERT INTO sounds VALUES ('felipeneto.mp3','Felipe Neto',1,'GREEN')");
-		db.execSQL("INSERT INTO sounds VALUES ('dilma.mp3','Oi Dilma',1,'BLUE')");
+		db.execSQL("INSERT INTO sounds VALUES ('dilma.mp3','Dilma Oi',1,'BLUE')");
 		db.execSQL("INSERT INTO sounds VALUES ('euvi.mp3','Dilma Viu',1,'BLUE')");
 		db.execSQL("INSERT INTO sounds VALUES ('naoentendi.mp3','Não Entendi',1,'RED')");
 		db.execSQL("INSERT INTO sounds VALUES ('companheiro.mp3','Paulinho Rola',1,'YELLOW')");
@@ -153,7 +152,6 @@ class OpenHelper extends SQLiteOpenHelper {
 		db.execSQL("INSERT INTO sounds VALUES ('coracaozinho.mp3','S2 S2',1,'RED')");
 		db.execSQL("INSERT INTO sounds VALUES ('brasil.mp3','Brasil sil sil',1,'GREEN')");
 		db.execSQL("INSERT INTO sounds VALUES ('salomao.mp3','Felipe Melo',1,'ORANGE')");
-		db.execSQL("INSERT INTO sounds VALUES ('lasier.mp3','Lasier Martins',1,'GREEN')");
 		db.execSQL("INSERT INTO sounds VALUES ('bambu.mp3','E o bambu ?',1,'YELLOW')");
 		db.execSQL("INSERT INTO sounds VALUES ('leonaldo.mp3','Leonaldo Gomes',1,'YELLOW')");
 		db.execSQL("INSERT INTO sounds VALUES ('burro.mp3','Ai que burro',1,'YELLOW')");
