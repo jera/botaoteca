@@ -7,7 +7,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
-import br.com.jera.botaoteca.Botao;
+import br.com.jera.botaoteca.AppButton;
 import br.com.jera.botaoteca.ButtonColor;
 import br.com.jera.botaoteca.sound.EmbeddedSound;
 
@@ -53,7 +53,7 @@ public class DataHelper {
 	this.db.close();
     }
 
-    public Botao findButton(String fileName) {
+    public AppButton findButton(String fileName) {
 	Cursor cursor = db
 		.rawQuery("SELECT  name, color, type FROM " + TABLE_NAME
 			+ " WHERE fileName = ?", new String[] { fileName });
@@ -63,9 +63,9 @@ public class DataHelper {
 	    String color = cursor.getString(1);
 
 	    if (type == 1) {
-		Botao button;
+		AppButton button;
 		try {
-		    button = new Botao(ButtonColor.valueOf(color), context,
+		    button = new AppButton(ButtonColor.valueOf(color), context,
 			    new EmbeddedSound(fileName, context));
 		    cursor.close();
 		    return button;
@@ -79,10 +79,10 @@ public class DataHelper {
 	return null;
     }
 
-    public List<Botao> createButtonsFromDatabase() {
+    public List<AppButton> createButtonsFromDatabase() {
 	Cursor cursor = db.rawQuery("SELECT fileName, name, color, type FROM "
 		+ TABLE_NAME+" ORDER BY name", null);
-	List<Botao> buttons = new ArrayList<Botao>();
+	List<AppButton> buttons = new ArrayList<AppButton>();
 	if (cursor.moveToFirst()) {
 	    do {
 		int type = cursor.getInt(3);
@@ -92,9 +92,9 @@ public class DataHelper {
 		String color = cursor.getString(2);
 
 		if (type == 1) {
-		    Botao button;
+		    AppButton button;
 		    try {
-			button = new Botao(ButtonColor.valueOf(color), context,
+			button = new AppButton(ButtonColor.valueOf(color), context,
 				new EmbeddedSound(fileName, context));
 			button.setName(name);
 			buttons.add(button);
@@ -110,8 +110,8 @@ public class DataHelper {
 	return buttons;
     }
 
-    public List<Botao> filterButtons(String search) {
-	List<Botao> buttons = new ArrayList<Botao>();
+    public List<AppButton> filterButtons(String search) {
+	List<AppButton> buttons = new ArrayList<AppButton>();
 	Cursor cursor = db.rawQuery("SELECT fileName, name, color, type FROM "
 		+ TABLE_NAME + " WHERE name like '%"+search+"%'", null);
 	
@@ -124,9 +124,9 @@ public class DataHelper {
 		String color = cursor.getString(2);
 
 		if (type == 1) {
-		    Botao button;
+		    AppButton button;
 		    try {
-			button = new Botao(ButtonColor.valueOf(color), context,
+			button = new AppButton(ButtonColor.valueOf(color), context,
 				new EmbeddedSound(fileName, context));
 			button.setName(name);
 			buttons.add(button);

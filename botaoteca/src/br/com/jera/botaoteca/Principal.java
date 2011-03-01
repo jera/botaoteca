@@ -1,6 +1,5 @@
 package br.com.jera.botaoteca;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -19,7 +18,7 @@ import br.com.jera.botaoteca.database.DataHelper;
 public class Principal extends Activity {
 
     private DataHelper dataHelper;
-    private List<Botao> botoes;
+    private List<AppButton> buttons;
     private GridView gridView;
 
     @Override
@@ -30,10 +29,10 @@ public class Principal extends Activity {
 	dataHelper = new DataHelper(getApplicationContext());
 	if (!handleIntent(getIntent())) {
 
-	    botoes = dataHelper.createButtonsFromDatabase();
+	    buttons = dataHelper.createButtonsFromDatabase();
 	    sort();
 	    gridView = (GridView) findViewById(R.id.gridview);
-	    gridView.setAdapter(new BotaotecaListAdapter(this, botoes));
+	    gridView.setAdapter(new BotaotecaListAdapter(this, buttons));
 	}
 	
 	this.setVolumeControlStream(AudioManager.STREAM_MUSIC);
@@ -46,8 +45,8 @@ public class Principal extends Activity {
     }
     
     private void sort() {
-	Collections.sort(botoes, new Comparator<Botao>() {
-	    public int compare(Botao b1, Botao b2) {
+	Collections.sort(buttons, new Comparator<AppButton>() {
+	    public int compare(AppButton b1, AppButton b2) {
 		return b1.getName().toUpperCase().compareTo(b2.getName().toUpperCase());
 	    }
 	});
@@ -55,18 +54,10 @@ public class Principal extends Activity {
     
     private boolean handleIntent(Intent intent) {
 	if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
-	    dataHelper = new DataHelper(getApplicationContext());
 	    String query = intent.getStringExtra(SearchManager.QUERY);
-	    List<Botao> nBotoes = new ArrayList<Botao>();
-	    for (Botao botao : botoes) {
-		if(botao.getName().toUpperCase().contains(query.toUpperCase()) ) {
-		    nBotoes.add(botao);
-		}
-	    }
-	    
-	    gridView = (GridView) findViewById(R.id.gridview);
-	    gridView.setAdapter(new BotaotecaListAdapter(this, nBotoes));
-
+	    Intent i = new Intent(this, SearchActivity.class);
+	    i.putExtra("query", query);
+	    startActivity(i);
 	    return true;
 	}
 
@@ -94,10 +85,10 @@ public class Principal extends Activity {
 	}
 	
 	case R.id.all: {
-	    botoes = dataHelper.createButtonsFromDatabase();
+	    buttons = dataHelper.createButtonsFromDatabase();
 	    sort();
 	    gridView = (GridView) findViewById(R.id.gridview);
-	    gridView.setAdapter(new BotaotecaListAdapter(this, botoes));
+	    gridView.setAdapter(new BotaotecaListAdapter(this, buttons));
 	    return true;
 	}
 	

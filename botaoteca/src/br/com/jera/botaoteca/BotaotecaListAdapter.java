@@ -11,9 +11,9 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
-public class BotaotecaListAdapter extends ArrayAdapter<Botao> {
+public class BotaotecaListAdapter extends ArrayAdapter<AppButton> {
 
-    public BotaotecaListAdapter(Context context, List<Botao> objects) {
+    public BotaotecaListAdapter(Context context, List<AppButton> objects) {
 	super(context, R.layout.gridview_item, R.id.gridview_title, objects);
     }
 
@@ -40,7 +40,7 @@ public class BotaotecaListAdapter extends ArrayAdapter<Botao> {
     public View getView(int position, View convertView, ViewGroup parent) {
 	LinearLayout itemLayout = (LinearLayout) super.getView(position, convertView, parent);
 	
-	final Botao button = getItem(position);
+	final AppButton button = getItem(position);
 	
 	Button nButton = (Button) itemLayout.findViewById(R.id.gridview_button);
 	nButton.setTag(button);
@@ -54,7 +54,7 @@ public class BotaotecaListAdapter extends ArrayAdapter<Botao> {
 	@Override
 	public void onClick(View v) {
 	    try {
-		((Botao)v.getTag()).getSound().play();
+		((AppButton)v.getTag()).getSound().play();
 	    } catch (Exception e) {
 		e.printStackTrace();
 	    }

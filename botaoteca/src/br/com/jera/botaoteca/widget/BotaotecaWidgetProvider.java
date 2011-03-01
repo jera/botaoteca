@@ -10,7 +10,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.util.Log;
 import android.widget.RemoteViews;
-import br.com.jera.botaoteca.Botao;
+import br.com.jera.botaoteca.AppButton;
 import br.com.jera.botaoteca.ButtonColor;
 import br.com.jera.botaoteca.R;
 import br.com.jera.botaoteca.database.DataHelper;
@@ -59,7 +59,7 @@ public class BotaotecaWidgetProvider extends AppWidgetProvider {
 		    null);
 	    Log.i("RECIEVER", "ID" + appWidgetId + " FILE: " + fileName);
 	    DataHelper helper = new DataHelper(context);
-	    Botao button = helper.findButton(fileName);
+	    AppButton button = helper.findButton(fileName);
 	    try {
 		button.getSound().play();
 	    } catch (Exception e) {

@@ -3,7 +3,7 @@ package br.com.jera.botaoteca.database;
 import java.util.List;
 
 import android.test.AndroidTestCase;
-import br.com.jera.botaoteca.Botao;
+import br.com.jera.botaoteca.AppButton;
 
 public class DataHelperTest extends AndroidTestCase {
 
@@ -31,13 +31,13 @@ public class DataHelperTest extends AndroidTestCase {
 	
 	public void testCreateButtonsFromDatabase(){
 		DataHelper.setTesting(true);
-		List<Botao> buttons = dataHelper.createButtonsFromDatabase();
+		List<AppButton> buttons = dataHelper.createButtonsFromDatabase();
 		assertEquals("should create 137 buttons",137 , buttons.size());
 	}
 	
 	public void testFilterButtons() {
 		DataHelper.setTesting(true);
-		List<Botao> buttons = dataHelper.filterButtons("SACANAGEM");
+		List<AppButton> buttons = dataHelper.filterButtons("SACANAGEM");
 		assertEquals("should filter 2 buttons",2 , buttons.size());
 		
 		buttons = dataHelper.filterButtons("sacanagem");

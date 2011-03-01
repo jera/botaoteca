@@ -8,12 +8,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import br.com.jera.botaoteca.Botao;
+import br.com.jera.botaoteca.AppButton;
 import br.com.jera.botaoteca.R;
 
-public class WidgetListAdapter extends ArrayAdapter<Botao> {
+public class WidgetListAdapter extends ArrayAdapter<AppButton> {
 
-    public WidgetListAdapter(Context context, List<Botao> objects) {
+    public WidgetListAdapter(Context context, List<AppButton> objects) {
 	super(context, R.layout.list_item, R.id.listText, objects);
     }
 

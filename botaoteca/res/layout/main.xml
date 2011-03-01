@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 
-<LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@drawable/bg">
     
-  		<LinearLayout
+  		<LinearLayout android:id="@+id/banner"
+  		android:layout_alignParentTop="true"
   		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
 		android:background="@drawable/banner" />
-  	
+		
 		<GridView
 			android:padding="4dp"
 		    android:id="@+id/gridview"
@@ -20,5 +21,15 @@
 		    android:numColumns="3"
 		    android:horizontalSpacing="0dp"
 		    android:verticalSpacing="20dp"
-		    android:gravity="center"/>
-</LinearLayout>
+		    android:gravity="center"
+		    android:layout_below="@+id/banner"
+		    android:layout_above="@+id/footer" />
+		    
+		    <LinearLayout android:id="@+id/footer" android:layout_alignParentBottom="true"
+		  		android:layout_width="fill_parent"
+				android:layout_height="wrap_content">
+				<ImageButton android:background="@drawable/btn_jera"
+					android:layout_width="fill_parent"
+					android:layout_height="wrap_content" />
+			</LinearLayout>
+</RelativeLayout>

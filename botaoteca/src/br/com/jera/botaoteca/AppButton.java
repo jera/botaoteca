@@ -3,12 +3,12 @@ package br.com.jera.botaoteca;
 import android.content.Context;
 import br.com.jera.botaoteca.sound.Sound;
 
-public class Botao implements Comparable<Botao> {
+public class AppButton implements Comparable<AppButton> {
     private String name;
     private ButtonColor color;
     private Sound sound;
 
-    public Botao(ButtonColor color, Context context, Sound sound) {
+    public AppButton(ButtonColor color, Context context, Sound sound) {
 	this.color = color;
 	this.sound = sound;
     }
@@ -38,7 +38,7 @@ public class Botao implements Comparable<Botao> {
     }
 
     @Override
-    public int compareTo(Botao another) {
+    public int compareTo(AppButton another) {
 	return name.toUpperCase().compareTo(another.getName().toUpperCase());
     }
 }
