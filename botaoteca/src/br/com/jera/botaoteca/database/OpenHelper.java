@@ -21,18 +21,18 @@ class OpenHelper extends SQLiteOpenHelper {
 
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-		
+
 		Log.w(DataHelper.LOG_TAG, "Upgrading database, this will drop tables and recreate.");
-		db.execSQL(DataHelper.DROP_SQL );
-		
+		db.execSQL(DataHelper.DROP_SQL);
+
 		Log.i(DataHelper.LOG_TAG, "Creating database");
 		db.execSQL(DataHelper.CREATE_SQL);
 		db.setVersion(newVersion);
 		populateDatabase(db);
 
 	}
-	
-	  private void populateDatabase(SQLiteDatabase db) {
+
+	private void populateDatabase(SQLiteDatabase db) {
 		db.beginTransaction();
 		db.execSQL("INSERT INTO sounds VALUES ('pedrochip.mp3','Me dá meu Chipe',1,'RED')");
 		db.execSQL("INSERT INTO sounds VALUES ('vuvuzela.mp3','Vuvuzela',1,'YELLOW')");
@@ -169,6 +169,6 @@ class OpenHelper extends SQLiteOpenHelper {
 		db.execSQL("INSERT INTO sounds VALUES ('jagger.mp3','Mick Jagger',1,'BLUE')");
 		db.setTransactionSuccessful();
 		db.endTransaction();
-	    }
+	}
 
 }

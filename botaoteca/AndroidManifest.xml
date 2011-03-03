@@ -19,6 +19,9 @@
 		<activity android:name=".SearchActivity" android:theme="@android:style/Theme.NoTitleBar" android:screenOrientation="portrait">
      	 </activity>
 		
+			<activity android:name=".DownloadActivity" android:theme="@android:style/Theme.NoTitleBar" android:screenOrientation="portrait">
+     	 </activity>
+		
 		<activity android:name=".widget.BotaotecaWidgetConfigure" android:theme="@android:style/Theme.Dialog">
 			<intent-filter>
 				<action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
@@ -36,7 +39,7 @@
 	
 	
 	</application>
-
+	<uses-permission android:name="android.permission.INTERNET" /> 
 	<uses-sdk android:minSdkVersion="3" />
 	
 	<supports-screens android:largeScreens="true"

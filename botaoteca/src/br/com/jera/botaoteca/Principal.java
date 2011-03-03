@@ -17,84 +17,82 @@ import br.com.jera.botaoteca.database.DataHelper;
 
 public class Principal extends Activity {
 
-    private DataHelper dataHelper;
-    private List<AppButton> buttons;
-    private GridView gridView;
+	private DataHelper dataHelper;
+	private List<AppButton> buttons;
+	private GridView gridView;
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-	super.onCreate(savedInstanceState);
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
 
-	setContentView(R.layout.main);
-	dataHelper = new DataHelper(getApplicationContext());
-	if (!handleIntent(getIntent())) {
+		setContentView(R.layout.main);
+		dataHelper = new DataHelper(getApplicationContext());
+		if (!handleIntent(getIntent())) {
 
-	    buttons = dataHelper.createButtonsFromDatabase();
-	    sort();
-	    gridView = (GridView) findViewById(R.id.gridview);
-	    gridView.setAdapter(new BotaotecaListAdapter(this, buttons));
-	}
-	
-	this.setVolumeControlStream(AudioManager.STREAM_MUSIC);
-    }
+			buttons = dataHelper.createButtonsFromDatabase();
+			sort();
+			gridView = (GridView) findViewById(R.id.gridview);
+			gridView.setAdapter(new BotaotecaListAdapter(this, buttons));
+		}
 
-    @Override
-    protected void onNewIntent(Intent intent) {
-	setIntent(intent);
-	handleIntent(intent);
-    }
-    
-    private void sort() {
-	Collections.sort(buttons, new Comparator<AppButton>() {
-	    public int compare(AppButton b1, AppButton b2) {
-		return b1.getName().toUpperCase().compareTo(b2.getName().toUpperCase());
-	    }
-	});
-    }
-    
-    private boolean handleIntent(Intent intent) {
-	if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
-	    String query = intent.getStringExtra(SearchManager.QUERY);
-	    Intent i = new Intent(this, SearchActivity.class);
-	    i.putExtra("query", query);
-	    startActivity(i);
-	    return true;
+		this.setVolumeControlStream(AudioManager.STREAM_MUSIC);
 	}
 
-	return false;
-    }
+	@Override
+	protected void onNewIntent(Intent intent) {
+		setIntent(intent);
+		handleIntent(intent);
+	}
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-	MenuInflater inflater = getMenuInflater();
-	inflater.inflate(R.layout.menu, menu);
-	return true;
-    }
+	private void sort() {
+		Collections.sort(buttons, new Comparator<AppButton>() {
+			public int compare(AppButton b1, AppButton b2) {
+				return b1.getName().toUpperCase().compareTo(b2.getName().toUpperCase());
+			}
+		});
+	}
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-	switch (item.getItemId()) {
-	case R.id.quit: {
-	    finish();
-	    return true;
+	private boolean handleIntent(Intent intent) {
+		if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+			String query = intent.getStringExtra(SearchManager.QUERY);
+			Intent i = new Intent(this, SearchActivity.class);
+			i.putExtra("query", query);
+			startActivity(i);
+			return true;
+		}
+
+		return false;
 	}
-	   
-	case R.id.search: {
-	    onSearchRequested();
-	    return true;
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.layout.menu, menu);
+		return true;
 	}
-	
-	case R.id.all: {
-	    buttons = dataHelper.createButtonsFromDatabase();
-	    sort();
-	    gridView = (GridView) findViewById(R.id.gridview);
-	    gridView.setAdapter(new BotaotecaListAdapter(this, buttons));
-	    return true;
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case R.id.quit: {
+			finish();
+			return true;
+		}
+
+		case R.id.search: {
+			onSearchRequested();
+			return true;
+		}
+
+		case R.id.all: {
+			Intent i = new Intent(this, DownloadActivity.class);
+			startActivity(i);
+			return true;
+		}
+
+		default:
+			return super.onOptionsItemSelected(item);
+		}
 	}
-	
-	default:
-	    return super.onOptionsItemSelected(item);
-	}
-    }
 
 }
