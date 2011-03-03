@@ -3,10 +3,10 @@
 	
 	 <item android:id="@+id/search"
           android:icon="@android:drawable/ic_menu_search"
-          android:title="Buscar" />
+          android:title="@string/search" />
 
-	 <item android:id="@+id/all"
-          android:title="Ver Todos" />
+	 <item android:id="@+id/downloads"
+          android:title="@string/downloads" />
 
     <item android:id="@+id/quit"
           android:icon="@android:drawable/ic_menu_close_clear_cancel"

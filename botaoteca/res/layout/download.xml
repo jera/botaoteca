@@ -13,14 +13,21 @@
 		android:layout_height="wrap_content"
 		android:background="@drawable/banner" />
 		
-		 <ProgressBar
+		<ListView
+			android:layout_below="@+id/banner"
+			android:id="@+id/download_list"
+			android:layout_width="fill_parent"
+    		android:layout_height="fill_parent"
+		 />
+		
+	<!-- 	 <ProgressBar
 		 	style="?android:attr/progressBarStyleHorizontal"
 		 	android:indeterminate="false"
 		 	android:layout_height="wrap_content"
 		 	android:layout_alignParentLeft="true"
 		 	android:id="@+id/progressBar1"
 		 	android:layout_width="wrap_content"
-		 	android:layout_above="@+id/footer"/>
+		 	android:layout_above="@+id/footer"/> -->
 		    
     <LinearLayout android:id="@+id/footer" android:layout_alignParentBottom="true"
   		android:layout_width="fill_parent"

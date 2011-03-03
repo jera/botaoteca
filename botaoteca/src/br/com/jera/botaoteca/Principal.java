@@ -84,7 +84,7 @@ public class Principal extends Activity {
 			return true;
 		}
 
-		case R.id.all: {
+		case R.id.downloads: {
 			Intent i = new Intent(this, DownloadActivity.class);
 			startActivity(i);
 			return true;
