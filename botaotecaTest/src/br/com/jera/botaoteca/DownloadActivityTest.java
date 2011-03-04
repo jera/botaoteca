@@ -14,13 +14,11 @@ public class DownloadActivityTest extends ActivityInstrumentationTestCase2<Downl
 	}
 
 	public void testGetSoundsInfo() throws JSONException {
-		String jString = "{\"sounds\":[{\"name\": \"Serra Comedor\", \"filename\": \"serracomedor.mp3\", \"color\": \"BLUE\"}, {\"name\": \"Dilma oi\", \"filename\": \"oidilma.mp3\", \"color\": \"RED\"}] }";
+		String jString = "{\"sounds\":[{\"name\": \"Serra_Comedor_BLUE\"}, {\"name\": \"Dilma_oi_RED\"}] }";
 		getActivity().getSoundsInfo(jString);
 		List<JSONObject> sounds = getActivity().getSounds();
 		assertEquals("should retrieve 2 sounds", 2,sounds.size());
 		
-		assertEquals("should retrieve correct property", sounds.get(0).get("name"),"Serra Comedor");
-		assertEquals("should retrieve correct property", sounds.get(0).get("filename"),"serracomedor.mp3");
-		assertEquals("should retrieve correct property", sounds.get(0).get("color"),"BLUE");
+		assertEquals("should retrieve correct property", sounds.get(0).get("name"),"Serra_Comedor_BLUE");
 	}
 }

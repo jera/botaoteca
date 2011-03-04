@@ -29,7 +29,9 @@
 		 	android:layout_width="wrap_content"
 		 	android:layout_above="@+id/footer"/> -->
 		    
-    <LinearLayout android:id="@+id/footer" android:layout_alignParentBottom="true"
+    <LinearLayout
+    	android:id="@+id/footer"
+    	android:layout_alignParentBottom="true"
   		android:layout_width="fill_parent"
 		android:layout_height="wrap_content">
 		<ImageButton android:background="@drawable/btn_jera"

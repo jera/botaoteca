@@ -32,8 +32,12 @@ public class DownloadListAdapter extends ArrayAdapter<JSONObject> {
 		TextView text = (TextView) itemLayout.findViewById(R.id.download_button_title);
 		
 		try {
-			text.setText(obj.getString("name"));
-			image.setBackgroundDrawable( getDrawable(ButtonColor.valueOf(obj.getString("color") )));
+			String file = obj.getString("name");
+			String[] info =  file.split("_");
+			String color = info[info.length-1];
+			String name = file.substring(0, file.lastIndexOf("_")).replace('_', ' ');
+			text.setText(name);
+			image.setBackgroundDrawable( getDrawable(ButtonColor.valueOf(color)));
 		} catch (JSONException e) {
 			Log.e("ERROR", e.getMessage());
 		}
