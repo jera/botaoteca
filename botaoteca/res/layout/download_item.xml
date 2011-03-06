@@ -29,5 +29,14 @@
     	android:layout_height="wrap_content"
     	android:text="@string/download"
     />
+    
+    <ProgressBar
+		 	style="?android:attr/progressBarStyleHorizontal"
+		 	android:indeterminate="false"
+		 	android:layout_height="wrap_content"
+		 	android:layout_alignParentLeft="true"
+		 	android:id="@+id/progressBar"
+		 	android:visibility="invisible"
+		 	android:layout_width="wrap_content"/>
 
 </LinearLayout>

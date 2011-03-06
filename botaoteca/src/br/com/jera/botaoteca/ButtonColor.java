@@ -1,5 +1,8 @@
 package br.com.jera.botaoteca;
 
+import android.content.Context;
+import android.graphics.drawable.Drawable;
+
 public enum ButtonColor {
 
 	GREEN("Green", R.drawable.btn_normal_green, R.drawable.btn_pressed_green), BLUE("Blue", R.drawable.btn_normal_blue, R.drawable.btn_pressed_blue), RED(
@@ -14,6 +17,10 @@ public enum ButtonColor {
 		this.name = name;
 		this.normal = normal;
 		this.pressed = pressed;
+	}
+	
+	public Drawable getDrawable(Context context) {
+		return context.getResources().getDrawable(this.normal);
 	}
 
 	public String getName() {

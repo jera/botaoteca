@@ -28,7 +28,7 @@ function download(res, filename) {
 	filename = decodeURI(filename);
 	fs.readFile("sounds/"+filename, function(err, data) {
 		if(err) throw err;
-		res.writeHead(200,{'Content-type': 'audio/mp3'});
+		res.writeHead(200,{'Content-type': 'audio/mp3','Content-Length' : data.length});
 		res.end(data);
 	});	
 }

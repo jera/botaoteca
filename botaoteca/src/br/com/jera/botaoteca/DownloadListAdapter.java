@@ -6,14 +6,16 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import br.com.jera.botaoteca.network.DownloadSoundTask;
 
 public class DownloadListAdapter extends ArrayAdapter<JSONObject> {
 	
@@ -30,14 +32,17 @@ public class DownloadListAdapter extends ArrayAdapter<JSONObject> {
 		JSONObject obj = objects.get(position);
 		ImageView image = (ImageView) itemLayout.findViewById(R.id.download_button_image);
 		TextView text = (TextView) itemLayout.findViewById(R.id.download_button_title);
+		ProgressBar bar = (ProgressBar) itemLayout.findViewById(R.id.progressBar);
+		Button button = (Button) itemLayout.findViewById(R.id.download_button);
 		
 		try {
 			String file = obj.getString("name");
 			String[] info =  file.split("_");
 			String color = info[info.length-1];
+			button.setOnClickListener(createListener(bar, "http://10.0.2.2:9080/download", file));
 			String name = file.substring(0, file.lastIndexOf("_")).replace('_', ' ');
 			text.setText(name);
-			image.setBackgroundDrawable( getDrawable(ButtonColor.valueOf(color)));
+			image.setBackgroundDrawable(ButtonColor.valueOf(color).getDrawable(getContext()));
 		} catch (JSONException e) {
 			Log.e("ERROR", e.getMessage());
 		}
@@ -45,22 +50,17 @@ public class DownloadListAdapter extends ArrayAdapter<JSONObject> {
 		return itemLayout;
 	}
 	
-	private Drawable getDrawable(ButtonColor color) {
-		if (color.equals(ButtonColor.GREEN)) {
-			return getContext().getResources().getDrawable(R.drawable.btn_green);
-		}
-		if (color.equals(ButtonColor.BLUE)) {
-			return getContext().getResources().getDrawable(R.drawable.btn_blue);
-		}
-		if (color.equals(ButtonColor.RED)) {
-			return getContext().getResources().getDrawable(R.drawable.btn_red);
-		}
-		if (color.equals(ButtonColor.YELLOW)) {
-			return getContext().getResources().getDrawable(R.drawable.btn_yellow);
-		}
-		if (color.equals(ButtonColor.ORANGE)) {
-			return getContext().getResources().getDrawable(R.drawable.btn_orange);
-		}
-		return null;
+	private View.OnClickListener createListener(final ProgressBar bar, final String url, final String fileName) {
+		return new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				DownloadSoundTask task = new DownloadSoundTask(bar);
+				task.execute(url+"/"+fileName+".mp3", fileName);
+				bar.setVisibility(View.VISIBLE);
+				v.setVisibility(View.INVISIBLE);
+			}
+		};
 	}
+
 }
