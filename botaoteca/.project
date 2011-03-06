@@ -32,11 +32,6 @@
 	</natures>
 	<linkedResources>
 		<link>
-			<name>android-utils_src</name>
-			<type>2</type>
-			<locationURI>_android_android_utils_826c8bd3/src</locationURI>
-		</link>
-		<link>
 			<name>src-2</name>
 			<type>2</type>
 			<location>/home/marcos/projetos/android/android-utils/src</location>

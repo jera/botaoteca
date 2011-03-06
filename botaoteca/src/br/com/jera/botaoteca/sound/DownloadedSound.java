@@ -26,4 +26,8 @@ public class DownloadedSound extends Sound {
 		PLAYER.start();
 
 	}
+	
+	public static Sound create(String fileName, byte[] data) {
+		return null;
+	}
 }

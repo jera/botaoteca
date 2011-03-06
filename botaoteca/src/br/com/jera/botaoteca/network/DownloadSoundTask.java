@@ -6,8 +6,6 @@ import java.net.URL;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.ProgressBar;
-import br.com.jera.android.network.Download;
-import br.com.jera.android.network.DownloadCallBack;
 import br.com.jera.botaoteca.sound.Sound;
 
 public class DownloadSoundTask extends AsyncTask<String, Integer, Sound> implements DownloadCallBack {
