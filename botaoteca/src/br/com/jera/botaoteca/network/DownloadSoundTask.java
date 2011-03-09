@@ -6,9 +6,10 @@ import java.net.URL;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.ProgressBar;
+import br.com.jera.botaoteca.sound.DownloadedSound;
 import br.com.jera.botaoteca.sound.Sound;
 
-public class DownloadSoundTask extends AsyncTask<String, Integer, Sound> implements DownloadCallBack {
+public class DownloadSoundTask extends AsyncTask<String, Integer, Void> implements DownloadCallBack {
 
 	private ProgressBar progressBar;
 
@@ -17,10 +18,11 @@ public class DownloadSoundTask extends AsyncTask<String, Integer, Sound> impleme
 	}
 
 	@Override
-	protected Sound doInBackground(String... params) {
+	protected Void doInBackground(String... params) {
 		try {
 			Download download = new Download(new URL(params[0]), this);
-			byte[] lala = download.download();
+			byte[] data = download.download();
+			DownloadedSound.create(params[1], data);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -28,7 +30,7 @@ public class DownloadSoundTask extends AsyncTask<String, Integer, Sound> impleme
 	}
 
 	@Override
-	protected void onPostExecute(Sound result) {
+	protected void onPostExecute(Void result) {
 		super.onPostExecute(result);
 	}
 
