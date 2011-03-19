@@ -29,12 +29,11 @@ public class DownloadedSound extends Sound {
 	}
 	
 	public static Sound create(String fileName, byte[] data) throws IOException {
-		File dir = new File (PATH + File.separator+fileName+".mp3");
-		dir.mkdirs();
-		File file = new File(dir, "filename");
-		FileOutputStream f = new FileOutputStream(file);
-		f.write(data);
-		f.flush();
+		File file = new File (PATH + File.separator+fileName+".mp3");
+		file.createNewFile();
+		FileOutputStream fos = new FileOutputStream(file);
+		fos.write(data);
+		fos.flush();
 		return new DownloadedSound(fileName+".mp3");
 	}
 }
