@@ -2,6 +2,7 @@ package br.com.jera.botaoteca.network;
 
 import java.io.IOException;
 import java.net.URL;
+import java.net.URLEncoder;
 
 import android.os.AsyncTask;
 import android.util.Log;

@@ -17,7 +17,7 @@ public class DataHelper {
 	public static final int DATABASE_VERSION = 1;
 	public static final String CREATE_SQL;
 	public static final String DROP_SQL;
-	static final String DATABASE_NAME = "botaoteca.db";
+	static final String DATABASE_NAME = "botaoteca2.db";
 	static final String DATABASE_TEST_NAME = "botaoteca-test.db";
 
 	static final String LOG_TAG = "DataBase";

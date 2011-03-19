@@ -1,5 +1,6 @@
 package br.com.jera.botaoteca;
 
+import java.net.URLEncoder;
 import java.util.List;
 
 import org.json.JSONException;
@@ -56,7 +57,7 @@ public class DownloadListAdapter extends ArrayAdapter<JSONObject> {
 			@Override
 			public void onClick(View v) {
 				DownloadSoundTask task = new DownloadSoundTask(bar);
-				task.execute(url+"/"+fileName+".mp3", fileName);
+				task.execute(url+"/"+URLEncoder.encode(fileName)+".mp3", fileName);
 				bar.setVisibility(View.VISIBLE);
 				v.setVisibility(View.INVISIBLE);
 			}
