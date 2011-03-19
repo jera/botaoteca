@@ -32,16 +32,8 @@ public class DataHelperTest extends AndroidTestCase {
 	public void testCreateButtonsFromDatabase(){
 		DataHelper.setTesting(true);
 		List<AppButton> buttons = dataHelper.createButtonsFromDatabase();
-		assertEquals("should create 137 buttons",133 , buttons.size());
+		assertEquals("should create 13 buttons",13 , buttons.size());
 	}
 	
-	public void testFilterButtons() {
-		DataHelper.setTesting(true);
-		List<AppButton> buttons = dataHelper.filterButtons("SACANAGEM");
-		assertEquals("should filter 2 buttons",2 , buttons.size());
-		
-		buttons = dataHelper.filterButtons("sacanagem");
-		assertEquals("should filter 2 buttons",2 , buttons.size());
-	}
 
 }
