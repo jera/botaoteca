@@ -10,7 +10,7 @@ import android.test.ActivityInstrumentationTestCase2;
 public class DownloadActivityTest extends ActivityInstrumentationTestCase2<DownloadActivity> {
 
 	public DownloadActivityTest() {
-		super(DownloadActivity.class);
+		super(null, DownloadActivity.class);
 	}
 
 	public void testGetSoundsInfo() throws JSONException {
