@@ -4,7 +4,10 @@
 	<string name="quit">Sair</string>
 	<string name="downloads">Downloads</string>
 	<string name="download">Baixar</string>
+	<string name="back">Voltar</string>
 	<string name="search">Buscar</string>
 	<string name="not.connected">Não foi possível conectar ao servidor</string>
 	<string name="server">http://jera.com.br:9080/</string>
+	<string name="not.result">Nenhum resultado Encontrado</string>
+	
 </resources>
