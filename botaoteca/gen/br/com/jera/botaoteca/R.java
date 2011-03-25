@@ -98,6 +98,7 @@ public final class R {
         public static final int not_connected=0x7f060005;
         public static final int quit=0x7f060001;
         public static final int search=0x7f060004;
+        public static final int server=0x7f060006;
     }
     public static final class style {
         public static final int button=0x7f070000;

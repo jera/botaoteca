@@ -40,7 +40,7 @@ public class DownloadListAdapter extends ArrayAdapter<JSONObject> {
 			String file = obj.getString("name");
 			String[] info =  file.split("_");
 			String color = info[info.length-1];
-			button.setOnClickListener(createListener(bar, "http://10.0.2.2:9080/download", file));
+			button.setOnClickListener(createListener(bar, getContext().getString(R.string.server)+"download", file));
 			String name = file.substring(0, file.lastIndexOf("_")).replace('_', ' ');
 			text.setText(name);
 			image.setBackgroundDrawable(ButtonColor.valueOf(color).getDrawable(getContext()));
