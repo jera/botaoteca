@@ -56,7 +56,7 @@ public class DownloadActivity extends Activity {
 	}
 
 	public String getListJSON() {
-		HttpGet get = new HttpGet("http://10.0.2.2:9080/list");
+		HttpGet get = new HttpGet(getString(R.string.server)+"list");
 		try {
 			HttpResponse response = this.connectToServer().execute(get);
 			return getResponseBody(response.getEntity());
