@@ -14,6 +14,9 @@ import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.params.BasicHttpParams;
+import org.apache.http.params.HttpConnectionParams;
+import org.apache.http.params.HttpParams;
 import org.apache.http.protocol.HTTP;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -24,6 +27,7 @@ import android.net.ParseException;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class DownloadActivity extends Activity {
 
@@ -34,26 +38,34 @@ public class DownloadActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.download);
 		ListView listView = (ListView) findViewById(R.id.download_list);
-
 		try {
-			getSoundsInfo(this.getListJSON());
+			this.createSoundsInfo(this.getListJSON());
 			listView.setAdapter(new DownloadListAdapter(this, sounds));
 		} catch (JSONException e) {
 			Log.i("ERROR", e.getMessage());
 		}
 	}
 
+	public HttpClient connectToServer() {
+		HttpParams httpParameters = new BasicHttpParams();
+		int timeoutConnection = 2000;
+		HttpConnectionParams.setConnectionTimeout(httpParameters, timeoutConnection);
+		int timeoutSocket = 2000;
+		HttpConnectionParams.setSoTimeout(httpParameters, timeoutSocket);
+		return new DefaultHttpClient(httpParameters);
+	}
+
 	public String getListJSON() {
-		HttpClient client = new DefaultHttpClient();
 		HttpGet get = new HttpGet("http://10.0.2.2:9080/list");
-		String result = null;
 		try {
-			HttpResponse response = client.execute(get);
-			result = getResponseBody(response.getEntity());
+			HttpResponse response = this.connectToServer().execute(get);
+			return getResponseBody(response.getEntity());
 		} catch (Exception e) {
+			Toast.makeText(getApplicationContext(), getString(R.string.not_connected), Toast.LENGTH_SHORT).show();
 			Log.e("DOWNLOAD", "Erro ao listar sons: " + e.getMessage());
+			this.finish();
+			return "";
 		}
-		return result;
 	}
 
 	public String getResponseBody(final HttpEntity entity) throws IOException, ParseException {
@@ -90,16 +102,14 @@ public class DownloadActivity extends Activity {
 		return charset;
 	}
 
-	public void getSoundsInfo(String content) throws JSONException {
+	public void createSoundsInfo(String content) throws JSONException {
 		JSONObject responseObject = new JSONObject(content);
 		JSONArray soundsArray = responseObject.getJSONArray("sounds");
-
 		int length = soundsArray.length();
 		sounds = new ArrayList<JSONObject>(length);
 		for (int i = 0; i < length; i++) {
 			sounds.add((JSONObject) soundsArray.get(i));
 		}
-
 	}
 
 	/*

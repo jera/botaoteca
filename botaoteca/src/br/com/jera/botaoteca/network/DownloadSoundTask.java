@@ -2,13 +2,11 @@ package br.com.jera.botaoteca.network;
 
 import java.io.IOException;
 import java.net.URL;
-import java.net.URLEncoder;
 
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.ProgressBar;
 import br.com.jera.botaoteca.sound.DownloadedSound;
-import br.com.jera.botaoteca.sound.Sound;
 
 public class DownloadSoundTask extends AsyncTask<String, Integer, Void> implements DownloadCallBack {
 

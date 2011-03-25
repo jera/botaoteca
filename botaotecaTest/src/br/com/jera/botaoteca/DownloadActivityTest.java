@@ -15,7 +15,7 @@ public class DownloadActivityTest extends ActivityInstrumentationTestCase2<Downl
 
 	public void testGetSoundsInfo() throws JSONException {
 		String jString = "{\"sounds\":[{\"name\": \"Serra_Comedor_BLUE\"}, {\"name\": \"Dilma_oi_RED\"}] }";
-		getActivity().getSoundsInfo(jString);
+		getActivity().createSoundsInfo(jString);
 		List<JSONObject> sounds = getActivity().getSounds();
 		assertEquals("should retrieve 2 sounds", 2,sounds.size());
 		

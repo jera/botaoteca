@@ -6,13 +6,17 @@ import java.util.List;
 
 import android.app.Activity;
 import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.media.AudioManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.GridView;
+import android.widget.Toast;
 import br.com.jera.botaoteca.database.DataHelper;
 
 public class Principal extends Activity {
@@ -85,6 +89,11 @@ public class Principal extends Activity {
 		}
 
 		case R.id.downloads: {
+			if (!isOnline())
+			{
+				Toast.makeText(getApplicationContext(), getString(R.string.not_connected), Toast.LENGTH_SHORT).show();
+				return true;
+			}
 			Intent i = new Intent(this, DownloadActivity.class);
 			startActivity(i);
 			return true;
@@ -93,6 +102,15 @@ public class Principal extends Activity {
 		default:
 			return super.onOptionsItemSelected(item);
 		}
+	}
+	
+	public boolean isOnline() {
+	    ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+	    NetworkInfo netInfo = cm.getActiveNetworkInfo();
+	    if (netInfo != null && netInfo.isConnectedOrConnecting()) {
+	        return true;
+	    }
+	    return false;
 	}
 
 }
