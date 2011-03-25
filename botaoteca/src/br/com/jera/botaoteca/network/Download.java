@@ -14,13 +14,11 @@ public class Download {
 
 	private static final int MAX_BUFFER_SIZE = 1024;
 
-	private DownloadCallBack callBack;
 
-	public Download(URL url, DownloadCallBack callBack) {
+	public Download(URL url) {
 		this.url = url;
 		size = -1;
 		downloaded = 0;
-		this.callBack = callBack;
 	}
 
 	public byte[] download() throws IOException {
@@ -43,7 +41,6 @@ public class Download {
 			os.write(buffer, 0, read);
 			downloaded += read;
 			int progress = getProgress();
-			callBack.updateProgress(progress);
 		}
 		stream.close();
 		return os.toByteArray();

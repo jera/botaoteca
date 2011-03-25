@@ -56,7 +56,7 @@ public class DownloadListAdapter extends ArrayAdapter<JSONObject> {
 			
 			@Override
 			public void onClick(View v) {
-				DownloadSoundTask task = new DownloadSoundTask(bar);
+				DownloadSoundTask task = new DownloadSoundTask();
 				task.execute(url+"/"+URLEncoder.encode(fileName)+".mp3", fileName);
 				bar.setVisibility(View.VISIBLE);
 				v.setVisibility(View.INVISIBLE);
