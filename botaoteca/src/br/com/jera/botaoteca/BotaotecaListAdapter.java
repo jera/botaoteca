@@ -3,6 +3,7 @@ package br.com.jera.botaoteca;
 import java.util.List;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -50,7 +51,7 @@ public class BotaotecaListAdapter extends ArrayAdapter<AppButton> {
 			try {
 				((AppButton) v.getTag()).getSound().play();
 			} catch (Exception e) {
-				e.printStackTrace();
+				Log.i("ERROR", e.getMessage());
 			}
 		}
 	};

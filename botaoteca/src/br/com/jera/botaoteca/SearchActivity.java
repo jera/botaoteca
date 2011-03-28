@@ -44,7 +44,7 @@ public class SearchActivity extends Activity {
 		} else {
 			TextView msg = new TextView(this);
 			msg.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
-			msg.setText("Nenhum resultado Encontrado");
+			msg.setText(getString(R.string.not_result));
 			layout.addView(msg);
 		}
 		this.setVolumeControlStream(AudioManager.STREAM_MUSIC);
@@ -52,13 +52,11 @@ public class SearchActivity extends Activity {
 
 	private void addBackButton(LinearLayout layout) {
 		Button back = new Button(this);
-		back.setText("Voltar");
+		back.setText(getString(R.string.back));
 		back.setOnClickListener(new View.OnClickListener() {
-
 			@Override
 			public void onClick(View v) {
 				SearchActivity.this.finish();
-
 			}
 		});
 		back.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
