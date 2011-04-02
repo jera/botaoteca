@@ -17,7 +17,7 @@ public class BotaotecaListAdapter extends ArrayAdapter<AppButton> {
 		super(context, R.layout.gridview_item, R.id.gridview_title, objects);
 	}
 
-	
+
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 
@@ -39,7 +39,7 @@ public class BotaotecaListAdapter extends ArrayAdapter<AppButton> {
 
 		return convertView;
 	}
-	
+
   private static class ViewHolder {
 	  Button button;
 	  TextView text;
@@ -51,7 +51,7 @@ public class BotaotecaListAdapter extends ArrayAdapter<AppButton> {
 			try {
 				((AppButton) v.getTag()).getSound().play();
 			} catch (Exception e) {
-				Log.i("ERROR", e.getMessage());        
+				Log.i("ERROR", e.getMessage());
 			}
 		}
 	};

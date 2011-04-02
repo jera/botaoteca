@@ -7,11 +7,10 @@ import android.app.Activity;
 import android.media.AudioManager;
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup.LayoutParams;
-import android.widget.Button;
+import android.view.View.OnClickListener;
 import android.widget.GridView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.widget.ImageButton;
+import android.widget.Toast;
 import br.com.jera.botaoteca.database.DataHelper;
 
 public class SearchActivity extends Activity {
@@ -24,6 +23,8 @@ public class SearchActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.search);
+		ImageButton buttonMoreOptions = (ImageButton) findViewById(R.id.button_back);
+		buttonMoreOptions.setOnClickListener(this.onCreateMoreOptions());
 
 		dataHelper = new DataHelper(getApplicationContext());
 		String query = (String) this.getIntent().getExtras().get("query");
@@ -40,8 +41,17 @@ public class SearchActivity extends Activity {
 			gridView = (GridView) findViewById(R.id.gridview);
 			gridView.setAdapter(new BotaotecaListAdapter(this, nButtons));
 		} else {
-			//TODO MSG não encontrado
+			Toast.makeText(getApplicationContext(), getString(R.string.not_result), Toast.LENGTH_LONG).show();
 		}
 		this.setVolumeControlStream(AudioManager.STREAM_MUSIC);
+	}
+
+	private OnClickListener onCreateMoreOptions() {
+		return new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				SearchActivity.this.finish();
+			}
+		};
 	}
 }

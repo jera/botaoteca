@@ -15,7 +15,10 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.GridView;
+import android.widget.ImageButton;
 import android.widget.Toast;
 import br.com.jera.botaoteca.database.DataHelper;
 
@@ -31,8 +34,9 @@ public class Principal extends Activity {
 
 		setContentView(R.layout.main);
 		dataHelper = new DataHelper(getApplicationContext());
+		ImageButton buttonMoreOptions = (ImageButton) findViewById(R.id.btn_more);
+		buttonMoreOptions.setOnClickListener(this.onCreateMoreOptions());
 		if (!handleIntent(getIntent())) {
-
 			buttons = dataHelper.createButtonsFromDatabase();
 			sort();
 			gridView = (GridView) findViewById(R.id.gridview);
@@ -40,6 +44,15 @@ public class Principal extends Activity {
 		}
 
 		this.setVolumeControlStream(AudioManager.STREAM_MUSIC);
+	}
+
+	private OnClickListener onCreateMoreOptions() {
+		return new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Principal.this.openOptionsMenu();
+			}
+		};
 	}
 
 	@Override
@@ -89,8 +102,7 @@ public class Principal extends Activity {
 		}
 
 		case R.id.downloads: {
-			if (!isOnline())
-			{
+			if (!isOnline()) {
 				Toast.makeText(getApplicationContext(), getString(R.string.not_connected), Toast.LENGTH_SHORT).show();
 				return true;
 			}
@@ -103,14 +115,14 @@ public class Principal extends Activity {
 			return super.onOptionsItemSelected(item);
 		}
 	}
-	
+
 	public boolean isOnline() {
-	    ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-	    NetworkInfo netInfo = cm.getActiveNetworkInfo();
-	    if (netInfo != null && netInfo.isConnectedOrConnecting()) {
-	        return true;
-	    }
-	    return false;
+		ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+		NetworkInfo netInfo = cm.getActiveNetworkInfo();
+		if (netInfo != null && netInfo.isConnectedOrConnecting()) {
+			return true;
+		}
+		return false;
 	}
 
 }

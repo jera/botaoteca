@@ -8,6 +8,8 @@
 	<string name="search">Buscar</string>
 	<string name="not.connected">Não foi possível conectar ao servidor</string>
 	<string name="server">http://jera.com.br:9080/</string>
-	<string name="not.result">Nenhum resultado Encontrado</string>
-	
+	<string name="not.result">Nenhum botão Encontrado!</string>
+	<string name="search_title">Busca</string>
+	<string name="all">Todos os botões</string>
+
 </resources>
