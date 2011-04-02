@@ -54,9 +54,9 @@ public class DownloadActivity extends Activity {
 
 	public HttpClient connectToServer() {
 		HttpParams httpParameters = new BasicHttpParams();
-		int timeoutConnection = 2000;
+		int timeoutConnection = 4000;
 		HttpConnectionParams.setConnectionTimeout(httpParameters, timeoutConnection);
-		int timeoutSocket = 2000;
+		int timeoutSocket = 4000;
 		HttpConnectionParams.setSoTimeout(httpParameters, timeoutSocket);
 		return new DefaultHttpClient(httpParameters);
 	}
