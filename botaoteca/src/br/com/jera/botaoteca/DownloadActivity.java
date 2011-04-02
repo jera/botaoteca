@@ -112,14 +112,6 @@ public class DownloadActivity extends Activity {
 		}
 	}
 
-	/*
-	 * public void download() { ProgressBar bar = (ProgressBar)
-	 * findViewById(R.id.progressBar1); DownloadSoundTask task = new
-	 * DownloadSoundTask(bar); task.execute(
-	 * "http://joe-miller.net/wp-content/uploads/2011/01/trollface-1f965e4.png"
-	 * ); }
-	 */
-
 	public List<JSONObject> getSounds() {
 		return sounds;
 	}

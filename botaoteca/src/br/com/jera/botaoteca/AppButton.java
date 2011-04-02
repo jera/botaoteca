@@ -11,9 +11,9 @@ public class AppButton implements Comparable<AppButton> {
 	public AppButton(ButtonColor color, Context context, Sound sound) {
 		this.color = color;
 		this.sound = sound;
-	}
+  }
 
-	public String getName() {
+public String getName() {
 		return name;
 	}
 
@@ -26,7 +26,7 @@ public class AppButton implements Comparable<AppButton> {
 	}
 
 	public void setName(String name) {
-		this.name = name;
+		this.name = name;    
 	}
 
 	public Sound getSound() {

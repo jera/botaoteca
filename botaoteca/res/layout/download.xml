@@ -11,7 +11,7 @@
 		android:layout_alignParentTop="true"
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
-		android:background="@drawable/banner" />
+		android:background="@drawable/banner_all" />
 		
 		<ListView
 			android:layout_below="@+id/banner"
@@ -25,7 +25,7 @@
     	android:layout_alignParentBottom="true"
   		android:layout_width="fill_parent"
 		android:layout_height="wrap_content">
-		<ImageButton android:background="@drawable/btn_jera"
+		<ImageButton android:background="@layout/btn_jera"
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content" />
 	</LinearLayout>

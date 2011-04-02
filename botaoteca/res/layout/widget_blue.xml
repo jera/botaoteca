@@ -7,7 +7,7 @@
     <Button
     	android:id="@+id/widget_button"
     	style="@style/button"
-    	android:background="@drawable/btn_blue"
+    	android:background="@layout/btn_blue"
     />
     
       <TextView

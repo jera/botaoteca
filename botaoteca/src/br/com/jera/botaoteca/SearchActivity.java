@@ -28,8 +28,6 @@ public class SearchActivity extends Activity {
 		dataHelper = new DataHelper(getApplicationContext());
 		String query = (String) this.getIntent().getExtras().get("query");
 		buttons = dataHelper.filterButtons(query);
-		LinearLayout layout = (LinearLayout) findViewById(R.id.search_controls);
-		addBackButton(layout);
 		List<AppButton> nButtons = new ArrayList<AppButton>();
 
 		for (AppButton button : buttons) {
@@ -42,26 +40,8 @@ public class SearchActivity extends Activity {
 			gridView = (GridView) findViewById(R.id.gridview);
 			gridView.setAdapter(new BotaotecaListAdapter(this, nButtons));
 		} else {
-			TextView msg = new TextView(this);
-			msg.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
-			msg.setText(getString(R.string.not_result));
-			layout.addView(msg);
+			//TODO MSG não encontrado
 		}
 		this.setVolumeControlStream(AudioManager.STREAM_MUSIC);
 	}
-
-	private void addBackButton(LinearLayout layout) {
-		Button back = new Button(this);
-		back.setText(getString(R.string.back));
-		back.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				SearchActivity.this.finish();
-			}
-		});
-		back.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
-		layout.addView(back);
-
-	}
-
 }

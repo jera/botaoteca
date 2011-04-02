@@ -40,10 +40,10 @@ public class BotaotecaListAdapter extends ArrayAdapter<AppButton> {
 		return convertView;
 	}
 	
-	private static class ViewHolder {
-		Button button;
-		TextView text;
-	}
+  private static class ViewHolder {
+	  Button button;
+	  TextView text;
+  }
 
 	private OnClickListener onClickListener = new OnClickListener() {
 		@Override
@@ -51,7 +51,7 @@ public class BotaotecaListAdapter extends ArrayAdapter<AppButton> {
 			try {
 				((AppButton) v.getTag()).getSound().play();
 			} catch (Exception e) {
-				Log.i("ERROR", e.getMessage());
+				Log.i("ERROR", e.getMessage());        
 			}
 		}
 	};

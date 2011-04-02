@@ -1,35 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="@drawable/bg">
-    
-  		<LinearLayout android:id="@+id/banner"
-  		android:layout_alignParentTop="true"
-  		android:layout_width="fill_parent"
+<RelativeLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:background="@drawable/bg">
+
+	<LinearLayout
+		android:id="@+id/banner"
+		android:layout_alignParentTop="true"
+		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
-		android:background="@drawable/banner" />
-		
-		<GridView
-			android:padding="4dp"
-		    android:id="@+id/gridview"
-		    android:layout_width="fill_parent" 
-		    android:layout_height="wrap_content"
-		    android:numColumns="3"
-		    android:horizontalSpacing="0dp"
-		    android:verticalSpacing="20dp"
-		    android:gravity="center"
-		    android:layout_below="@+id/banner"
-		    android:layout_above="@+id/footer" />
-		    
-		    <LinearLayout android:id="@+id/footer" android:layout_alignParentBottom="true"
-		  		android:layout_width="fill_parent"
-				android:layout_height="wrap_content">
-				<ImageButton android:background="@drawable/btn_jera"
-					android:layout_width="fill_parent"
-					android:layout_height="wrap_content" />
-			</LinearLayout>
+		android:orientation="vertical"
+		android:background="@drawable/banner_all"
+		android:gravity="right">
+
+		<ImageButton
+			android:layout_marginTop="6dp"
+			android:layout_marginRight="10dp"
+			android:layout_marginBottom="5dp"
+			android:background="@layout/more_options"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content" />
+		<TextView
+			android:textStyle="bold"
+			android:text="Todos os Botões"
+			android:layout_marginRight="10dp"
+			android:layout_marginBottom="5dp"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content" />
+	</LinearLayout>
+
+	<GridView
+		android:padding="4dp"
+		android:id="@+id/gridview"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:numColumns="3"
+		android:horizontalSpacing="0dp"
+		android:verticalSpacing="20dp"
+		android:gravity="center"
+		android:layout_below="@+id/banner"
+		android:layout_above="@+id/footer" />
+
+	<LinearLayout
+		android:id="@+id/footer"
+		android:layout_alignParentBottom="true"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content">
+		<ImageButton
+			android:background="@layout/btn_jera"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content" />
+	</LinearLayout>
 </RelativeLayout>

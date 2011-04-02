@@ -28,9 +28,8 @@ public class DownloadListAdapter extends ArrayAdapter<JSONObject> {
 	
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-		LinearLayout itemLayout = (LinearLayout) super.getView(position, convertView, parent);
 		
-		JSONObject obj = objects.get(position);
+		/*JSONObject obj = objects.get(position);
 		ImageView image = (ImageView) itemLayout.findViewById(R.id.download_button_image);
 		TextView text = (TextView) itemLayout.findViewById(R.id.download_button_title);
 		ProgressBar bar = (ProgressBar) itemLayout.findViewById(R.id.progressBar);
@@ -47,8 +46,24 @@ public class DownloadListAdapter extends ArrayAdapter<JSONObject> {
 		} catch (JSONException e) {
 			Log.e("ERROR", e.getMessage());
 		}
-
-		return itemLayout;
+*/	
+		ViewHolder holder;
+		if(convertView != null) {
+			holder = new ViewHolder();
+			holder.image = (ImageView) convertView.findViewById(R.id.download_button_image);
+			holder.text = (TextView) convertView.findViewById(R.id.download_button_title);
+			holder.bar = (ProgressBar) convertView.findViewById(R.id.progressBar);
+			holder.button = (Button) convertView.findViewById(R.id.download_button);
+			convertView.setTag(holder);
+		}
+		return convertView;
+	}
+	
+	private static class ViewHolder {
+		ImageView image;
+		TextView text;
+		ProgressBar bar;
+		Button button;
 	}
 	
 	private View.OnClickListener createListener(final ProgressBar bar, final String url, final String fileName) {
