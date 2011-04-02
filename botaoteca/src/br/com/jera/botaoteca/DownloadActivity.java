@@ -26,7 +26,10 @@ import android.app.Activity;
 import android.net.ParseException;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.ListView;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.GridView;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 public class DownloadActivity extends Activity {
@@ -37,10 +40,13 @@ public class DownloadActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.download);
-		ListView listView = (ListView) findViewById(R.id.download_list);
+		GridView gridView = (GridView) findViewById(R.id.download_gridview);
+		ImageButton buttonMoreOptions = (ImageButton) findViewById(R.id.button_back);
+		buttonMoreOptions.setOnClickListener(this.onBack());
+
 		try {
 			this.createSoundsInfo(this.getListJSON());
-			listView.setAdapter(new DownloadListAdapter(this, sounds));
+			gridView.setAdapter(new DownloadListAdapter(this, sounds));
 		} catch (JSONException e) {
 			Log.i("ERROR", e.getMessage());
 		}
@@ -56,7 +62,7 @@ public class DownloadActivity extends Activity {
 	}
 
 	public String getListJSON() {
-		HttpGet get = new HttpGet(getString(R.string.server)+"list");
+		HttpGet get = new HttpGet(getString(R.string.server) + "list");
 		try {
 			HttpResponse response = this.connectToServer().execute(get);
 			return getResponseBody(response.getEntity());
@@ -110,6 +116,15 @@ public class DownloadActivity extends Activity {
 		for (int i = 0; i < length; i++) {
 			sounds.add((JSONObject) soundsArray.get(i));
 		}
+	}
+
+	private OnClickListener onBack() {
+		return new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				DownloadActivity.this.finish();
+			}
+		};
 	}
 
 	public List<JSONObject> getSounds() {

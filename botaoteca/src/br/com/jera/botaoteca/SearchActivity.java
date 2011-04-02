@@ -24,7 +24,7 @@ public class SearchActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.search);
 		ImageButton buttonMoreOptions = (ImageButton) findViewById(R.id.button_back);
-		buttonMoreOptions.setOnClickListener(this.onCreateMoreOptions());
+		buttonMoreOptions.setOnClickListener(this.onBack());
 
 		dataHelper = new DataHelper(getApplicationContext());
 		String query = (String) this.getIntent().getExtras().get("query");
@@ -46,7 +46,7 @@ public class SearchActivity extends Activity {
 		this.setVolumeControlStream(AudioManager.STREAM_MUSIC);
 	}
 
-	private OnClickListener onCreateMoreOptions() {
+	private OnClickListener onBack() {
 		return new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {

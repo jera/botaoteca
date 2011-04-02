@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
+	android:layout_width="90dp"
+    android:layout_height="103dp"
+    android:orientation="vertical"
     android:gravity="top">
 
     <ImageView
@@ -11,7 +11,12 @@
     	android:layout_height="wrap_content"
     />
 
-      <TextView
+    <Button
+    	android:id="@+id/download_button"
+    	android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    />
+     <TextView
 		android:id="@+id/download_button_title"
 		android:layout_width="wrap_content"
     	android:layout_height="wrap_content"
@@ -22,12 +27,5 @@
 		android:textColor="@color/white"
 		android:textSize="11dp"
 	 />
-
-    <Button
-    	android:id="@+id/download_button"
-    	android:layout_width="wrap_content"
-    	android:layout_height="wrap_content"
-    	android:text="@string/download"
-    />
 
 </LinearLayout>
