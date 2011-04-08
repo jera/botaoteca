@@ -1,29 +1,46 @@
 package br.com.jera.botaoteca.download;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-
+import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.util.Log;
+import br.com.jera.botaoteca.ButtonColor;
+
 public class DownloadItem {
-
-	private URL url;
-	private int size;
-	private int downloaded;
-
-	private static final int MAX_BUFFER_SIZE = 1024;
-
+	
+	private String name;
+	private ButtonColor color;
 
 	public DownloadItem(JSONObject jsonObject) {
-		this.url = url;
-		size = -1;
-		downloaded = 0;
+		String file = null;
+		try {
+			file = jsonObject.getString("name");
+		} catch (JSONException e) {
+			Log.e("ERROR", e.getMessage());
+		}
+		String[] info = file.split("_");
+		color = ButtonColor.valueOf(info[info.length - 1]);
+		this.name = getNameSound(file);
+	}
+	
+	private String getNameSound(String file) {
+		String[] name = file.split("_");
+		String nameSound = "";
+		for (int i = 0; i < name.length - 1; i++) {
+			nameSound += name[i] + " ";
+		}
+		return nameSound;
+	}
+	
+	public String getName() {
+		return name;
 	}
 
-	public byte[] download() throws IOException {
+	public ButtonColor getColor() {
+		return color;
+	}
+
+/*	public byte[] download() throws IOException {
 		InputStream stream = null;
 
 		HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -47,18 +64,6 @@ public class DownloadItem {
 		stream.close();
 		return os.toByteArray();
 
-	}
-
-	public String getUrl() {
-		return url.toString();
-	}
-
-	public int getSize() {
-		return size;
-	}
-
-	public int getProgress() {
-		return (downloaded * 100) / size;
-	}
+	}*/
 
 }

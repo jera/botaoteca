@@ -1,42 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
+	android:layout_width="90dp"
+    android:layout_height="103dp"
+    android:orientation="vertical"
     android:gravity="top">
-    
+
     <ImageView
-    	android:id="@+id/download_button_image"
+    	android:id="@+id/download_buttton_image"
     	android:layout_width="wrap_content"
     	android:layout_height="wrap_content"
+    	android:layout_marginBottom="-20dp"
+    	android:layout_marginTop="0dp"
+    	android:layout_gravity="center_horizontal"
+    	android:layout_alignParentTop="true"
     />
-    
-      <TextView
+
+    <Button
+    	android:id="@+id/btn_download"
+    	android:background="@layout/btn_download"
+    	android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+		android:layout_gravity="center_horizontal"
+    />
+
+     <TextView
 		android:id="@+id/download_button_title"
 		android:layout_width="wrap_content"
     	android:layout_height="wrap_content"
     	android:typeface="normal"
-    	android:layout_gravity="center_horizontal"
-		android:gravity="center_horizontal"
 		android:textStyle="bold"
 		android:textColor="@color/white"
 		android:textSize="11dp"
+    	android:layout_gravity="center_horizontal"
+		android:gravity="center_horizontal"
+		android:lines="2"
 	 />
-    
-    <Button
-    	android:id="@+id/download_button"
-    	android:layout_width="wrap_content"
-    	android:layout_height="wrap_content"
-    	android:text="@string/download"
-    />
-    
-    <ProgressBar
-		 	style="?android:attr/progressBarStyleHorizontal"
-		 	android:indeterminate="false"
-		 	android:layout_height="wrap_content"
-		 	android:layout_alignParentLeft="true"
-		 	android:id="@+id/progressBar"
-		 	android:visibility="invisible"
-		 	android:layout_width="wrap_content"/>
 
 </LinearLayout>

@@ -1,6 +1,5 @@
 package br.com.jera.botaoteca.download;
 
-import java.net.URLEncoder;
 import java.util.List;
 
 import android.content.Context;
@@ -18,41 +17,35 @@ public class DownloadListAdapter extends ArrayAdapter<DownloadItem> {
 	private List<DownloadItem> downloadItens;
 	public DownloadListAdapter(Context context, List<DownloadItem> items) {
 		super(context, R.layout.download_item, R.id.download_button_title, items);
-		this.downloadItens = downloadItens;
+		this.downloadItens = items;
 	}
 	
 	@Override
-	public View getView(int position, View convertView, ViewGroup parent) {	
+	public View getView(int position, View convertView, ViewGroup parent) {
+		DownloadItem item = downloadItens.get(position);
 		ViewHolder holder;
-		if(convertView != null) {
+		if(convertView == null) {
 			holder = new ViewHolder();
-			holder.image = (ImageView) convertView.findViewById(R.id.download_button_image);
+			convertView = View.inflate(getContext(), R.layout.download_item, null);
+			holder.buttonImage = (ImageView) convertView.findViewById(R.id.download_buttton_image);
 			holder.text = (TextView) convertView.findViewById(R.id.download_button_title);
-			holder.bar = (ProgressBar) convertView.findViewById(R.id.progressBar);
-			holder.button = (Button) convertView.findViewById(R.id.download_button);
+			holder.downloadButton = (Button) convertView.findViewById(R.id.btn_download);
 			convertView.setTag(holder);
 		}
+		else{
+			holder = (ViewHolder) convertView.getTag();
+		}
+		holder.text.setText(item.getName());
+		holder.buttonImage.setBackgroundDrawable(item.getColor().getNormalDrawable(getContext()));
+		holder.buttonImage.setTag(holder);
+		
 		return convertView;
 	}
 	
 	private static class ViewHolder {
-		ImageView image;
+		ImageView buttonImage;
 		TextView text;
 		ProgressBar bar;
-		Button button;
+		Button downloadButton;
 	}
-	
-	private View.OnClickListener createListener(final ProgressBar bar, final String url, final String fileName) {
-		return new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				DownloadSoundTask task = new DownloadSoundTask();
-				task.execute(url+"/"+URLEncoder.encode(fileName)+".mp3", fileName);
-				bar.setVisibility(View.VISIBLE);
-				v.setVisibility(View.INVISIBLE);
-			}
-		};
-	}
-
 }

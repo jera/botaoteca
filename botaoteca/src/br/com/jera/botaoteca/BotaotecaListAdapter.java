@@ -17,7 +17,7 @@ public class BotaotecaListAdapter extends ArrayAdapter<AppButton> {
 		super(context, R.layout.gridview_item, R.id.gridview_title, objects);
 	}
 
-	
+
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 
@@ -33,13 +33,13 @@ public class BotaotecaListAdapter extends ArrayAdapter<AppButton> {
 			holder = (ViewHolder)convertView.getTag();
 		}
 		holder.button.setOnClickListener(onClickListener);
-		holder.button.setBackgroundDrawable(button.getColor().getDrawable(getContext()));
+		holder.button.setBackgroundDrawable(button.getDrawable());
 		holder.button.setTag(button);
 		holder.text.setText(button.getName());
 
 		return convertView;
 	}
-	
+
   private static class ViewHolder {
 	  Button button;
 	  TextView text;
@@ -51,7 +51,7 @@ public class BotaotecaListAdapter extends ArrayAdapter<AppButton> {
 			try {
 				((AppButton) v.getTag()).getSound().play();
 			} catch (Exception e) {
-				Log.i("ERROR", e.getMessage());        
+				Log.i("ERROR", e.getMessage());
 			}
 		}
 	};

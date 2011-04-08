@@ -19,7 +19,7 @@
 		<activity android:name=".SearchActivity" android:theme="@android:style/Theme.NoTitleBar" android:screenOrientation="portrait">
      	 </activity>
 		
-			<activity android:name="download.DownloadActivity" android:theme="@android:style/Theme.NoTitleBar" android:screenOrientation="portrait">
+			<activity android:name=".download.DownloadActivity" android:theme="@android:style/Theme.NoTitleBar" android:screenOrientation="portrait">
      	 </activity>
 		
 		<activity android:name="widget.BotaotecaWidgetConfigure" android:theme="@android:style/Theme.Dialog">

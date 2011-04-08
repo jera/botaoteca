@@ -26,7 +26,10 @@ import android.app.Activity;
 import android.net.ParseException;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.ListView;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.GridView;
+import android.widget.ImageButton;
 import android.widget.Toast;
 import br.com.jera.botaoteca.R;
 
@@ -38,10 +41,13 @@ public class DownloadActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.download);
-		ListView listView = (ListView) findViewById(R.id.download_list);
+		GridView gridView = (GridView) findViewById(R.id.download_gridview);
+		ImageButton buttonMoreOptions = (ImageButton) findViewById(R.id.button_back);
+		buttonMoreOptions.setOnClickListener(this.onBack());
+
 		try {
 			this.createSoundsInfo(this.getListJSON());
-			listView.setAdapter(new DownloadListAdapter(this, downloadItems));
+			gridView.setAdapter(new DownloadListAdapter(this, downloadItems));
 		} catch (JSONException e) {
 			Log.i("ERROR", e.getMessage());
 		}
@@ -49,15 +55,15 @@ public class DownloadActivity extends Activity {
 
 	public HttpClient connectToServer() {
 		HttpParams httpParameters = new BasicHttpParams();
-		int timeoutConnection = 2000;
+		int timeoutConnection = 4000;
 		HttpConnectionParams.setConnectionTimeout(httpParameters, timeoutConnection);
-		int timeoutSocket = 2000;
+		int timeoutSocket = 4000;
 		HttpConnectionParams.setSoTimeout(httpParameters, timeoutSocket);
 		return new DefaultHttpClient(httpParameters);
 	}
 
 	public String getListJSON() {
-		HttpGet get = new HttpGet(getString(R.string.server)+"list");
+		HttpGet get = new HttpGet(getString(R.string.server) + "list");
 		try {
 			HttpResponse response = this.connectToServer().execute(get);
 			return getResponseBody(response.getEntity());
@@ -112,4 +118,14 @@ public class DownloadActivity extends Activity {
 			downloadItems.add(new DownloadItem((JSONObject) soundsArray.get(i)));
 		}
 	}
+
+	private OnClickListener onBack() {
+		return new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				DownloadActivity.this.finish();
+			}
+		};
+	}
+
 }
