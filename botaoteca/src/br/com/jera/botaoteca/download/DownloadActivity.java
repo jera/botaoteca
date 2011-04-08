@@ -36,7 +36,7 @@ import br.com.jera.botaoteca.R;
 public class DownloadActivity extends Activity {
 
 	private List<DownloadItem> downloadItems;
-
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -47,7 +47,7 @@ public class DownloadActivity extends Activity {
 
 		try {
 			this.createSoundsInfo(this.getListJSON());
-			gridView.setAdapter(new DownloadListAdapter(this, downloadItems));
+			gridView.setAdapter(new DownloadListAdapter(this, downloadItems,gridView));
 		} catch (JSONException e) {
 			Log.i("ERROR", e.getMessage());
 		}
@@ -115,7 +115,7 @@ public class DownloadActivity extends Activity {
 		int length = soundsArray.length();
 		downloadItems = new ArrayList<DownloadItem>(length);
 		for (int i = 0; i < length; i++) {
-			downloadItems.add(new DownloadItem((JSONObject) soundsArray.get(i)));
+			downloadItems.add(new DownloadItem((JSONObject) soundsArray.get(i),this));
 		}
 	}
 

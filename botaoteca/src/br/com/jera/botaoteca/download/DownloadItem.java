@@ -1,27 +1,85 @@
 package br.com.jera.botaoteca.download;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.content.Context;
+import android.os.AsyncTask;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
+import android.view.View;
 import br.com.jera.botaoteca.ButtonColor;
+import br.com.jera.botaoteca.R;
+import br.com.jera.botaoteca.sound.DownloadedSound;
 
 public class DownloadItem {
 	
 	private String name;
+	private String fileName;
 	private ButtonColor color;
+	private Status status;
+	private Integer index;
+	private Context context;
+	//referência ao adapter, usado para atualizar a barra de progresso
+	private DownloadListAdapter adapter;
 
-	public DownloadItem(JSONObject jsonObject) {
-		String file = null;
+	enum Status {
+		DOWNLOADING,
+		READY,
+		MISSING
+	}
+	
+	public DownloadItem(JSONObject jsonObject, Context context) {
 		try {
-			file = jsonObject.getString("name");
+			fileName = jsonObject.getString("name");
 		} catch (JSONException e) {
 			Log.e("ERROR", e.getMessage());
 		}
-		String[] info = file.split("_");
+		String[] info = fileName.split("_");
 		color = ButtonColor.valueOf(info[info.length - 1]);
-		this.name = getNameSound(file);
+		this.name = getNameSound(fileName);
+		status = Status.MISSING;
+		this.context = context;
 	}
+	
+	private Handler progressHandler = new Handler(){
+		public void handleMessage(Message msg) {
+			if(msg.what > 100) {
+				DownloadItem.this.adapter.notifyDataSetChanged();
+			}
+			else{
+				adapter.updateProgress(index, msg.what);
+			}
+		};
+	};
+	
+	private View.OnClickListener clickListener = new View.OnClickListener(){
+		public void onClick(View view) {
+			AsyncTask<DownloadItem, Integer, Void> task = new AsyncTask<DownloadItem, Integer, Void>(){
+				@Override
+				protected Void doInBackground(DownloadItem... params) {
+					DownloadItem item = params[0];
+					try {
+						item.download();
+					} catch (IOException e) {
+						Log.e("DOWNLOAD", e.getMessage());
+					}
+					return null;
+				}
+			};
+			task.execute(DownloadItem.this);
+			DownloadItem.this.adapter.notifyDataSetChanged();
+		};
+	};
 	
 	private String getNameSound(String file) {
 		String[] name = file.split("_");
@@ -40,30 +98,56 @@ public class DownloadItem {
 		return color;
 	}
 
-/*	public byte[] download() throws IOException {
-		InputStream stream = null;
-
+	public void download() throws IOException {
+		status = Status.DOWNLOADING;
+		long downloaded = 0;
+		URL url = new URL(context.getString(R.string.server)+"download/"+URLEncoder.encode(fileName)+".mp3");
 		HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-
-		size = connection.getContentLength();
-		ByteArrayOutputStream os = new ByteArrayOutputStream(size);
+		connection.setRequestProperty("Range", "bytes=" + downloaded + "-");
+		
+		long size = (long) connection.getContentLength();
+		File file = new File(DownloadedSound.PATH  + fileName+".mp3");
+		file.createNewFile();
+		FileOutputStream fs = new FileOutputStream(file);
 		connection.connect();
-		stream = connection.getInputStream();
+		InputStream stream = connection.getInputStream();
 		byte buffer[];
-
+		 int newProgress = 0;
+		 int progress = 0;
 		while (true) {
-			buffer = (size - downloaded) > MAX_BUFFER_SIZE ? new byte[MAX_BUFFER_SIZE] : new byte[size - downloaded];
+			buffer = (size - downloaded) > 1024 ? new byte[1024] : new byte[(int) (size - downloaded)];
 			int read = stream.read(buffer);
 			if (read == -1) {
 				break;
 			}
-			os.write(buffer, 0, read);
+			fs.write(buffer, 0, read);
 			downloaded += read;
-			int progress = getProgress();
+			newProgress = (int) (100 * downloaded) / (int) size;
+			if (newProgress > progress) {
+				progressHandler.sendEmptyMessage(newProgress);
+				progress = newProgress;
+			}
 		}
 		stream.close();
-		return os.toByteArray();
+		fs.close();
+		status= Status.READY;
+		progressHandler.sendEmptyMessage(101);
+	}
 
-	}*/
+	public Status getStatus() {
+		return status;
+	}
+
+	public View.OnClickListener getClickListener() {
+		return clickListener;
+	}
+
+	public void setIndex(Integer index) {
+		this.index = index;
+	}
+
+	public void setAdapter(DownloadListAdapter adapter) {
+		this.adapter = adapter;
+	}
 
 }

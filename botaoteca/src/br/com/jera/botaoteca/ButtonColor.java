@@ -14,8 +14,6 @@ public enum ButtonColor {
 	private int normal;
 	private int pressed;
 	private int idButton;
-	private Drawable animatedDrawable;
-	private Drawable normalDrawable;
 
 	ButtonColor(String name, int normal, int pressed, int idButton) {
 		this.idButton = idButton;
@@ -29,7 +27,7 @@ public enum ButtonColor {
 	}
 
 	public Drawable getNormalDrawable(Context context) {
-		return normalDrawable = context.getResources().getDrawable(this.normal);
+		return context.getResources().getDrawable(this.normal);
 	}
 
 	public String getName() {
