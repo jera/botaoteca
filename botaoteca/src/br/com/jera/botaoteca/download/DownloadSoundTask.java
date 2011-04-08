@@ -1,4 +1,4 @@
-package br.com.jera.botaoteca.network;
+package br.com.jera.botaoteca.download;
 
 import java.io.IOException;
 import java.net.URL;

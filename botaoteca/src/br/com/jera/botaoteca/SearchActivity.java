@@ -6,12 +6,7 @@ import java.util.List;
 import android.app.Activity;
 import android.media.AudioManager;
 import android.os.Bundle;
-import android.view.View;
-import android.view.ViewGroup.LayoutParams;
-import android.widget.Button;
 import android.widget.GridView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 import br.com.jera.botaoteca.database.DataHelper;
 
 public class SearchActivity extends Activity {

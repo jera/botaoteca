@@ -1,4 +1,4 @@
-package br.com.jera.botaoteca;
+package br.com.jera.botaoteca.download;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -28,10 +28,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.ListView;
 import android.widget.Toast;
+import br.com.jera.botaoteca.R;
 
 public class DownloadActivity extends Activity {
 
-	private List<JSONObject> sounds;
+	private List<DownloadItem> downloadItems;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -40,7 +41,7 @@ public class DownloadActivity extends Activity {
 		ListView listView = (ListView) findViewById(R.id.download_list);
 		try {
 			this.createSoundsInfo(this.getListJSON());
-			listView.setAdapter(new DownloadListAdapter(this, sounds));
+			listView.setAdapter(new DownloadListAdapter(this, downloadItems));
 		} catch (JSONException e) {
 			Log.i("ERROR", e.getMessage());
 		}
@@ -106,18 +107,9 @@ public class DownloadActivity extends Activity {
 		JSONObject responseObject = new JSONObject(content);
 		JSONArray soundsArray = responseObject.getJSONArray("sounds");
 		int length = soundsArray.length();
-		sounds = new ArrayList<JSONObject>(length);
+		downloadItems = new ArrayList<DownloadItem>(length);
 		for (int i = 0; i < length; i++) {
-			sounds.add((JSONObject) soundsArray.get(i));
+			downloadItems.add(new DownloadItem((JSONObject) soundsArray.get(i)));
 		}
 	}
-
-	public List<JSONObject> getSounds() {
-		return sounds;
-	}
-
-	public void setSounds(List<JSONObject> sounds) {
-		this.sounds = sounds;
-	}
-
 }

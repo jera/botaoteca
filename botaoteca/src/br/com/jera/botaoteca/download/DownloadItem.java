@@ -1,4 +1,4 @@
-package br.com.jera.botaoteca.network;
+package br.com.jera.botaoteca.download;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -6,7 +6,9 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class Download {
+import org.json.JSONObject;
+
+public class DownloadItem {
 
 	private URL url;
 	private int size;
@@ -15,7 +17,7 @@ public class Download {
 	private static final int MAX_BUFFER_SIZE = 1024;
 
 
-	public Download(URL url) {
+	public DownloadItem(JSONObject jsonObject) {
 		this.url = url;
 		size = -1;
 		downloaded = 0;
