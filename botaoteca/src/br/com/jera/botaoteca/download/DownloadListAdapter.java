@@ -53,8 +53,7 @@ public class DownloadListAdapter extends ArrayAdapter<DownloadItem> {
 		item.setIndex(position);
 		
 		holder.text.setText(item.getName());
-		holder.buttonImage.setBackgroundDrawable(item.getColor().getAnimatedDrawable(getContext()));
-		holder.buttonImage.setTag(holder);
+		holder.buttonImage.setBackgroundDrawable(item.getBackground());
 		
 		if(item.getStatus().equals(Status.MISSING)){
 			holder.buttonImage.setOnClickListener(item.getClickListener());

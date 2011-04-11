@@ -12,6 +12,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.Message;
@@ -22,22 +23,21 @@ import br.com.jera.botaoteca.R;
 import br.com.jera.botaoteca.sound.DownloadedSound;
 
 public class DownloadItem {
-	
+
 	private String name;
 	private String fileName;
 	private ButtonColor color;
 	private Status status;
 	private Integer index;
 	private Context context;
-	//referência ao adapter, usado para atualizar a barra de progresso
+	private Drawable background;
+	// referencia ao adapter, usado para atualizar a barra de progresso
 	private DownloadListAdapter adapter;
 
 	enum Status {
-		DOWNLOADING,
-		READY,
-		MISSING
+		DOWNLOADING, READY, MISSING
 	}
-	
+
 	public DownloadItem(JSONObject jsonObject, Context context) {
 		try {
 			fileName = jsonObject.getString("name");
@@ -49,22 +49,22 @@ public class DownloadItem {
 		this.name = getNameSound(fileName);
 		status = Status.MISSING;
 		this.context = context;
+		background = color.getAnimatedDrawable(context);
 	}
-	
-	private Handler progressHandler = new Handler(){
+
+	private Handler progressHandler = new Handler() {
 		public void handleMessage(Message msg) {
-			if(msg.what > 100) {
+			if (msg.what > 100) {
 				DownloadItem.this.adapter.notifyDataSetChanged();
-			}
-			else{
+			} else {
 				adapter.updateProgress(index, msg.what);
 			}
 		};
 	};
-	
-	private View.OnClickListener clickListener = new View.OnClickListener(){
+
+	private View.OnClickListener clickListener = new View.OnClickListener() {
 		public void onClick(View view) {
-			AsyncTask<DownloadItem, Integer, Void> task = new AsyncTask<DownloadItem, Integer, Void>(){
+			AsyncTask<DownloadItem, Integer, Void> task = new AsyncTask<DownloadItem, Integer, Void>() {
 				@Override
 				protected Void doInBackground(DownloadItem... params) {
 					DownloadItem item = params[0];
@@ -80,7 +80,7 @@ public class DownloadItem {
 			DownloadItem.this.adapter.notifyDataSetChanged();
 		};
 	};
-	
+
 	private String getNameSound(String file) {
 		String[] name = file.split("_");
 		String nameSound = "";
@@ -89,7 +89,7 @@ public class DownloadItem {
 		}
 		return nameSound;
 	}
-	
+
 	public String getName() {
 		return name;
 	}
@@ -101,19 +101,19 @@ public class DownloadItem {
 	public void download() throws IOException {
 		status = Status.DOWNLOADING;
 		long downloaded = 0;
-		URL url = new URL(context.getString(R.string.server)+"download/"+URLEncoder.encode(fileName)+".mp3");
+		URL url = new URL(context.getString(R.string.server) + "download/" + URLEncoder.encode(fileName) + ".mp3");
 		HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 		connection.setRequestProperty("Range", "bytes=" + downloaded + "-");
-		
+
 		long size = (long) connection.getContentLength();
-		File file = new File(DownloadedSound.PATH  + fileName+".mp3");
+		File file = new File(DownloadedSound.PATH + fileName + ".mp3");
 		file.createNewFile();
 		FileOutputStream fs = new FileOutputStream(file);
 		connection.connect();
 		InputStream stream = connection.getInputStream();
 		byte buffer[];
-		 int newProgress = 0;
-		 int progress = 0;
+		int newProgress = 0;
+		int progress = 0;
 		while (true) {
 			buffer = (size - downloaded) > 1024 ? new byte[1024] : new byte[(int) (size - downloaded)];
 			int read = stream.read(buffer);
@@ -130,7 +130,7 @@ public class DownloadItem {
 		}
 		stream.close();
 		fs.close();
-		status= Status.READY;
+		status = Status.READY;
 		progressHandler.sendEmptyMessage(101);
 	}
 
@@ -148,6 +148,10 @@ public class DownloadItem {
 
 	public void setAdapter(DownloadListAdapter adapter) {
 		this.adapter = adapter;
+	}
+
+	public Drawable getBackground() {
+		return background;
 	}
 
 }
