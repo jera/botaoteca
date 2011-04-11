@@ -20,6 +20,7 @@ import android.util.Log;
 import android.view.View;
 import br.com.jera.botaoteca.ButtonColor;
 import br.com.jera.botaoteca.R;
+import br.com.jera.botaoteca.database.DataHelper;
 import br.com.jera.botaoteca.sound.DownloadedSound;
 
 public class DownloadItem {
@@ -31,6 +32,7 @@ public class DownloadItem {
 	private Integer index;
 	private Context context;
 	private Drawable background;
+	private DataHelper dataHelper;
 	// referencia ao adapter, usado para atualizar a barra de progresso
 	private DownloadListAdapter adapter;
 
@@ -46,9 +48,11 @@ public class DownloadItem {
 		}
 		String[] info = fileName.split("_");
 		color = ButtonColor.valueOf(info[info.length - 1]);
-		this.name = getNameSound(fileName);
+		dataHelper = new DataHelper(context);
+		this.name = dataHelper.getNameSound(fileName);
 		status = Status.MISSING;
 		this.context = context;
+
 		background = color.getAnimatedDrawable(context);
 	}
 
@@ -80,15 +84,6 @@ public class DownloadItem {
 			DownloadItem.this.adapter.notifyDataSetChanged();
 		};
 	};
-
-	private String getNameSound(String file) {
-		String[] name = file.split("_");
-		String nameSound = "";
-		for (int i = 0; i < name.length - 1; i++) {
-			nameSound += name[i] + " ";
-		}
-		return nameSound;
-	}
 
 	public String getName() {
 		return name;
@@ -130,6 +125,7 @@ public class DownloadItem {
 		}
 		stream.close();
 		fs.close();
+		this.dataHelper.insert(fileName);
 		status = Status.READY;
 		progressHandler.sendEmptyMessage(101);
 	}

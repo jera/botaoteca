@@ -8,20 +8,21 @@ public class AppButton implements Comparable<AppButton> {
 	private String name;
 	private Drawable drawable;
 	private Sound sound;
-	ButtonColor color;
+	private ButtonColor color;
 
-	public AppButton(ButtonColor color, Context context, Sound sound) {
-		drawable = color.getAnimatedDrawable(context);
+	public AppButton(ButtonColor color, String name, Context context, Sound sound) {
+		this.drawable = color.getAnimatedDrawable(context);
+		this.name = name;
 		this.sound = sound;
 		this.color = color;
-  }
+	}
 
-public String getName() {
+	public String getName() {
 		return name;
 	}
 
 	public void setName(String name) {
-		this.name = name;    
+		this.name = name;
 	}
 
 	public Sound getSound() {

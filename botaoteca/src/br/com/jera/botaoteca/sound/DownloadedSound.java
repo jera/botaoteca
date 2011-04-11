@@ -9,15 +9,14 @@ import android.os.Environment;
 
 public class DownloadedSound extends Sound {
 
-	public static final String PATH = Environment.getExternalStorageDirectory() + File.separator + "botaoteca"+File.separator;
-	
+	public static final String PATH = Environment.getExternalStorageDirectory() + File.separator + "botaoteca" + File.separator;
+
 	public DownloadedSound(String fileName) throws IOException {
 		super(fileName, null);
 	}
 
 	@Override
 	public void play() throws IllegalArgumentException, IllegalStateException, IOException {
-
 		File file = new File(PATH + File.separator + fileName);
 		FileInputStream inputStream = new FileInputStream(file);
 
@@ -27,13 +26,13 @@ public class DownloadedSound extends Sound {
 		PLAYER.start();
 
 	}
-	
+
 	public static Sound create(String fileName, byte[] data) throws IOException {
-		File file = new File (PATH + File.separator+fileName+".mp3");
+		File file = new File(PATH + File.separator + fileName);
 		file.createNewFile();
 		FileOutputStream fos = new FileOutputStream(file);
 		fos.write(data);
 		fos.flush();
-		return new DownloadedSound(fileName+".mp3");
+		return new DownloadedSound(fileName + ".mp3");
 	}
 }

@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 import br.com.jera.botaoteca.AppButton;
 import br.com.jera.botaoteca.ButtonColor;
+import br.com.jera.botaoteca.sound.DownloadedSound;
 import br.com.jera.botaoteca.sound.EmbeddedSound;
 
 public class DataHelper {
@@ -54,26 +55,28 @@ public class DataHelper {
 	}
 
 	public AppButton findButton(String fileName) {
-		Cursor cursor = db.rawQuery("SELECT  name, color, type FROM " + TABLE_NAME + " WHERE fileName = ?", new String[] { fileName });
-
+		Cursor cursor = db.rawQuery("SELECT  fileName, name, color, type FROM " + TABLE_NAME + " WHERE fileName = ?", new String[] { fileName });
+		AppButton button = null;
 		if (cursor.moveToFirst()) {
-			int type = cursor.getInt(2);
-			String color = cursor.getString(1);
+			button = this.constructButton(cursor);
+		}
+		cursor.close();
+		return button;
+	}
 
-			if (type == 1) {
-				AppButton button;
-				try {
-					button = new AppButton(ButtonColor.valueOf(color), context, new EmbeddedSound(fileName, context));
-					cursor.close();
-					return button;
-				} catch (Exception e) {
-					Log.e("FILE", "file " + fileName + " not found");
+	public List<AppButton> filterButtons(String search) {
+		List<AppButton> buttons = new ArrayList<AppButton>();
+		Cursor cursor = db.rawQuery("SELECT fileName, name, color, type FROM " + TABLE_NAME + " WHERE name like '%" + search + "%'", null);
+		if (cursor.moveToFirst()) {
+			do {
+				if (cursor.moveToNext()) {
+					buttons.add(this.constructButton(cursor));
 				}
-			}
+			} while (cursor.moveToNext());
 
 		}
 		cursor.close();
-		return null;
+		return buttons;
 	}
 
 	public List<AppButton> createButtonsFromDatabase() {
@@ -81,58 +84,43 @@ public class DataHelper {
 		List<AppButton> buttons = new ArrayList<AppButton>();
 		if (cursor.moveToFirst()) {
 			do {
-				int type = cursor.getInt(3);
-
-				String fileName = cursor.getString(0);
-				String name = cursor.getString(1);
-				String color = cursor.getString(2);
-
-				if (type == 1) {
-					AppButton button;
-					try {
-						button = new AppButton(ButtonColor.valueOf(color), context, new EmbeddedSound(fileName, context));
-						button.setName(name);
-						buttons.add(button);
-					} catch (Exception e) {
-						Log.e("FILE", "file " + fileName + " not found");
-					}
+				if (cursor.moveToNext()) {
+					buttons.add(this.constructButton(cursor));
 				}
 			} while (cursor.moveToNext());
-
 		}
 		cursor.close();
-
 		return buttons;
 	}
 
-	public List<AppButton> filterButtons(String search) {
-		List<AppButton> buttons = new ArrayList<AppButton>();
-		Cursor cursor = db.rawQuery("SELECT fileName, name, color, type FROM " + TABLE_NAME + " WHERE name like '%" + search + "%'", null);
+	public void insert(String fileName) {
+		String[] nameSound = fileName.split("_");
+		String color = nameSound[nameSound.length - 1];
+		String name = getNameSound(fileName);
 
-		if (cursor.moveToFirst()) {
-			do {
-				int type = cursor.getInt(3);
+		this.db.beginTransaction();
+		db.execSQL("INSERT INTO sounds VALUES ('" + fileName + ".mp3','" + name + "',2,'" + color + "')");
+		db.setTransactionSuccessful();
+		db.endTransaction();
+	}
 
-				String fileName = cursor.getString(0);
-				String name = cursor.getString(1);
-				String color = cursor.getString(2);
-
-				if (type == 1) {
-					AppButton button;
-					try {
-						button = new AppButton(ButtonColor.valueOf(color), context, new EmbeddedSound(fileName, context));
-						button.setName(name);
-						buttons.add(button);
-					} catch (Exception e) {
-						Log.e("FILE", "file " + fileName + " not found");
-					}
-				}
-			} while (cursor.moveToNext());
-
+	private AppButton constructButton(Cursor cursor) {
+		AppButton button = null;
+		String fileName = cursor.getString(0);
+		String name = cursor.getString(1);
+		String color = cursor.getString(2);
+		int type = cursor.getInt(3);
+		try {
+			if (type == 1) {
+				button = new AppButton(ButtonColor.valueOf(color), name, context, new EmbeddedSound(fileName, context));
+			}
+			else if (type == 2) {
+				button = new AppButton(ButtonColor.valueOf(color), name, context, new DownloadedSound(fileName));
+			}
+		} catch (Exception e) {
+			Log.e("FILE", "file " + fileName + " not found");
 		}
-		cursor.close();
-		return buttons;
-
+		return button;
 	}
 
 	static String getDatabaseName() {
@@ -141,6 +129,15 @@ public class DataHelper {
 		} else {
 			return DATABASE_NAME;
 		}
+	}
+
+	public String getNameSound(String file) {
+		String[] name = file.split("_");
+		String nameSound = "";
+		for (int i = 0; i < name.length - 1; i++) {
+			nameSound += name[i] + " ";
+		}
+		return nameSound;
 	}
 
 	static boolean isTesting() {

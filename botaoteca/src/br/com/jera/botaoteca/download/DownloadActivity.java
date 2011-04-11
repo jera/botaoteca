@@ -32,14 +32,18 @@ import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.Toast;
 import br.com.jera.botaoteca.R;
+import br.com.jera.botaoteca.database.DataHelper;
 
 public class DownloadActivity extends Activity {
 
 	private List<DownloadItem> downloadItems;
-	
+
+	private DataHelper dataHelper;
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		dataHelper = new DataHelper(getApplicationContext());
 		setContentView(R.layout.download);
 		GridView gridView = (GridView) findViewById(R.id.download_gridview);
 		ImageButton buttonMoreOptions = (ImageButton) findViewById(R.id.button_back);
@@ -47,7 +51,7 @@ public class DownloadActivity extends Activity {
 
 		try {
 			this.createSoundsInfo(this.getListJSON());
-			gridView.setAdapter(new DownloadListAdapter(this, downloadItems,gridView));
+			gridView.setAdapter(new DownloadListAdapter(this, downloadItems, gridView));
 		} catch (JSONException e) {
 			Log.i("ERROR", e.getMessage());
 		}
@@ -112,10 +116,11 @@ public class DownloadActivity extends Activity {
 	public void createSoundsInfo(String content) throws JSONException {
 		JSONObject responseObject = new JSONObject(content);
 		JSONArray soundsArray = responseObject.getJSONArray("sounds");
+
 		int length = soundsArray.length();
 		downloadItems = new ArrayList<DownloadItem>(length);
 		for (int i = 0; i < length; i++) {
-			downloadItems.add(new DownloadItem((JSONObject) soundsArray.get(i),this));
+			downloadItems.add(new DownloadItem((JSONObject) soundsArray.get(i), this));
 		}
 	}
 

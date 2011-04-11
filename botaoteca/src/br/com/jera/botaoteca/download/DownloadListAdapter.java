@@ -16,24 +16,24 @@ import br.com.jera.botaoteca.R;
 import br.com.jera.botaoteca.download.DownloadItem.Status;
 
 public class DownloadListAdapter extends ArrayAdapter<DownloadItem> {
-	
+
 	private List<DownloadItem> downloadItens;
 	private Drawable downloadImage;
 	private Drawable readyImage;
 	private GridView gridView;
-	
+
 	public DownloadListAdapter(Context context, List<DownloadItem> items, GridView gridView) {
 		super(context, R.layout.download_item, R.id.download_button_title, items);
 		this.downloadItens = items;
 		downloadImage = getContext().getResources().getDrawable(R.drawable.btn_download_normal);
 		readyImage = getContext().getResources().getDrawable(R.drawable.btn_ok);
 		this.gridView = gridView;
-		
+
 		for(DownloadItem item : items) {
 			item.setAdapter(this);
 		}
 	}
-	
+
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		DownloadItem item = downloadItens.get(position);
@@ -51,16 +51,17 @@ public class DownloadListAdapter extends ArrayAdapter<DownloadItem> {
 			holder = (ViewHolder) convertView.getTag();
 		}
 		item.setIndex(position);
-		
+
 		holder.text.setText(item.getName());
 		holder.buttonImage.setBackgroundDrawable(item.getBackground());
-		
+
 		if(item.getStatus().equals(Status.MISSING)){
 			holder.buttonImage.setOnClickListener(item.getClickListener());
 			holder.statusImage.setBackgroundDrawable(downloadImage);
 			holder.statusImage.setVisibility(View.VISIBLE);
 			holder.bar.setVisibility(View.INVISIBLE);
 		}else if(item.getStatus().equals(Status.READY)){
+			holder.buttonImage.setBackgroundDrawable(item.getColor().getNormalDrawable(getContext()));
 			holder.statusImage.setBackgroundDrawable(readyImage);
 			holder.statusImage.setVisibility(View.VISIBLE);
 			holder.bar.setVisibility(View.INVISIBLE);
@@ -70,10 +71,10 @@ public class DownloadListAdapter extends ArrayAdapter<DownloadItem> {
 			holder.bar.setVisibility(View.VISIBLE);
 			holder.buttonImage.setOnClickListener(null);
 		}
-		
+
 		return convertView;
 	}
-	
+
 	public void updateProgress(int index, int progress){
 	    View v = gridView.getChildAt(index - gridView.getFirstVisiblePosition());
 	    if(v != null) {
@@ -81,7 +82,7 @@ public class DownloadListAdapter extends ArrayAdapter<DownloadItem> {
 		    holder.bar.setProgress(progress);
 	    }
 	}
-	
+
 	private static class ViewHolder {
 		ImageButton buttonImage;
 		TextView text;

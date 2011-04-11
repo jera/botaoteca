@@ -47,6 +47,10 @@ public class Principal extends Activity {
 		this.setVolumeControlStream(AudioManager.STREAM_MUSIC);
 	}
 
+	public void search(){
+
+	}
+
 	private OnClickListener onCreateMoreOptions() {
 		return new View.OnClickListener() {
 			@Override
