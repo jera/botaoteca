@@ -53,8 +53,7 @@ public class BotaotecaWidgetProvider extends AppWidgetProvider {
 			SharedPreferences prefs = context.getSharedPreferences(BotaotecaWidgetConfigure.PREFS_NAME, 0);
 			String fileName = prefs.getString(BotaotecaWidgetConfigure.WIDGET_FILE_NAME + appWidgetId, null);
 			Log.i("RECIEVER", "ID" + appWidgetId + " FILE: " + fileName);
-			DataHelper helper = new DataHelper(context);
-			AppButton button = helper.findButton(fileName);
+			AppButton button = DataHelper.getDataHelper(context).findButton(fileName);
 			try {
 				button.getSound().play();
 			} catch (Exception e) {

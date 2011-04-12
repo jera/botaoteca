@@ -15,7 +15,6 @@ import br.com.jera.botaoteca.database.DataHelper;
 
 public class SearchActivity extends Activity {
 
-	private DataHelper dataHelper;
 	private List<AppButton> buttons;
 	private GridView gridView;
 
@@ -26,9 +25,8 @@ public class SearchActivity extends Activity {
 		ImageButton buttonMoreOptions = (ImageButton) findViewById(R.id.button_back);
 		buttonMoreOptions.setOnClickListener(this.onBack());
 
-		dataHelper = new DataHelper(getApplicationContext());
 		String query = (String) this.getIntent().getExtras().get("query");
-		buttons = dataHelper.filterButtons(query);
+		buttons = DataHelper.getDataHelper(this).filterButtons(query);
 		List<AppButton> nButtons = new ArrayList<AppButton>();
 
 		for (AppButton button : buttons) {

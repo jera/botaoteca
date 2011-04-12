@@ -12,6 +12,7 @@ import android.media.AudioManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -25,30 +26,22 @@ import br.com.jera.botaoteca.download.DownloadActivity;
 
 public class Principal extends Activity {
 
-	private DataHelper dataHelper;
 	private List<AppButton> buttons;
 	private GridView gridView;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
 		setContentView(R.layout.main);
-		dataHelper = new DataHelper(getApplicationContext());
 		ImageButton buttonMoreOptions = (ImageButton) findViewById(R.id.btn_more);
 		buttonMoreOptions.setOnClickListener(this.onCreateMoreOptions());
-		if (!handleIntent(getIntent())) {
-			buttons = dataHelper.createButtonsFromDatabase();
-			sort();
-			gridView = (GridView) findViewById(R.id.gridview);
-			gridView.setAdapter(new BotaotecaListAdapter(this, buttons));
-		}
-
 		this.setVolumeControlStream(AudioManager.STREAM_MUSIC);
 	}
 
-	public void search(){
-
+	@Override
+	protected void onResume() {
+		this.constructButtons();
+		super.onResume();
 	}
 
 	private OnClickListener onCreateMoreOptions() {
@@ -128,6 +121,14 @@ public class Principal extends Activity {
 			return true;
 		}
 		return false;
+	}
+
+	public void constructButtons() {
+		buttons = DataHelper.getDataHelper(this).createButtonsFromDatabase();
+		Log.i("BUTTONS", String.valueOf(buttons.size()));
+		sort();
+		gridView = (GridView) findViewById(R.id.gridview);
+		gridView.setAdapter(new BotaotecaListAdapter(this, buttons));
 	}
 
 }

@@ -32,7 +32,6 @@ public class DownloadItem {
 	private Integer index;
 	private Context context;
 	private Drawable background;
-	private DataHelper dataHelper;
 	// referencia ao adapter, usado para atualizar a barra de progresso
 	private DownloadListAdapter adapter;
 
@@ -48,8 +47,7 @@ public class DownloadItem {
 		}
 		String[] info = fileName.split("_");
 		color = ButtonColor.valueOf(info[info.length - 1]);
-		dataHelper = new DataHelper(context);
-		this.name = dataHelper.getNameSound(fileName);
+		this.name = DataHelper.getDataHelper(context).getNameSound(fileName);
 		status = Status.MISSING;
 		this.context = context;
 
@@ -125,7 +123,7 @@ public class DownloadItem {
 		}
 		stream.close();
 		fs.close();
-		this.dataHelper.insert(fileName);
+		DataHelper.getDataHelper(context).insert(fileName);
 		status = Status.READY;
 		progressHandler.sendEmptyMessage(101);
 	}

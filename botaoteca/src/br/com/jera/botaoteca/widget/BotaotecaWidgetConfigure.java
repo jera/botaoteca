@@ -62,7 +62,6 @@ public class BotaotecaWidgetConfigure extends ListActivity {
 
 		setContentView(R.layout.widget_list_layout);
 		setTitle("Selecione um som");
-		DataHelper helper = new DataHelper(this);
 
 		// encontra o id do widget no intent.
 		Intent intent = getIntent();
@@ -76,7 +75,7 @@ public class BotaotecaWidgetConfigure extends ListActivity {
 			finish();
 		}
 
-		buttons = helper.createButtonsFromDatabase();
+		buttons = DataHelper.getDataHelper(this).createButtonsFromDatabase();
 		ListAdapter adapter = new WidgetListAdapter(this, buttons);
 		getListView().setAdapter(adapter);
 

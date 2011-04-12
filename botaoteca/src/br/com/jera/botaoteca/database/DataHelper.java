@@ -26,9 +26,9 @@ public class DataHelper {
 	private Context context;
 	private SQLiteDatabase db;
 	private static boolean testing;
+	private static DataHelper dataHelperInstance;
 
 	static {
-
 		StringBuffer sql = new StringBuffer("CREATE TABLE ");
 		sql.append(DataHelper.TABLE_NAME);
 		sql.append(" (");
@@ -42,8 +42,15 @@ public class DataHelper {
 		DROP_SQL = String.format("DROP TABLE IF EXISTS %s", TABLE_NAME);
 	}
 
-	public DataHelper(Context context) {
+	public static DataHelper getDataHelper(Context context) {
+		if (dataHelperInstance == null) {
+			dataHelperInstance = new DataHelper(context);
+		}
+		dataHelperInstance.context = context;
+		return dataHelperInstance;
+	}
 
+	private DataHelper(Context context) {
 		this.context = context;
 		OpenHelper openHelper = new OpenHelper(this.context);
 		this.db = openHelper.getWritableDatabase();
@@ -84,9 +91,7 @@ public class DataHelper {
 		List<AppButton> buttons = new ArrayList<AppButton>();
 		if (cursor.moveToFirst()) {
 			do {
-				if (cursor.moveToNext()) {
 					buttons.add(this.constructButton(cursor));
-				}
 			} while (cursor.moveToNext());
 		}
 		cursor.close();
@@ -97,8 +102,7 @@ public class DataHelper {
 		String[] nameSound = fileName.split("_");
 		String color = nameSound[nameSound.length - 1];
 		String name = getNameSound(fileName);
-
-		this.db.beginTransaction();
+		db.beginTransaction();
 		db.execSQL("INSERT INTO sounds VALUES ('" + fileName + ".mp3','" + name + "',2,'" + color + "')");
 		db.setTransactionSuccessful();
 		db.endTransaction();
@@ -113,8 +117,7 @@ public class DataHelper {
 		try {
 			if (type == 1) {
 				button = new AppButton(ButtonColor.valueOf(color), name, context, new EmbeddedSound(fileName, context));
-			}
-			else if (type == 2) {
+			} else if (type == 2) {
 				button = new AppButton(ButtonColor.valueOf(color), name, context, new DownloadedSound(fileName));
 			}
 		} catch (Exception e) {

@@ -17,22 +17,21 @@ public class BotaotecaListAdapter extends ArrayAdapter<AppButton> {
 		super(context, R.layout.gridview_item, R.id.gridview_title, objects);
 	}
 
-
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 
 		final AppButton button = getItem(position);
 		ViewHolder holder;
-		if(convertView == null) {
+		if (convertView == null) {
 			holder = new ViewHolder();
 			convertView = View.inflate(getContext(), R.layout.gridview_item, null);
 			holder.button = (Button) convertView.findViewById(R.id.gridview_button);
-			holder.text =  (TextView)  convertView.findViewById(R.id.gridview_title);
+			holder.text = (TextView) convertView.findViewById(R.id.gridview_title);
 			convertView.setTag(holder);
-		}else {
-			holder = (ViewHolder)convertView.getTag();
+		} else {
+			holder = (ViewHolder) convertView.getTag();
 		}
-		holder.button.setOnClickListener(onClickListener);
+		holder.button.setOnClickListener(play());
 		holder.button.setBackgroundDrawable(button.getDrawable());
 		holder.button.setTag(button);
 		holder.text.setText(button.getName());
@@ -40,19 +39,21 @@ public class BotaotecaListAdapter extends ArrayAdapter<AppButton> {
 		return convertView;
 	}
 
-  private static class ViewHolder {
-	  Button button;
-	  TextView text;
-  }
+	private static class ViewHolder {
+		Button button;
+		TextView text;
+	}
 
-	private OnClickListener onClickListener = new OnClickListener() {
-		@Override
-		public void onClick(View v) {
-			try {
-				((AppButton) v.getTag()).getSound().play();
-			} catch (Exception e) {
-				Log.i("ERROR", e.getMessage());
+	private OnClickListener play() {
+		return new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				try {
+					((AppButton) v.getTag()).getSound().play();
+				} catch (Exception e) {
+					Log.i("ERROR", e.getMessage());
+				}
 			}
-		}
-	};
+		};
+	}
 }
