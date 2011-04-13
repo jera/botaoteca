@@ -31,7 +31,9 @@ import android.view.View.OnClickListener;
 import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.Toast;
+import br.com.jera.botaoteca.AppButton;
 import br.com.jera.botaoteca.R;
+import br.com.jera.botaoteca.database.DataHelper;
 
 public class DownloadActivity extends Activity {
 
@@ -110,13 +112,31 @@ public class DownloadActivity extends Activity {
 	}
 
 	public void createSoundsInfo(String content) throws JSONException {
+		List<AppButton> buttons = DataHelper.getDataHelper(this).createButtonsFromDatabase();
 		JSONObject responseObject = new JSONObject(content);
 		JSONArray soundsArray = responseObject.getJSONArray("sounds");
 		int length = soundsArray.length();
-		downloadItems = new ArrayList<DownloadItem>(length);
+		downloadItems = new ArrayList<DownloadItem>();
+
 		for (int i = 0; i < length; i++) {
-			downloadItems.add(new DownloadItem((JSONObject) soundsArray.get(i), this));
+			JSONObject jsonObject = (JSONObject) soundsArray.get(i);
+			if (!isAlreadyDownloaded(jsonObject, buttons)) {
+				downloadItems.add(new DownloadItem((JSONObject) soundsArray.get(i), this));
+			}
 		}
+	}
+
+	private boolean isAlreadyDownloaded(JSONObject jsonObject, List<AppButton> buttons) {
+		try {
+			String fileName = jsonObject.getString("name")+".mp3";
+			for (AppButton appButton : buttons) {
+				if (appButton.getFileName().equals(fileName)) {
+					return true;
+				}
+			}
+		} catch (JSONException e) {
+		}
+		return false;
 	}
 
 	private OnClickListener onBack() {

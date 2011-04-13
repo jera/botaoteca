@@ -8,14 +8,16 @@
 		android:layout_width="40dp"
 		android:layout_height="40dp" />
 	<TextView
-		android:lines="2"
 		android:gravity="center_horizontal"
-		android:layout_gravity="center_vertical"
-		android:textSize="20dp"
+		android:layout_gravity="center_horizontal"
+		android:textSize="11dp"
+		android:typeface="normal"
 		android:textColor="@color/black"
+		android:textStyle="bold"
 		android:id="@+id/listText"
 		android:layout_width="wrap_content"
-		android:layout_height="wrap_content" />
-
+		android:layout_height="wrap_content"
+		android:lines="2"
+		/>
 </LinearLayout>
 

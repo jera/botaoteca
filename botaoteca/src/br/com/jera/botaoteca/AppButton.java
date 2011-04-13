@@ -5,12 +5,14 @@ import android.graphics.drawable.Drawable;
 import br.com.jera.botaoteca.sound.Sound;
 
 public class AppButton implements Comparable<AppButton> {
+	private String fileName;
 	private String name;
 	private Drawable drawable;
 	private Sound sound;
 	private ButtonColor color;
 
-	public AppButton(ButtonColor color, String name, Context context, Sound sound) {
+	public AppButton(ButtonColor color, String fileName, String name, Context context, Sound sound) {
+		this.fileName = fileName;
 		this.drawable = color.getAnimatedDrawable(context);
 		this.name = name;
 		this.sound = sound;
@@ -31,6 +33,10 @@ public class AppButton implements Comparable<AppButton> {
 
 	public String toString() {
 		return name;
+	}
+
+	public String getFileName() {
+		return this.fileName;
 	}
 
 	@Override

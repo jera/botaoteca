@@ -76,9 +76,7 @@ public class DataHelper {
 		Cursor cursor = db.rawQuery("SELECT fileName, name, color, type FROM " + TABLE_NAME + " WHERE name like '%" + search + "%'", null);
 		if (cursor.moveToFirst()) {
 			do {
-				if (cursor.moveToNext()) {
-					buttons.add(this.constructButton(cursor));
-				}
+				buttons.add(this.constructButton(cursor));
 			} while (cursor.moveToNext());
 
 		}
@@ -91,7 +89,7 @@ public class DataHelper {
 		List<AppButton> buttons = new ArrayList<AppButton>();
 		if (cursor.moveToFirst()) {
 			do {
-					buttons.add(this.constructButton(cursor));
+				buttons.add(this.constructButton(cursor));
 			} while (cursor.moveToNext());
 		}
 		cursor.close();
@@ -116,9 +114,9 @@ public class DataHelper {
 		int type = cursor.getInt(3);
 		try {
 			if (type == 1) {
-				button = new AppButton(ButtonColor.valueOf(color), name, context, new EmbeddedSound(fileName, context));
+				button = new AppButton(ButtonColor.valueOf(color), fileName, name, context, new EmbeddedSound(fileName, context));
 			} else if (type == 2) {
-				button = new AppButton(ButtonColor.valueOf(color), name, context, new DownloadedSound(fileName));
+				button = new AppButton(ButtonColor.valueOf(color), fileName, name, context, new DownloadedSound(fileName));
 			}
 		} catch (Exception e) {
 			Log.e("FILE", "file " + fileName + " not found");
