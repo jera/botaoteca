@@ -9,12 +9,12 @@ import android.os.Environment;
 
 public class DownloadedSound extends Sound {
 
-	public static final String PATH = Environment.getExternalStorageDirectory() + File.separator + ".botaoteca" + File.separator;
-	
+	public static final String PATH = Environment.getExternalStorageDirectory() + File.separator + "botaoteca" + File.separator;
+
 	static {
 		new File(PATH).mkdirs();
 	}
-	
+
 	public DownloadedSound(String fileName) throws IOException {
 		super(fileName, null);
 	}
