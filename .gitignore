@@ -1,6 +1,5 @@
 *.class
 bin
-*.mp3
 .redcar
 botaoteca-server
 sounds
