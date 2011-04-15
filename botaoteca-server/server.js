@@ -19,6 +19,10 @@ function list(res) {
 	  		var name = data[i].split(".")[0];
 	  		sounds_array.push({name: name});
 	  	}
+	  	sounds_array.sort(function(a,b){
+	  	  if (a.name == b.name) return 0;
+	  	  return a.name > b.name ? 1 : -1;
+	  	});
 	  	res.writeHead(200,{'Content-type': 'application/json',charset: 'utf-8'});
 	  	res.end(JSON.stringify({sounds: sounds_array}));
 	});
@@ -27,9 +31,12 @@ function list(res) {
 function download(res, filename) {
 	filename = decodeURI(filename);
 	fs.readFile("sounds/"+filename, function(err, data) {
-		if(err) throw err;
-		res.writeHead(200,{'Content-type': 'audio/mp3','Content-Length' : data.length});
-		res.end(data);
+		if(err) {
+		}
+		else{
+		  res.writeHead(200,{'Content-type': 'audio/mp3','Content-Length' : data.length});
+		  res.end(data);
+		}
 	});	
 }
 
