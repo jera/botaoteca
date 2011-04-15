@@ -103,7 +103,6 @@ public class DownloadItem {
 
 		long size = (long) connection.getContentLength();
 		File file = new File(DownloadedSound.PATH + fileName + ".mp3");
-		file.createNewFile();
 		FileOutputStream fs = new FileOutputStream(file);
 		connection.connect();
 		InputStream stream = connection.getInputStream();
