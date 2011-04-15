@@ -1,30 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="90dp"
-    android:layout_height="103dp"
-    android:orientation="vertical"
-    android:gravity="top">
-    
-    <Button
-    	android:layout_marginTop="0dp"
-    	android:layout_marginBottom="2dp"
-    	android:id="@+id/gridview_button"
-    	android:layout_width="wrap_content"
-    	android:layout_height="wrap_content"
-    	android:layout_gravity="center"
-    />
-    
-      <TextView
+	android:layout_height="103dp"
+	android:orientation="vertical"
+	android:gravity="top">
+
+	<Button
+		android:layout_marginTop="0dp"
+		android:layout_marginBottom="2dp"
+		android:id="@+id/gridview_button"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="center" />
+
+	<TextView
+		android:lines="2"
 		android:id="@+id/gridview_title"
 		android:layout_width="wrap_content"
-    	android:layout_height="wrap_content"
-    	android:typeface="normal"
-    	android:layout_gravity="center_horizontal"
+		android:layout_height="wrap_content"
+		android:typeface="normal"
+		android:layout_gravity="center_horizontal"
 		android:gravity="center_horizontal"
 		android:textStyle="bold"
 		android:textColor="@color/white"
-		android:textSize="11dp"
-	 />
-    
+		android:textSize="11dp" />
+
 
 </LinearLayout>
