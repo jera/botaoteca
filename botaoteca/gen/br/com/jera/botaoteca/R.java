@@ -39,31 +39,34 @@ public final class R {
         public static final int btn_pressed_orange=0x7f020015;
         public static final int btn_pressed_red=0x7f020016;
         public static final int btn_pressed_yellow=0x7f020017;
-        public static final int icon=0x7f020018;
-        public static final int jera_normal=0x7f020019;
-        public static final int jera_pressed=0x7f02001a;
+        public static final int download=0x7f020018;
+        public static final int icon=0x7f020019;
+        public static final int jera_normal=0x7f02001a;
+        public static final int jera_pressed=0x7f02001b;
+        public static final int search=0x7f02001c;
     }
     public static final class id {
-        public static final int banner=0x7f080002;
-        public static final int btn_more=0x7f08000d;
-        public static final int button_back=0x7f080000;
+        public static final int banner=0x7f08000d;
+        public static final int btn_more=0x7f08000e;
+        public static final int button_back=0x7f080001;
+        public static final int download_banner=0x7f080000;
         public static final int download_button_title=0x7f080007;
         public static final int download_buttton_image=0x7f080004;
-        public static final int download_gridview=0x7f080001;
-        public static final int downloads=0x7f080010;
+        public static final int download_gridview=0x7f080002;
+        public static final int downloads=0x7f080011;
         public static final int footer=0x7f080003;
-        public static final int gridview=0x7f08000e;
+        public static final int gridview=0x7f08000f;
         public static final int gridview_button=0x7f080008;
         public static final int gridview_title=0x7f080009;
         public static final int listArea=0x7f08000a;
         public static final int listImage=0x7f08000b;
         public static final int listText=0x7f08000c;
         public static final int progressBar=0x7f080006;
-        public static final int quit=0x7f080011;
-        public static final int search=0x7f08000f;
+        public static final int quit=0x7f080012;
+        public static final int search=0x7f080010;
         public static final int status_image=0x7f080005;
-        public static final int widget_button=0x7f080012;
-        public static final int widget_title=0x7f080013;
+        public static final int widget_button=0x7f080013;
+        public static final int widget_title=0x7f080014;
     }
     public static final class layout {
         public static final int btn_back=0x7f030000;
@@ -95,6 +98,7 @@ public final class R {
         public static final int back=0x7f060004;
         public static final int download=0x7f060003;
         public static final int downloads=0x7f060002;
+        public static final int no_downloads=0x7f06000b;
         public static final int not_connected=0x7f060006;
         public static final int not_result=0x7f060008;
         public static final int quit=0x7f060001;

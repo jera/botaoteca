@@ -22,13 +22,13 @@
 			<activity android:name=".download.DownloadActivity" android:theme="@android:style/Theme.NoTitleBar" android:screenOrientation="portrait">
      	 </activity>
 		
-		<activity android:name="widget.BotaotecaWidgetConfigure" android:theme="@android:style/Theme.Dialog">
+		<activity android:name=".widget.BotaotecaWidgetConfigure" android:theme="@android:style/Theme.Dialog">
 			<intent-filter>
 				<action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
 			</intent-filter>
 		</activity>
 		
-		<receiver android:name="widget.BotaotecaWidgetProvider">
+		<receiver android:name=".widget.BotaotecaWidgetProvider">
 			<intent-filter>
 				<action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
 				<action android:name=".widget.BotaotecaWidgetProvider.ACTION_WIDGET_RECEIVER"/>

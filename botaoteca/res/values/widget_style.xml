@@ -9,6 +9,7 @@
 	</style>
 	
 	<style name="title">
+		<item name="android:lines">2</item>
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:layout_margin">0dip</item>

@@ -5,7 +5,6 @@ import java.util.Comparator;
 import java.util.List;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;

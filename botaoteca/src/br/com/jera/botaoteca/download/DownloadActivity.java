@@ -51,11 +51,14 @@ public class DownloadActivity extends Activity {
 		try {
 			this.createSoundsInfo(this.getListJSON());
 			gridView.setAdapter(new DownloadListAdapter(this, downloadItems, gridView));
+			if(downloadItems.isEmpty()) {
+				Toast.makeText(getApplicationContext(), getString(R.string.no_downloads), Toast.LENGTH_LONG).show();
+			}
 		} catch (JSONException e) {
 			Log.i("ERROR", e.getMessage());
 		}
 	}
-
+	
 	public HttpClient connectToServer() {
 		HttpParams httpParameters = new BasicHttpParams();
 		int timeoutConnection = 4000;

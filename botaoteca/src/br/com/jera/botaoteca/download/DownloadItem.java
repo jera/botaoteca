@@ -66,6 +66,9 @@ public class DownloadItem {
 
 	private View.OnClickListener clickListener = new View.OnClickListener() {
 		public void onClick(View view) {
+			if(status.equals(Status.DOWNLOADING)){
+				return;
+			}
 			AsyncTask<DownloadItem, Integer, Void> task = new AsyncTask<DownloadItem, Integer, Void>() {
 				@Override
 				protected Void doInBackground(DownloadItem... params) {
