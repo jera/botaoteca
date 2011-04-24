@@ -1,6 +1,7 @@
 package br.com.jera.botaoteca.download;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -23,10 +24,10 @@ import br.com.jera.botaoteca.R;
 import br.com.jera.botaoteca.database.DataHelper;
 import br.com.jera.botaoteca.sound.DownloadedSound;
 
-public class DownloadItem {
+public class DownloadItem extends DownloadedSound {
 
 	private String name;
-	private String fileName;
+	// private String fileName;
 	private ButtonColor color;
 	private Status status;
 	private Integer index;
@@ -39,19 +40,23 @@ public class DownloadItem {
 		DOWNLOADING, READY, MISSING
 	}
 
-	public DownloadItem(JSONObject jsonObject, Context context) {
-		try {
-			fileName = jsonObject.getString("name");
-		} catch (JSONException e) {
-			Log.e("ERROR", e.getMessage());
-		}
+	public DownloadItem(JSONObject jsonObject, Context context) throws IOException {
+		super(getFileNameDownload(jsonObject));
 		String[] info = fileName.split("_");
 		color = ButtonColor.valueOf(info[info.length - 1]);
 		this.name = DataHelper.getDataHelper(context).getNameSound(fileName);
 		status = Status.MISSING;
 		this.context = context;
-
 		background = color.getAnimatedDrawable(context);
+	}
+
+	public static String getFileNameDownload(JSONObject jsonObject) {
+		try {
+			return jsonObject.getString("name");
+		} catch (JSONException e) {
+			Log.e("ERROR", e.getMessage());
+		}
+		return "";
 	}
 
 	private Handler progressHandler = new Handler() {
@@ -66,25 +71,39 @@ public class DownloadItem {
 
 	private View.OnClickListener clickListener = new View.OnClickListener() {
 		public void onClick(View view) {
-			if(status.equals(Status.DOWNLOADING)){
+			if (status.equals(Status.DOWNLOADING)) {
 				return;
-			}
-			AsyncTask<DownloadItem, Integer, Void> task = new AsyncTask<DownloadItem, Integer, Void>() {
-				@Override
-				protected Void doInBackground(DownloadItem... params) {
-					DownloadItem item = params[0];
-					try {
-						item.download();
-					} catch (IOException e) {
-						Log.e("DOWNLOAD", e.getMessage());
+			} else if (status.equals(Status.READY)) {
+
+			} else {
+				AsyncTask<DownloadItem, Integer, Void> task = new AsyncTask<DownloadItem, Integer, Void>() {
+					@Override
+					protected Void doInBackground(DownloadItem... params) {
+						DownloadItem item = params[0];
+						try {
+							item.download();
+						} catch (IOException e) {
+							Log.e("DOWNLOAD", e.getMessage());
+						}
+						return null;
 					}
-					return null;
-				}
-			};
-			task.execute(DownloadItem.this);
-			DownloadItem.this.adapter.notifyDataSetChanged();
+				};
+				task.execute(DownloadItem.this);
+				DownloadItem.this.adapter.notifyDataSetChanged();
+			}
 		};
 	};
+
+	@Override
+	public void play() throws IllegalArgumentException, IllegalStateException, IOException {
+		File file = new File(PATH + File.separator + fileName + ".mp3");
+		FileInputStream inputStream = new FileInputStream(file);
+
+		PLAYER.reset();
+		PLAYER.setDataSource(inputStream.getFD());
+		PLAYER.prepare();
+		PLAYER.start();
+	}
 
 	public String getName() {
 		return name;

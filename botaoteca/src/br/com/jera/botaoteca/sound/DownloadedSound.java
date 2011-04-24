@@ -28,7 +28,6 @@ public class DownloadedSound extends Sound {
 		PLAYER.setDataSource(inputStream.getFD());
 		PLAYER.prepare();
 		PLAYER.start();
-
 	}
 
 	public static Sound create(String fileName, byte[] data) throws IOException {
