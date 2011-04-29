@@ -1,4 +1,4 @@
-package br.com.jera.botaoteca.widget;
+package br.com.jera.botaoteca2.widget;
 
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
@@ -10,10 +10,10 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.util.Log;
 import android.widget.RemoteViews;
-import br.com.jera.botaoteca.AppButton;
-import br.com.jera.botaoteca.ButtonColor;
-import br.com.jera.botaoteca.R;
-import br.com.jera.botaoteca.database.DataHelper;
+import br.com.jera.botaoteca2.AppButton;
+import br.com.jera.botaoteca2.ButtonColor;
+import br.com.jera.botaoteca2.R;
+import br.com.jera.botaoteca2.database.DataHelper;
 
 public class BotaotecaWidgetProvider extends AppWidgetProvider {
 
@@ -65,7 +65,7 @@ public class BotaotecaWidgetProvider extends AppWidgetProvider {
 
 	public void onEnabled(Context context) {
 		PackageManager pm = context.getPackageManager();
-		pm.setComponentEnabledSetting(new ComponentName("br.com.jera.botaoteca", ".widget.BotaotecaWidgetConfigure"),
+		pm.setComponentEnabledSetting(new ComponentName("br.com.jera.botaoteca2", ".widget.BotaotecaWidgetConfigure"),
 				PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
 	}
 

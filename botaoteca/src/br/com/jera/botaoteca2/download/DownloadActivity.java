@@ -1,4 +1,4 @@
-package br.com.jera.botaoteca.download;
+package br.com.jera.botaoteca2.download;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -23,7 +23,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.net.ParseException;
 import android.os.Bundle;
 import android.util.Log;
@@ -32,9 +31,9 @@ import android.view.View.OnClickListener;
 import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.Toast;
-import br.com.jera.botaoteca.AppButton;
-import br.com.jera.botaoteca.R;
-import br.com.jera.botaoteca.database.DataHelper;
+import br.com.jera.botaoteca2.AppButton;
+import br.com.jera.botaoteca2.R;
+import br.com.jera.botaoteca2.database.DataHelper;
 
 public class DownloadActivity extends Activity {
 

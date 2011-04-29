@@ -1,4 +1,4 @@
-package br.com.jera.botaoteca.database;
+package br.com.jera.botaoteca2.database;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,10 +7,10 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
-import br.com.jera.botaoteca.AppButton;
-import br.com.jera.botaoteca.ButtonColor;
-import br.com.jera.botaoteca.sound.DownloadedSound;
-import br.com.jera.botaoteca.sound.EmbeddedSound;
+import br.com.jera.botaoteca2.AppButton;
+import br.com.jera.botaoteca2.ButtonColor;
+import br.com.jera.botaoteca2.sound.DownloadedSound;
+import br.com.jera.botaoteca2.sound.EmbeddedSound;
 
 public class DataHelper {
 

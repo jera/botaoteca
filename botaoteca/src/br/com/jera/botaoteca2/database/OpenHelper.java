@@ -1,4 +1,4 @@
-package br.com.jera.botaoteca.database;
+package br.com.jera.botaoteca2.database;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

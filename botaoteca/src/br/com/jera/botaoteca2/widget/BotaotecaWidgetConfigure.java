@@ -1,4 +1,4 @@
-package br.com.jera.botaoteca.widget;
+package br.com.jera.botaoteca2.widget;
 
 import java.util.List;
 
@@ -14,9 +14,9 @@ import android.view.View;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RemoteViews;
-import br.com.jera.botaoteca.AppButton;
-import br.com.jera.botaoteca.R;
-import br.com.jera.botaoteca.database.DataHelper;
+import br.com.jera.botaoteca2.AppButton;
+import br.com.jera.botaoteca2.R;
+import br.com.jera.botaoteca2.database.DataHelper;
 
 public class BotaotecaWidgetConfigure extends ListActivity {
 

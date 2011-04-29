@@ -1,4 +1,4 @@
-package br.com.jera.botaoteca.download;
+package br.com.jera.botaoteca2.download;
 
 import java.util.List;
 
@@ -12,8 +12,8 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import br.com.jera.botaoteca.R;
-import br.com.jera.botaoteca.download.DownloadItem.Status;
+import br.com.jera.botaoteca2.R;
+import br.com.jera.botaoteca2.download.DownloadItem.Status;
 
 public class DownloadListAdapter extends ArrayAdapter<DownloadItem> {
 

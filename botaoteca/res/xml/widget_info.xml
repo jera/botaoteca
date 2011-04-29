@@ -3,6 +3,6 @@
     android:updatePeriodMillis="86400000"
     android:minWidth="70dp"
     android:minHeight="60dp"
-    android:configure="br.com.jera.botaoteca.widget.BotaotecaWidgetConfigure"
+    android:configure="br.com.jera.botaoteca2.widget.BotaotecaWidgetConfigure"
     >
 </appwidget-provider>

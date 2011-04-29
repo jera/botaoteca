@@ -1,8 +1,8 @@
-package br.com.jera.botaoteca;
+package br.com.jera.botaoteca2;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
-import br.com.jera.botaoteca.sound.Sound;
+import br.com.jera.botaoteca2.sound.Sound;
 
 public class AppButton implements Comparable<AppButton> {
 	private String fileName;

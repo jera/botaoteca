@@ -1,4 +1,4 @@
-package br.com.jera.botaoteca;
+package br.com.jera.botaoteca2;
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -21,8 +21,8 @@ import android.view.View.OnClickListener;
 import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.Toast;
-import br.com.jera.botaoteca.database.DataHelper;
-import br.com.jera.botaoteca.download.DownloadActivity;
+import br.com.jera.botaoteca2.database.DataHelper;
+import br.com.jera.botaoteca2.download.DownloadActivity;
 
 public class Principal extends Activity {
 

@@ -1,4 +1,4 @@
-package br.com.jera.botaoteca.download;
+package br.com.jera.botaoteca2.download;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -18,10 +18,10 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.view.View;
-import br.com.jera.botaoteca.ButtonColor;
-import br.com.jera.botaoteca.R;
-import br.com.jera.botaoteca.database.DataHelper;
-import br.com.jera.botaoteca.sound.DownloadedSound;
+import br.com.jera.botaoteca2.ButtonColor;
+import br.com.jera.botaoteca2.R;
+import br.com.jera.botaoteca2.database.DataHelper;
+import br.com.jera.botaoteca2.sound.DownloadedSound;
 
 public class DownloadItem {
 

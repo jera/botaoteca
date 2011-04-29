@@ -1,4 +1,4 @@
-package br.com.jera.botaoteca;
+package br.com.jera.botaoteca2;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +11,7 @@ import android.view.View.OnClickListener;
 import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.Toast;
-import br.com.jera.botaoteca.database.DataHelper;
+import br.com.jera.botaoteca2.database.DataHelper;
 
 public class SearchActivity extends Activity {
 

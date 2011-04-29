@@ -1,4 +1,4 @@
-package br.com.jera.botaoteca;
+package br.com.jera.botaoteca2;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;

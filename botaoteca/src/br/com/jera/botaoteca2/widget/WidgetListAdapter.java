@@ -1,4 +1,4 @@
-package br.com.jera.botaoteca.widget;
+package br.com.jera.botaoteca2.widget;
 
 import java.util.List;
 
@@ -8,8 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import br.com.jera.botaoteca.AppButton;
-import br.com.jera.botaoteca.R;
+import br.com.jera.botaoteca2.AppButton;
+import br.com.jera.botaoteca2.R;
 
 public class WidgetListAdapter extends ArrayAdapter<AppButton> {
 
