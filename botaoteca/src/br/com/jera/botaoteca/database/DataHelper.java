@@ -149,4 +149,12 @@ public class DataHelper {
 		DataHelper.testing = testing;
 	}
 
+	public void delete(AppButton button) {
+		db.beginTransaction();
+		db.execSQL("DELETE FROM sounds WHERE fileName = ?",new String[] { button.getFileName() });
+		db.setTransactionSuccessful();
+		db.endTransaction();
+
+	}
+
 }

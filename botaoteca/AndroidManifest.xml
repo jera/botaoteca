@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
 	package="br.com.jera.botaoteca" android:versionCode="2"
 	android:versionName="1.0">
-	
+
 	<application android:icon="@drawable/icon" android:label="@string/app_name">
 		<activity android:launchMode="singleTop" android:name=".Principal" android:theme="@android:style/Theme.NoTitleBar" android:screenOrientation="portrait"
 			android:label="@string/app_name">
@@ -15,19 +15,22 @@
         	</intent-filter>
         	<meta-data android:name="android.app.searchable" android:resource="@xml/searchable"/>
 		</activity>
-		
+
 		<activity android:name=".SearchActivity" android:theme="@android:style/Theme.NoTitleBar" android:screenOrientation="portrait">
      	 </activity>
-		
+
 			<activity android:name=".download.DownloadActivity" android:theme="@android:style/Theme.NoTitleBar" android:screenOrientation="portrait">
      	 </activity>
-		
+
 		<activity android:name=".widget.BotaotecaWidgetConfigure" android:theme="@android:style/Theme.Dialog">
 			<intent-filter>
 				<action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
 			</intent-filter>
 		</activity>
-		
+
+		<activity android:name="com.google.ads.AdActivity"
+              android:configChanges="keyboard|keyboardHidden|orientation"/>
+
 		<receiver android:name=".widget.BotaotecaWidgetProvider">
 			<intent-filter>
 				<action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
@@ -36,12 +39,13 @@
 			<meta-data android:name="android.appwidget.provider"
 				android:resource="@xml/widget_info" />
 		</receiver>
-	
-	
+
+
+
 	</application>
-	<uses-permission android:name="android.permission.INTERNET" /> 
-	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> 
+	<uses-permission android:name="android.permission.INTERNET" />
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 	<uses-sdk android:minSdkVersion="4" />
-	
-</manifest> 
+
+</manifest>

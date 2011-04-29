@@ -27,7 +27,6 @@ import br.com.jera.botaoteca.sound.DownloadedSound;
 public class DownloadItem extends DownloadedSound {
 
 	private String name;
-	// private String fileName;
 	private ButtonColor color;
 	private Status status;
 	private Integer index;
@@ -114,39 +113,45 @@ public class DownloadItem extends DownloadedSound {
 	}
 
 	public void download() throws IOException {
-		status = Status.DOWNLOADING;
-		long downloaded = 0;
-		URL url = new URL(context.getString(R.string.server) + "download/" + URLEncoder.encode(fileName) + ".mp3");
-		HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-		connection.setRequestProperty("Range", "bytes=" + downloaded + "-");
+		try {
+			status = Status.DOWNLOADING;
+			long downloaded = 0;
+			URL url = new URL(context.getString(R.string.server) + "download/" + URLEncoder.encode(fileName) + ".mp3");
+			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+			connection.setRequestProperty("Range", "bytes=" + downloaded + "-");
 
-		long size = (long) connection.getContentLength();
-		File file = new File(DownloadedSound.PATH + fileName + ".mp3");
-		FileOutputStream fs = new FileOutputStream(file);
-		connection.connect();
-		InputStream stream = connection.getInputStream();
-		byte buffer[];
-		int newProgress = 0;
-		int progress = 0;
-		while (true) {
-			buffer = (size - downloaded) > 1024 ? new byte[1024] : new byte[(int) (size - downloaded)];
-			int read = stream.read(buffer);
-			if (read == -1) {
-				break;
+			long size = (long) connection.getContentLength();
+			File file = new File(DownloadedSound.PATH + fileName + ".mp3");
+			if (file.exists())
+				file.delete();
+			FileOutputStream fs = new FileOutputStream(file);
+			connection.connect();
+			InputStream stream = connection.getInputStream();
+			byte buffer[];
+			int newProgress = 0;
+			int progress = 0;
+			while (true) {
+				buffer = (size - downloaded) > 1024 ? new byte[1024] : new byte[(int) (size - downloaded)];
+				int read = stream.read(buffer);
+				if (read == -1) {
+					break;
+				}
+				fs.write(buffer, 0, read);
+				downloaded += read;
+				newProgress = (int) (100 * downloaded) / (int) size;
+				if (newProgress > progress) {
+					progressHandler.sendEmptyMessage(newProgress);
+					progress = newProgress;
+				}
 			}
-			fs.write(buffer, 0, read);
-			downloaded += read;
-			newProgress = (int) (100 * downloaded) / (int) size;
-			if (newProgress > progress) {
-				progressHandler.sendEmptyMessage(newProgress);
-				progress = newProgress;
-			}
+			stream.close();
+			fs.close();
+			DataHelper.getDataHelper(context).insert(fileName);
+			status = Status.READY;
+			progressHandler.sendEmptyMessage(101);
+		} catch (NegativeArraySizeException e) {
+			Log.e("DOWNLOAD", "Erro download " + e.getMessage());
 		}
-		stream.close();
-		fs.close();
-		DataHelper.getDataHelper(context).insert(fileName);
-		status = Status.READY;
-		progressHandler.sendEmptyMessage(101);
 	}
 
 	public Status getStatus() {

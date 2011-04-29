@@ -9,8 +9,11 @@
 	<string name="not.connected">Não foi possível conectar ao servidor</string>
 	<string name="server">http://jera.com.br:9080/</string>
 	<string name="not.result">Nenhum botão Encontrado!</string>
+	<string name="delete.button.msg">Deseja excluir esse botão?</string>
 	<string name="search_title">Busca</string>
 	<string name="all">Todos os botões</string>
-	<string name="no.downloads">Ops, parece que você já baixou todos os sons!</string>
+	<string name="no.downloads">Ops, parece que você já baixou todos os botões!</string>
+	<string name="yes">Sim</string>
+	<string name="no">Não</string>
 
 </resources>
