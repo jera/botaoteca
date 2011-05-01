@@ -4,7 +4,9 @@ import java.util.List;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.GridView;
@@ -29,7 +31,7 @@ public class DownloadListAdapter extends ArrayAdapter<DownloadItem> {
 		readyImage = getContext().getResources().getDrawable(R.drawable.btn_ok);
 		this.gridView = gridView;
 
-		for(DownloadItem item : items) {
+		for (DownloadItem item : items) {
 			item.setAdapter(this);
 		}
 	}
@@ -38,7 +40,7 @@ public class DownloadListAdapter extends ArrayAdapter<DownloadItem> {
 	public View getView(int position, View convertView, ViewGroup parent) {
 		DownloadItem item = downloadItens.get(position);
 		ViewHolder holder;
-		if(convertView == null) {
+		if (convertView == null) {
 			holder = new ViewHolder();
 			convertView = View.inflate(getContext(), R.layout.download_item, null);
 			holder.buttonImage = (ImageButton) convertView.findViewById(R.id.download_buttton_image);
@@ -46,8 +48,7 @@ public class DownloadListAdapter extends ArrayAdapter<DownloadItem> {
 			holder.statusImage = (ImageView) convertView.findViewById(R.id.status_image);
 			holder.bar = (ProgressBar) convertView.findViewById(R.id.progressBar);
 			convertView.setTag(holder);
-		}
-		else{
+		} else {
 			holder = (ViewHolder) convertView.getTag();
 		}
 		item.setIndex(position);
@@ -55,18 +56,19 @@ public class DownloadListAdapter extends ArrayAdapter<DownloadItem> {
 		holder.text.setText(item.getName());
 		holder.buttonImage.setBackgroundDrawable(item.getBackground());
 
-		if(item.getStatus().equals(Status.MISSING)){
+		if (item.getStatus().equals(Status.MISSING)) {
 			holder.buttonImage.setOnClickListener(item.getClickListener());
 			holder.statusImage.setBackgroundDrawable(downloadImage);
 			holder.statusImage.setVisibility(View.VISIBLE);
 			holder.bar.setVisibility(View.INVISIBLE);
-		}else if(item.getStatus().equals(Status.READY)){
+		} else if (item.getStatus().equals(Status.READY)) {
 			holder.buttonImage.setBackgroundDrawable(item.getColor().getNormalDrawable(getContext()));
 			holder.statusImage.setBackgroundDrawable(readyImage);
 			holder.statusImage.setVisibility(View.VISIBLE);
 			holder.bar.setVisibility(View.INVISIBLE);
-			holder.buttonImage.setOnClickListener(null);
-		}else if(item.getStatus().equals(Status.DOWNLOADING)){
+			holder.buttonImage.setTag(item);
+			holder.buttonImage.setOnClickListener(play());
+		} else if (item.getStatus().equals(Status.DOWNLOADING)) {
 			holder.statusImage.setVisibility(View.INVISIBLE);
 			holder.bar.setVisibility(View.VISIBLE);
 			holder.buttonImage.setOnClickListener(null);
@@ -75,12 +77,25 @@ public class DownloadListAdapter extends ArrayAdapter<DownloadItem> {
 		return convertView;
 	}
 
-	public void updateProgress(int index, int progress){
-	    View v = gridView.getChildAt(index - gridView.getFirstVisiblePosition());
-	    if(v != null) {
-		    ViewHolder holder = (ViewHolder) v.getTag();
-		    holder.bar.setProgress(progress);
-	    }
+	private OnClickListener play() {
+		return new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				try {
+					((DownloadItem) v.getTag()).play();
+				} catch (Exception e) {
+					Log.i("ERROR", e.getMessage());
+				}
+			}
+		};
+	}
+
+	public void updateProgress(int index, int progress) {
+		View v = gridView.getChildAt(index - gridView.getFirstVisiblePosition());
+		if (v != null) {
+			ViewHolder holder = (ViewHolder) v.getTag();
+			holder.bar.setProgress(progress);
+		}
 	}
 
 	private static class ViewHolder {

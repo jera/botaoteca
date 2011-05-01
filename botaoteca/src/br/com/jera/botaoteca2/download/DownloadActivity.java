@@ -50,14 +50,14 @@ public class DownloadActivity extends Activity {
 		try {
 			this.createSoundsInfo(this.getListJSON());
 			gridView.setAdapter(new DownloadListAdapter(this, downloadItems, gridView));
-			if(downloadItems.isEmpty()) {
+			if (downloadItems.isEmpty()) {
 				Toast.makeText(getApplicationContext(), getString(R.string.no_downloads), Toast.LENGTH_LONG).show();
 			}
-		} catch (JSONException e) {
+		} catch (Exception e) {
 			Log.i("ERROR", e.getMessage());
 		}
 	}
-	
+
 	public HttpClient connectToServer() {
 		HttpParams httpParameters = new BasicHttpParams();
 		int timeoutConnection = 4000;
@@ -114,7 +114,7 @@ public class DownloadActivity extends Activity {
 		return charset;
 	}
 
-	public void createSoundsInfo(String content) throws JSONException {
+	public void createSoundsInfo(String content) throws JSONException, IOException {
 		List<AppButton> buttons = DataHelper.getDataHelper(this).createButtonsFromDatabase();
 		JSONObject responseObject = new JSONObject(content);
 		JSONArray soundsArray = responseObject.getJSONArray("sounds");
@@ -131,7 +131,7 @@ public class DownloadActivity extends Activity {
 
 	private boolean isAlreadyDownloaded(JSONObject jsonObject, List<AppButton> buttons) {
 		try {
-			String fileName = jsonObject.getString("name")+".mp3";
+			String fileName = jsonObject.getString("name") + ".mp3";
 			for (AppButton appButton : buttons) {
 				if (appButton.getFileName().equals(fileName)) {
 					return true;

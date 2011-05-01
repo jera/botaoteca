@@ -1,5 +1,7 @@
 package br.com.jera.botaoteca;
 
+import java.io.IOException;
+
 import org.json.JSONException;
 
 import android.test.ActivityInstrumentationTestCase2;
@@ -11,7 +13,7 @@ public class DownloadActivityTest extends ActivityInstrumentationTestCase2<Downl
 		super(pkg, activityClass);
 	}
 
-	public void testGetSoundsInfo() throws JSONException {
+	public void testGetSoundsInfo() throws JSONException, IOException {
 		String jString = "{\"sounds\":[{\"name\": \"Serra_Comedor_BLUE\"}, {\"name\": \"Dilma_oi_RED\"}] }";
 		getActivity().createSoundsInfo(jString);
 //		List<JSONObject> sounds = getActivity().getSounds();

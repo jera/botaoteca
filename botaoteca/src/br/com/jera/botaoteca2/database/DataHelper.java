@@ -73,7 +73,7 @@ public class DataHelper {
 
 	public List<AppButton> filterButtons(String search) {
 		List<AppButton> buttons = new ArrayList<AppButton>();
-		Cursor cursor = db.rawQuery("SELECT fileName, name, color, type FROM " + TABLE_NAME + " WHERE name like '%" + search + "%'", null);
+		Cursor cursor = db.rawQuery("SELECT fileName, name, color, type FROM " + TABLE_NAME + " WHERE name like '%" + search + "%' ORDER BY name", null);
 		if (cursor.moveToFirst()) {
 			do {
 				buttons.add(this.constructButton(cursor));
@@ -147,6 +147,14 @@ public class DataHelper {
 
 	public static void setTesting(boolean testing) {
 		DataHelper.testing = testing;
+	}
+
+	public void delete(AppButton button) {
+		db.beginTransaction();
+		db.execSQL("DELETE FROM sounds WHERE fileName = ?",new String[] { button.getFileName() });
+		db.setTransactionSuccessful();
+		db.endTransaction();
+
 	}
 
 }

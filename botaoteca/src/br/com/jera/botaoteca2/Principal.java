@@ -24,6 +24,9 @@ import android.widget.Toast;
 import br.com.jera.botaoteca2.database.DataHelper;
 import br.com.jera.botaoteca2.download.DownloadActivity;
 
+import com.google.ads.AdRequest;
+import com.google.ads.AdView;
+
 public class Principal extends Activity {
 
 	private List<AppButton> buttons;
@@ -36,6 +39,9 @@ public class Principal extends Activity {
 		ImageButton buttonMoreOptions = (ImageButton) findViewById(R.id.btn_more);
 		buttonMoreOptions.setOnClickListener(this.onCreateMoreOptions());
 		this.setVolumeControlStream(AudioManager.STREAM_MUSIC);
+
+		AdView adView = (AdView) this.findViewById(R.id.adView);
+		adView.loadAd(new AdRequest());
 	}
 
 	@Override

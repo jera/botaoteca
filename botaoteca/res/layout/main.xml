@@ -4,7 +4,8 @@
 	android:orientation="vertical"
 	android:layout_width="fill_parent"
 	android:layout_height="fill_parent"
-	android:background="@drawable/bg">
+	android:background="@drawable/bg"
+	android:id="@+id/mainLayout">
 
 	<LinearLayout
 		android:id="@+id/banner"
@@ -44,14 +45,17 @@
 		android:layout_below="@+id/banner"
 		android:layout_above="@+id/footer" />
 
-	<LinearLayout
-		android:id="@+id/footer"
-		android:layout_alignParentBottom="true"
-		android:layout_width="fill_parent"
-		android:layout_height="wrap_content">
-		<ImageButton
-			android:background="@layout/btn_jera"
-			android:layout_width="fill_parent"
-			android:layout_height="wrap_content" />
+
+	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:ads="http://schemas.android.com/apk/res/br.com.jera.botaoteca2"
+              android:layout_alignParentBottom="true"
+			  android:layout_width="fill_parent"
+			  android:layout_height="wrap_content">
+  				<com.google.ads.AdView android:id="@+id/adView"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         ads:adUnitId="a14dbb14769179a"
+                         ads:adSize="BANNER"/>
 	</LinearLayout>
+
 </RelativeLayout>

@@ -11,7 +11,7 @@ public class DataHelperTest extends AndroidTestCase {
 	@Override
 	protected void setUp() throws Exception {
 		DataHelper.setTesting(true);
-		dataHelper = new DataHelper(getContext());
+		dataHelper = DataHelper.getDataHelper(getContext());
 	}
 
 	@Override
@@ -28,7 +28,7 @@ public class DataHelperTest extends AndroidTestCase {
 		DataHelper.setTesting(true);
 		assertEquals("Should be equal to botaoteca-test.db ",DataHelper.DATABASE_TEST_NAME, DataHelper.getDatabaseName());
 	}
-	
+
 	public void testCreateButtonsFromDatabase(){
 		DataHelper.setTesting(true);
 		List<AppButton> buttons = dataHelper.createButtonsFromDatabase();
