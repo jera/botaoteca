@@ -62,7 +62,7 @@ public class DownloadListAdapter extends ArrayAdapter<DownloadItem> {
 			holder.statusImage.setVisibility(View.VISIBLE);
 			holder.bar.setVisibility(View.INVISIBLE);
 		} else if (item.getStatus().equals(Status.READY)) {
-			holder.buttonImage.setBackgroundDrawable(item.getColor().getNormalDrawable(getContext()));
+			holder.buttonImage.setBackgroundDrawable(item.getBackground());
 			holder.statusImage.setBackgroundDrawable(readyImage);
 			holder.statusImage.setVisibility(View.VISIBLE);
 			holder.bar.setVisibility(View.INVISIBLE);
