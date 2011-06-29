@@ -66,23 +66,25 @@ public class SplashDialog extends Dialog {
 		BitmapDrawable bd = new BitmapDrawable(activity.getResources(), BitmapFactory.decodeFile(PATH + "splash.jpg"));
 		if (new File(PATH + "splash.jpg").exists()) {
 			image.setBackgroundDrawable(bd);
-			if (Preferences.readString(activity, "splash_link") != null) {
-				image.setOnClickListener(new View.OnClickListener() {
-					@Override
-					public void onClick(View v) {
-						activity.runOnUiThread(new Runnable() {
-							public void run() {
-								JeraAgent.logEvent("SPLASH_CLICK");
-								Intent intent = new Intent("android.intent.action.VIEW", Uri.parse(Preferences.readString(activity, "splash_link")));
-								activity.startActivity(intent);
-							}
-						});
-					}
-				});
-			}
 		} else {
-			image.setImageResource(R.drawable.logo_jera);
+			image.setImageResource(R.drawable.splash);
+			Preferences.write(activity, "splash_link", "https://market.android.com/details?id=br.com.jera.vikings");
 		}
+		if (Preferences.readString(activity, "splash_link") != null) {
+			image.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					activity.runOnUiThread(new Runnable() {
+						public void run() {
+							JeraAgent.logEvent("SPLASH_CLICK");
+							Intent intent = new Intent("android.intent.action.VIEW", Uri.parse(Preferences.readString(activity, "splash_link")));
+							activity.startActivity(intent);
+						}
+					});
+				}
+			});
+		}
+
 		findViewById(R.id.close_splash).setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				dismiss();
@@ -104,7 +106,7 @@ public class SplashDialog extends Dialog {
 		File file = new File("splash.jpg");
 		File web = new File(PATH + "tmp_" + file);
 		File old = new File(PATH + file);
-		if (!isEquals(web, old)) {
+		if (old.exists() && !isEquals(web, old)) {
 			old.delete();
 			web.renameTo(old);
 			setSplashed(false);

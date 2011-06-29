@@ -5,7 +5,7 @@ import android.content.SharedPreferences;
 
 public class Preferences {
 
-	private static final String PREFS_NAME = "vvz";
+	private static final String PREFS_NAME = "botaoteca";
 
 	public static String readString(Activity activity, String key) {
 		SharedPreferences settings = activity.getSharedPreferences(PREFS_NAME, 0);
