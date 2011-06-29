@@ -64,7 +64,8 @@ containing a value of this type.
         public static final int icon=0x7f020019;
         public static final int jera_normal=0x7f02001a;
         public static final int jera_pressed=0x7f02001b;
-        public static final int search=0x7f02001c;
+        public static final int notification=0x7f02001c;
+        public static final int search=0x7f02001d;
     }
     public static final class id {
         public static final int BANNER=0x7f050000;

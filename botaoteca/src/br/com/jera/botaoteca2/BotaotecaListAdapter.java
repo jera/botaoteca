@@ -1,6 +1,8 @@
 package br.com.jera.botaoteca2;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -14,6 +16,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 import br.com.jera.botaoteca2.database.DataHelper;
+import br.com.jeramobstats.JeraAgent;
 
 public class BotaotecaListAdapter extends ArrayAdapter<AppButton> {
 
@@ -85,7 +88,12 @@ public class BotaotecaListAdapter extends ArrayAdapter<AppButton> {
 			@Override
 			public void onClick(View v) {
 				try {
-					((AppButton) v.getTag()).getSound().play();
+					AppButton appButton = (AppButton) v.getTag();
+					appButton.getSound().play();
+
+					Map<String, String> params = new HashMap<String, String>();
+					params.put("SOUND", appButton.getName());
+					JeraAgent.logEvent("PLAYED_A_SOUND", params);
 				} catch (Exception e) {
 					Log.i("ERROR", e.getMessage());
 				}

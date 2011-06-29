@@ -23,14 +23,17 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 import br.com.jera.botaoteca2.database.DataHelper;
 import br.com.jera.botaoteca2.download.DownloadActivity;
+import br.com.jeramobstats.JeraAgent;
 
 import com.google.ads.AdRequest;
 import com.google.ads.AdView;
+import com.xtify.android.sdk.PersistentLocationManager;
 
 public class Principal extends Activity {
 
 	private List<AppButton> buttons;
 	private GridView gridView;
+	private PersistentLocationManager persistentLocationManager;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -42,6 +45,37 @@ public class Principal extends Activity {
 
 		AdView adView = (AdView) this.findViewById(R.id.adView);
 		adView.loadAd(new AdRequest());
+
+		// xtify specific-code
+		Context context = this;
+		persistentLocationManager = new PersistentLocationManager(context);
+		Thread xtifyThread = new Thread(new Runnable() {
+			@Override
+			public void run() {
+				persistentLocationManager.setNotificationIcon(R.drawable.notification);
+				persistentLocationManager.setNotificationDetailsIcon(R.drawable.icon);
+				boolean trackLocation = persistentLocationManager.isTrackingLocation();
+				boolean deliverNotifications = persistentLocationManager.isDeliveringNotifications();
+				if (trackLocation || deliverNotifications) {
+					persistentLocationManager.startService();
+				}
+			}
+		});
+		xtifyThread.start(); // to avoid Android's application-not-responding
+								// dialog box,
+								// do non-essential work in another thread
+	}
+
+	@Override
+	protected void onStart() {
+		super.onStart();
+		JeraAgent.onStartSession(this, "9HPCKRTT7VEGH3HPJDX5");
+	}
+
+	@Override
+	protected void onStop() {
+		super.onStop();
+		JeraAgent.onEndSession(this);
 	}
 
 	@Override
