@@ -106,7 +106,7 @@ public class SplashDialog extends Dialog {
 		File file = new File("splash.jpg");
 		File web = new File(PATH + "tmp_" + file);
 		File old = new File(PATH + file);
-		if (old.exists() && !isEquals(web, old)) {
+		if (!old.exists() || !isEquals(web, old)) {
 			old.delete();
 			web.renameTo(old);
 			setSplashed(false);
