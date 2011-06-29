@@ -38,6 +38,12 @@ public class Principal extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		SplashDialog dialog = new SplashDialog(this);
+		if (!dialog.isSplashed()) {
+			dialog.show();
+			dialog.setSplashed(true);
+		}
+
 		setContentView(R.layout.main);
 		ImageButton buttonMoreOptions = (ImageButton) findViewById(R.id.btn_more);
 		buttonMoreOptions.setOnClickListener(this.onCreateMoreOptions());
