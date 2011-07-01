@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
 	package="br.com.jera.botaoteca2"
-	android:versionCode="6"
+	android:versionCode="7"
 	android:installLocation="preferExternal"
-	android:versionName="1.6">
+	android:versionName="1.6.1">
 	<application android:icon="@drawable/icon" android:label="@string/app_name">
 		<activity android:launchMode="singleTop" android:name=".Principal" android:theme="@android:style/Theme.NoTitleBar" android:screenOrientation="portrait"
 			android:label="@string/app_name">
@@ -98,7 +98,9 @@
 	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 	<uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
 	<uses-permission android:name="android.permission.VIBRATE" />
-	
+	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
 	<uses-sdk android:minSdkVersion="4" />
 
 </manifest>
