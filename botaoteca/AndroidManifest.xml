@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
 	package="br.com.jera.botaoteca2"
-	android:versionCode="7"
+	android:versionCode="8"
 	android:installLocation="preferExternal"
-	android:versionName="1.6.1">
+	android:versionName="1.6.2">
 	<application android:icon="@drawable/icon" android:label="@string/app_name">
 		<activity android:launchMode="singleTop" android:name=".Principal" android:theme="@android:style/Theme.NoTitleBar" android:screenOrientation="portrait"
 			android:label="@string/app_name">
@@ -38,56 +38,6 @@
 			<meta-data android:name="android.appwidget.provider"
 				android:resource="@xml/widget_info" />
 		</receiver>
-
-		<!-- xtify configuration start -->
-		<activity android:name="com.xtify.android.sdk.SettingsActivity"
-			android:label="Settings">
-		</activity>
-		<activity android:name="com.xtify.android.sdk.NotificationDetailsActivity"
-			android:label="Notification Details" android:screenOrientation="portrait">
-		</activity>
-		<activity android:name="com.xtify.android.sdk.NotificationSettingsActivity"
-			android:label="Notification Settings">
-		</activity>
-		<service android:name="com.xtify.android.sdk.MainService"
-			android:label="Notifications Service">
-			<intent-filter>
-				<action android:name="com.xtify.android.sdk.IMainService" />
-				<category android:name="com.xtify.android.sdk.IMainService" />
-				<category android:name="com.xtify.android.sdk.IMainService.V1050" />
-			</intent-filter>
-		</service>
-		<receiver android:name="com.xtify.android.sdk.MainReceiver">
-			<intent-filter>
-				<action android:name="com.xtify.android.sdk.SHOW_NOTIFICATION" />
-				<action android:name="com.xtify.android.sdk.NOTIFICATION_CLICKED" />
-				<action android:name="com.xtify.android.sdk.NOTIFICATION_CLEARED" />
-				<!-- MAKE SURE THE APP KEY ON THE NEXT LINE IS PRECEDED BY A SLASH -->
-				<data android:scheme="notif" android:host="notification.xtify.com"
-					android:pathPrefix="/31477a9c-3a9d-46d8-8bf1-fc2c3afc6120" />
-			</intent-filter>
-			<intent-filter>
-				<action android:name="android.intent.action.BOOT_COMPLETED" />
-				<action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
-				<action android:name="com.xtify.android.sdk.SEND_SETTINGS" />
-			</intent-filter>
-			<intent-filter>
-				<action android:name="android.intent.action.PACKAGE_ADDED" />
-				<action android:name="android.intent.action.PACKAGE_REMOVED" />
-				<data android:scheme="package" />
-			</intent-filter>
-		</receiver>
-		<meta-data android:name="XTIFY_SDK_API_KEY" android:value="31477a9c-3a9d-46d8-8bf1-fc2c3afc6120" />
-		<receiver android:name="br.com.jera.botaoteca2.PushNotificationReceiver">
-			<intent-filter android:priority="9999">
-				<action android:name="com.xtify.android.sdk.SHOW_NOTIFICATION" />
-				<!-- KEEP THE FORWARD SLASH IN FRONT OF THE APP KEY ON THE LINE BELOW -->
-				<data	android:scheme="notif" 
-						android:host="notification.xtify.com"
-						android:pathPrefix="/31477a9c-3a9d-46d8-8bf1-fc2c3afc6120" />
-			</intent-filter>
-		</receiver>
-        <!-- xtify configuration end -->
 
 	</application>
 	<uses-permission android:name="android.permission.INTERNET" />
